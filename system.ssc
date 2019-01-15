@@ -1,21 +1,21 @@
 //Connect MYSQL
 v.db_info_host=s.storage_get("db_host")
 v.db_info_user=s.storage_get("db_user")
-v.db_info_db=s.storage_get("db_db")
+v.db_info_name=s.storage_get("db_name")
 v.db_info_pass=s.storage_get("db_pass")
 
 if set uv.db_user
   if notset v.db_info_host
     s.storage_set("db_host",uv.db_host)
     s.storage_set("db_user",uv.db_user)
-    s.storage_set("db_db",uv.db_db)
+    s.storage_set("db_name",uv.db_name)
     s.storage_set("db_pass",uv.db_pass)
     s.echo("Thanks for the update!!!")
     s.quit()
   end
 end
 if set v.db_info_host
-  v.db_connected=s.mysql_connect(v.db_info_host,v.db_info_user,v.db_info_pass,v.db_info_db)
+  v.db_connected=s.mysql_connect(v.db_info_host,v.db_info_user,v.db_info_pass,v.db_info_name)
   if v.db_connected false
     s.echo("Database connection failed.")
     s.quit()
