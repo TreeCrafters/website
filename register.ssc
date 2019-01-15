@@ -121,7 +121,7 @@ f.user_register{
 		v.date=s.timestamp()
 
 		//Register account
-		v.query=s.mysql_insert("INSERT INTO accounts(username,first_name,last_name,date,email,password,mc_user) VALUES('v.username','v.firstname','v.lastname','v.date','v.email','v.password',v.mcname)")
+		v.query=s.mysql_insert("INSERT INTO accounts(username,first_name,last_name,date,email,password,mc_name) VALUES('v.username','v.firstname','v.lastname','v.date','v.email','v.password',v.mcname)")
 		if not v.query false
 			s.header("Location: /login")
 		else
