@@ -56,7 +56,7 @@ f.user_login{
 				sv.system_user_id=v.data_db[id]
 
 				t.content("<div class='good'>Welcome back!</div>")
-				s.header("Location: /account/splash")
+				s.header("Location: /")
 			else
 				v.message="Sorry the details provided are not valid"
 				t.content("<div class='error'>v.message</div>")
