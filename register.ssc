@@ -1,0 +1,128 @@
+s.template("/templates/login.html")
+s.include("/system.ssc");
+
+t.pagetitle("Register")
+t.pagedescription("Making a Blaze account allows you to access a lot of cloud features for free.")
+
+//Hey someone is trying to login, lets give it a try.
+if set pv.username
+	f.user_register()
+end
+
+t.content("<div style='text-align:center;'><form action=\"/register\" method=\"post\">")
+
+if notset pv.username
+	t.content("<h3>Username</h3><input type=\"text\" name=\"username\">")
+else
+	t.content("<h3>Username</h3><input type=\"text\" name=\"username\" value=\"pv.username\">")
+end
+if notset pv.email
+	t.content("<h3>Email</h3><input type=\"text\" name=\"email\">")
+else
+	t.content("<h3>Email</h3><input type=\"text\" name=\"email\" value=\"pv.email\">")
+end
+if notset pv.firstname
+	t.content("<h3>First Name</h3><input type=\"text\" name=\"firstname\">")
+else
+	t.content("<h3>First Name</h3><input type=\"text\" name=\"firstname\" value=\"pv.firstname\">")
+end
+if notset pv.lastname
+	t.content("<h3>Last Name</h3><input type=\"text\" name=\"lastname\">")
+else
+	t.content("<h3>Last Name</h3><input type=\"text\" name=\"lastname\" value=\"pv.lastname\">")
+end
+t.content("<h3>Password</h3><input type=\"password\" name=\"password\">")
+t.content("<BR><BR><input type=\"submit\" value=\"Register\">")
+t.content("</form></div>")
+
+
+f.user_register{
+	v.valid=true
+	v.message=""
+
+	//Check we got all the info needed
+	if notset pv.username
+		v.valid=false
+		v.message="You need to provide us with a username."
+	end
+	if notset pv.password
+		v.valid=false
+		v.message="You need to provide us with a password."
+	end
+	if notset pv.email
+		v.valid=false
+		v.message="You need to provide us with your email."
+	else
+		if s.check_valid_email(pv.email) false
+			v.valid=false
+			v.message="You need to provide us with your VALID email."
+		end
+	end
+	if notset pv.firstname
+		v.valid=false
+		v.message="You need to provide us with your first name."
+	end
+	if notset pv.lastname
+		v.valid=false
+		v.message="You need to provide us with your last name."
+	end
+
+	//Check if username taken already
+	v.usernamec=pv.username
+	v.usernamec=s.string_clean("v.usernamec")
+	v.usernamec=s.string_lowercase("v.usernamec")
+	v.usernamec=s.string_username("v.usernamec")
+	v.usernamec=s.string_trim("v.usernamec","90")
+	v.datac_db=s.mysql_select("SELECT * FROM accounts WHERE username='v.usernamec' LIMIT 1")
+	if set v.datac_db[username]
+		v.valid=false
+		v.message="This username is already taken"
+	end
+
+	//Check if mc username taken already
+	v.mcname=pv.mcname
+	v.mcname=s.string_clean("v.mcname")
+	v.mcname=s.string_username("v.mcname")
+	v.mcname=s.string_trim("v.mcname","90")
+	v.datac_db=s.mysql_select("SELECT * FROM accounts WHERE mc_user='v.mcname' LIMIT 1")
+	if set v.datac_db[mcname]
+		v.valid=false
+		v.message="This mineraft username is already in use"
+	end
+
+	//validate data first
+	if v.valid true
+		v.username=pv.username
+		v.username=s.string_clean("v.username")
+		v.username=s.string_lowercase("v.username")
+		v.username=s.string_username("v.username")
+		v.username=s.string_trim("v.username","90")
+		v.mcname=pv.mcname
+		v.mcname=s.string_clean("v.mcname")
+		v.mcname=s.string_username("v.mcname")
+		v.mcname=s.string_trim("v.mcname","90")
+		v.password=pv.password
+		v.password=s.password_hash(v.password)
+		v.password=s.string_clean("v.password")
+		v.firstname=pv.firstname
+		v.firstname=s.string_clean("v.firstname")
+		v.firstname=s.string_trim("v.firstname","60")
+		v.lastname=pv.lastname
+		v.lastname=s.string_clean("v.lastname")
+		v.lastname=s.string_trim("v.lastname","60")
+		v.email=pv.email
+		v.email=s.string_clean("v.email")
+		v.email=s.string_trim("v.email","120")
+		v.date=s.timestamp()
+
+		//Register account
+		v.query=s.mysql_insert("INSERT INTO accounts(username,first_name,last_name,date,email,password,mc_user) VALUES('v.username','v.firstname','v.lastname','v.date','v.email','v.password',v.mcname)")
+		if not v.query false
+			s.header("Location: /login")
+		else
+			t.content("<div class='error'>We encountered an error creating the account.</div>")
+		end
+	else
+		t.content("<div class='error'>v.message</div>")
+	end
+}

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{title}}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-smooth: always;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif, "Open Sans", Helvetica, Arial;
+        -webkit-font-smoothing: antialiased;
+        font-size:13px;
+        color:#555555;
+      }
+
+      a{
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        -o-transform: translate3d(0, 0, 0);
+        transition: ease-in-out 0.1s;
+        -webkit-transition: ease-in-out 0.1s;
+        -moz-transition: ease-in-out 0.1s;
+        -o-transition: ease-in-out 0.1s;
+        color: rgb(26,150,252);
+        position: relative;
+        text-decoration: none;
+      }
+      a:hover {
+        color: rgb(26,150,252);
+        text-decoration: none;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-weight: 200;
+        color: #494949;
+      }
+
+      .content{
+        max-width:900px;
+        margin:0px auto;
+        margin-top:150px;
+        margin-bottom:100px;
+        padding:10px;
+      }
+
+      textarea {
+        background: #f7f7f7;
+        border: 0px solid #f2f2f2;
+        border: none;
+        border-radius: 3px;
+        color: #5a5656;
+        font-family: inherit;
+        font-size: 14px;
+        outline: none;
+        overflow: hidden;
+        padding: 10px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        width: auto;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        -webkit-appearance: none;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        resize: none;
+        -webkit-transition: all 200ms ease-in-out;
+        -moz-transition: all 200ms ease-in-out;
+        -o-transition: all 200ms ease-in-out;
+        transition: all 200ms ease-in-out;
+      }
+
+      textarea:hover, textarea:focus {
+        box-shadow: 0 0 0px 2px rgb(238, 238, 238);
+        -webkit-box-shadow: 0 0 0px 2px rgb(238, 238, 238);
+        -moz-box-shadow: 0 0 0px 2px rgb(238, 238, 238);
+      }
+
+      input,
+      input[type="text"],
+      input[type="password"] {
+        background: #e5e5e5;
+        border: none;
+        border-radius: 3px;
+        color: #5a5656;
+        font-family: inherit;
+        font-size: 14px;
+        outline: none;
+        padding: 10px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        max-width: 300px;
+        width: 100%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        -webkit-appearance: none;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -webkit-transition: all 200ms ease-in-out;
+        -moz-transition: all 200ms ease-in-out;
+        -o-transition: all 200ms ease-in-out;
+        transition: all 200ms ease-in-out;
+      }
+
+      input:focus,
+      input:hover,
+      input[type="text"]:focus,
+      input[type="text"]:hover,
+      input[type="password"]:focus
+      input[type="password"]:hover {
+        outline: none;
+        box-shadow: 0 0 0px 2px rgb(238, 238, 238);
+        -webkit-box-shadow: 0 0 0px 2px rgb(238, 238, 238);
+        -moz-box-shadow: 0 0 0px 2px rgb(238, 238, 238);
+      }
+
+      button,
+      input[type="button"],
+      input[type="submit"] {
+        background-color: rgb(46, 204, 113);
+        border: none;
+        border-radius: 3px;
+        color: #f4f4f4;
+        cursor: pointer;
+        font-family: inherit;
+        font-weight: 600;
+        text-transform: uppercase;
+        outline: none;
+        padding: 10px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        max-width: 300px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        -webkit-appearance: none;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -webkit-transition: all 200ms ease-in-out;
+        -moz-transition: all 200ms ease-in-out;
+        -o-transition: all 200ms ease-in-out;
+        transition: all 200ms ease-in-out;
+      }
+
+      button:hover,
+      input[type="button"]:hover,
+      input[type="submit"]:hover {
+        background-color: rgba(46, 204, 113, 0.8);
+        box-shadow: 0 0 0px 2px rgb(238, 238, 238);
+        -webkit-box-shadow: 0 0 0px 2px rgb(238, 238, 238);
+        -moz-box-shadow: 0 0 0px 2px rgb(238, 238, 238);
+      }
+
+      [placeholder]::-webkit-input-placeholder {
+        color: inherit;
+      }
+
+      [placeholder]:focus::-webkit-input-placeholder {
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        -webkit-transform: translate(300px, 0);
+        -moz-transform: translate(300px, 0);
+        -ms-transform: translate(300px, 0);
+        -o-transform: translate(300px, 0);
+        transform: translate(300px, 0);
+        opacity: 0;
+      }
+
+      textarea:focus {
+        outline: none;
+        border: 0px solid #4D9BD6 !important;
+        font-weight: 600;
+      }
+
+      panel{
+  			display:block;
+        padding:10px;
+        border-radius:5px;
+  			margin:0px auto;
+  			text-align:center;
+        margin-bottom:15px;
+        min-height:200px;
+  			max-width:390px;
+  			box-shadow: 0 0 0px 2px rgb(238, 238, 238);
+  			-webkit-box-shadow: 0 0 0px 2px rgb(238, 238, 238);
+  			-moz-box-shadow: 0 0 0px 2px rgb(238, 238, 238);
+      }
+
+      pagetitle{
+        display:block;
+        padding-top:10px;
+        padding-bottom:10px;
+        font-size:32px;
+        color: #444444;
+  			font-weight: 400;
+      }
+
+      pagedescription{
+        display:block;
+        padding-bottom:10px;
+        margin-bottom:25px;
+        font-size:12px;
+        color: #666666;
+  			font-weight: 300;
+      }
+
+      controls{
+        display:block;
+        border-bottom:2px solid rgb(240,240,240);
+        padding-top:10px;
+        padding-bottom:10px;
+        margin-bottom:15px;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="/logo.png" style="display:block;margin:0px auto; margin-top:90px;margin-bottom:30px;max-width:100px;">
+
+    <panel>
+      <header>{{header}}</header>
+      <pagetitle>{{pagetitle}}</pagetitle>
+      <pagedescription>{{pagedescription}}</pagedescription>
+      <content>{{content}}</content>
+    </panel>
+  </body>
+</html>

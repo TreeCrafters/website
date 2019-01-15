@@ -1,0 +1,72 @@
+s.template("/templates/login.html")
+s.include("/system.ssc");
+
+t.pagetitle("Account login")
+t.pagedescription("Login and gain access to the best community")
+
+//Hey someone is trying to login, lets give it a try.
+if set pv.username
+	f.user_login()
+end
+
+t.content("<div style='text-align:center;'><form action=\"/login\" method=\"post\">")
+
+if notset pv.username
+	t.content("<h3>Username</h3><input type=\"text\" name=\"username\">")
+else
+	t.content("<h3>Username</h3><input type=\"text\" name=\"username\" value=\"pv.username\">")
+end
+t.content("<h3>Password</h3><input type=\"password\" name=\"password\">")
+t.content("<BR><BR><input type=\"submit\" value=\"Login\">")
+t.content("</form></div>")
+
+
+f.user_login{
+	v.valid=true
+	v.message=""
+
+	//Check we got all the info needed
+	if notset pv.username
+		v.valid=false
+		v.message="You need to provide us with your username"
+	end
+	if notset pv.password
+		v.valid=false
+		v.message="You need to provide us with your password"
+	end
+
+	//validate data first
+	if v.valid true
+		v.username=pv.username
+		v.username=s.string_clean("v.username")
+		v.username=s.string_lowercase("v.username")
+		v.username=s.string_username("v.username")
+		v.username=s.string_trim("v.username","50")
+		v.password=pv.password
+		v.password=s.string_clean("v.password")
+
+		v.data_db=s.mysql_select("SELECT * FROM accounts WHERE username='v.username' LIMIT 1")
+
+		if set v.data_db[username]
+			v.p_username=v.data_db[username]
+			v.p_password=v.data_db[password]
+			v.validate=s.password_verify("v.password","v.p_password")
+			if v.validate true
+				sv.system_user_username=v.data_db[username]
+				sv.system_user_id=v.data_db[id]
+
+				t.content("<div class='good'>Welcome back!</div>")
+				s.header("Location: /account/splash")
+			else
+				v.message="Sorry the details provided are not valid"
+				t.content("<div class='error'>v.message</div>")
+			end
+		else
+			v.message="Sorry the details provided are not valid"
+			t.content("<div class='error'>v.message</div>")
+		end
+
+	else
+		t.content("<div class='error'>v.message</div>")
+	end
+}

@@ -1,0 +1,7 @@
+s.template("/templates/login.html")
+s.include("/system.ssc");
+
+t.pagetitle("Welcome")
+t.pagedescription("What would you like to do?")
+t.content("<a href='/login'><button>Login</button></a>")
+t.content("<a href='/register'><button>Register</button></a>")
