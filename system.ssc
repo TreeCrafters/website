@@ -10,11 +10,16 @@ if set uv.db_user
     s.storage_set("db_user",uv.db_user)
     s.storage_set("db_db",uv.db_db)
     s.storage_set("db_pass",uv.db_pass)
+    s.die("Thanks for the update!!!")
   end
 end
-v.db_connected=s.mysql_connect(v.db_info_host,v.db_info_user,v.db_info_pass,v.db_info_db)
-if v.db_connected false
-  s.die("Database connection failed.")
+if set v.db_info_host
+  v.db_connected=s.mysql_connect(v.db_info_host,v.db_info_user,v.db_info_pass,v.db_info_db)
+  if v.db_connected false
+    s.die("Database connection failed.")
+  end
+else
+  s.die("We are missing info")
 end
 
 //On session start clear data
