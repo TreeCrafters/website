@@ -17,9 +17,9 @@ else
 	t.content("<h3>Username</h3><input type=\"text\" name=\"username\" value=\"pv.username\">")
 end
 if notset pv.mcname
-	t.content("<h3>Minecraft Tag</h3><input type=\"text\" name=\"mcname\">")
+	t.content("<h3>Minecraft Gamertag</h3><input type=\"text\" name=\"mcname\">")
 else
-	t.content("<h3>Minecraft tag</h3><input type=\"text\" name=\"mcname\" value=\"pv.mcname\">")
+	t.content("<h3>Minecraft Gamertag</h3><input type=\"text\" name=\"mcname\" value=\"pv.mcname\">")
 end
 if notset pv.email
 	t.content("<h3>Email</h3><input type=\"text\" name=\"email\">")
@@ -121,7 +121,7 @@ f.user_register{
 		v.date=s.timestamp()
 
 		//Register account
-		v.query=s.mysql_insert("INSERT INTO accounts(username,first_name,last_name,date,email,password,mc_name) VALUES('v.username','v.firstname','v.lastname','v.date','v.email','v.password',v.mcname)")
+		v.query=s.mysql_insert("INSERT INTO accounts(username,first_name,last_name,date,email,password,mc_name) VALUES('v.username','v.firstname','v.lastname','v.date','v.email','v.password','v.mcname')")
 		if not v.query false
 			s.header("Location: /login")
 		else
