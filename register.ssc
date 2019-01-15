@@ -2,7 +2,7 @@ s.template("/templates/login.html")
 s.include("/system.ssc");
 
 t.pagetitle("Register")
-t.pagedescription("Making a Blaze account allows you to access a lot of cloud features for free.")
+t.pagedescription("Join the fun, and the community")
 
 //Hey someone is trying to login, lets give it a try.
 if set pv.username
@@ -15,6 +15,11 @@ if notset pv.username
 	t.content("<h3>Username</h3><input type=\"text\" name=\"username\">")
 else
 	t.content("<h3>Username</h3><input type=\"text\" name=\"username\" value=\"pv.username\">")
+end
+if notset pv.mcname
+	t.content("<h3>Minecraft Tag</h3><input type=\"text\" name=\"mcname\">")
+else
+	t.content("<h3>Minecraft tag</h3><input type=\"text\" name=\"mcname\" value=\"pv.mcname\">")
 end
 if notset pv.email
 	t.content("<h3>Email</h3><input type=\"text\" name=\"email\">")
