@@ -12,4 +12,16 @@ else
   t.content_left("<bubble>left test</bubble>")
   t.content_right("<bubble>right test</bubble>")
 
+  t.content_middle("<bubble>This is still in progress</bubble>")
+
+  t.content_middle("<bubble>This is still in progress</bubble>")
+
+
+  t.content_middle("<bubble>This is still in progress</bubble>")
+  t.content_middle("<bubble>This is still in progress</bubble>")
+  t.content_middle("<bubble>This is still in progress</bubble>")
+  t.content_middle("<bubble>This is still in progress</bubble>")
+  t.content_middle("<bubble>This is still in progress</bubble>")
+  t.content_middle("<bubble>This is still in progress</bubble>")
+
 end
