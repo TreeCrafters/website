@@ -1032,22 +1032,26 @@
     	}
 
       function pageload_in(){
-        var els = document.querySelectorAll('bubble')
-        for (var i = 0; i < els.length; i++) {
-          setTimeout(function () {
-            els[i].classList.remove('out');
-            els[i].classList.add('in');
-          }, Math.floor(Math.random() * 500));
+        var els = document.getElementsByTagName('bubble');
+        if (els.length>=1){
+          for (var i = 0; i < els.length; i++) {
+            setTimeout(function () {
+              els[i].classList.remove('out');
+              els[i].classList.add('in');
+            }, Math.floor(Math.random() * 500));
+          }
         }
       }
 
       function pageload_out(){
-        var els = document.querySelectorAll('bubble')
-        for (var i = 0; i < els.length; i++) {
-          setTimeout(function () {
-            els[i].classList.remove('in');
-            els[i].classList.add('out');
-          }, Math.floor(Math.random() * 500));
+        var els = document.getElementsByTagName('bubble');
+        if (els.length>=1){
+          for (var i = 0; i < els.length; i++) {
+            setTimeout(function () {
+              els[i].classList.remove('in');
+              els[i].classList.add('out');
+            }, Math.floor(Math.random() * 500));
+          }
         }
       }
 
