@@ -1051,13 +1051,16 @@
       function pageload_out(){
         var els = document.getElementsByTagName('bubble');
         if (els.length>=1){
-          while (els[0]) {
-            setTimeout(function () {
-              if (els[0].classList.contains("in")){
-                els[0].classList.remove('in');
-              }
-              els[0].classList.add('out');
-            }, Math.floor(Math.random() * 500));
+          for (var i = 0, len = els.length; i < len ; i++ ){
+            (function(i) {
+              console.log(els[i]);
+              setTimeout(function () {
+                if (els[i].classList.contains("in")){
+                  els[i].classList.remove('in');
+                }
+                els[i].classList.add('out');
+              }, Math.floor(Math.random() * 500));
+            })(i)
           }
         }
       }
