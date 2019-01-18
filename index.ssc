@@ -3,14 +3,13 @@ s.include("/system.ssc");
 if notset sv.system_user_id
   s.template("/templates/splash.html")
   t.title("TreeCrafters | A Unique Multiplayer Survival Challenge for Minecraft")
-  t.content_middle("This is still in progress")
-  t.content_left("left test")
-  t.content_right("right test")
 else
 
   f.validate_session()
   s.template("/templates/main.html")
   t.title("Welcome | TreeCrafters")
-  t.content("This is still in progress, you are now logged in")
+  t.content_middle("This is still in progress")
+  t.content_left("left test")
+  t.content_right("right test")
 
 end
