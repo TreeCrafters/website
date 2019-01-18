@@ -3,7 +3,9 @@ s.include("/system.ssc");
 if notset sv.system_user_id
   s.template("/templates/splash.html")
   t.title("TreeCrafters | A Unique Multiplayer Survival Challenge for Minecraft")
-  t.content("This is still in progress")
+  t.middle("This is still in progress")
+  t.left("left test")
+  t.right("right test")
 else
 
   f.validate_session()
