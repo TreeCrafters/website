@@ -1051,6 +1051,7 @@
       function pageload_out(){
         var initem=20;
         var els = document.getElementsByTagName('bubble');
+        els.reverse();
         if (els.length>=1){
           for (var i = 0, len = els.length; i < len ; i++ ){
             (function(i) {
