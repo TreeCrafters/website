@@ -1032,6 +1032,7 @@
     	}
 
       function pageload_in(){
+        var initem=120;
         var els = document.getElementsByTagName('bubble');
         if (els.length>=1){
           for (var i = 0, len = els.length; i < len ; i++ ){
@@ -1042,13 +1043,14 @@
                   els[i].classList.remove('out');
                 }
                 els[i].classList.add('in');
-              }, Math.floor(Math.random() * 500));
+              }, initem*i);
             })(i)
           }
         }
       }
 
       function pageload_out(){
+        var initem=120;
         var els = document.getElementsByTagName('bubble');
         if (els.length>=1){
           for (var i = 0, len = els.length; i < len ; i++ ){
@@ -1059,7 +1061,7 @@
                   els[i].classList.remove('in');
                 }
                 els[i].classList.add('out');
-              }, Math.floor(Math.random() * 500));
+              }, initem*i);
             })(i)
           }
         }
