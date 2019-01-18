@@ -1032,12 +1032,11 @@
     	}
 
       function pageload_in(){
-        var initem=120;
+        var initem=50;
         var els = document.getElementsByTagName('bubble');
         if (els.length>=1){
           for (var i = 0, len = els.length; i < len ; i++ ){
             (function(i) {
-              console.log(els[i]);
               setTimeout(function () {
                 if (els[i].classList.contains("out")){
                   els[i].classList.remove('out');
@@ -1050,12 +1049,11 @@
       }
 
       function pageload_out(){
-        var initem=120;
+        var initem=20;
         var els = document.getElementsByTagName('bubble');
         if (els.length>=1){
           for (var i = 0, len = els.length; i < len ; i++ ){
             (function(i) {
-              console.log(els[i]);
               setTimeout(function () {
                 if (els[i].classList.contains("in")){
                   els[i].classList.remove('in');
