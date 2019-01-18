@@ -1035,14 +1035,12 @@
         var els = document.getElementsByTagName('bubble');
         if (els.length>=1){
           for (var i = 0; i < els.length; i++) {
-            if (els[i]){
-              setTimeout(function () {
-                if (els[i].classList!==undefined){
-                  els[i].classList.remove('out');
-                }
-                els[i].classList.add('in');
-              }, Math.floor(Math.random() * 500));
-            }
+            setTimeout(function () {
+              if (els[i]classList.contains("out")){
+                els[i].classList.remove('out');
+              }
+              els[i].classList.add('in');
+            }, Math.floor(Math.random() * 500));
           }
         }
       }
@@ -1052,7 +1050,7 @@
         if (els.length>=1){
           for (var i = 0; i < els.length; i++) {
             setTimeout(function () {
-              if (els[i]!==undefined){
+              if (els[i]classList.contains("in")){
                 els[i].classList.remove('in');
               }
               els[i].classList.add('out');
