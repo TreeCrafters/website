@@ -1034,12 +1034,12 @@
       function pageload_in(){
         var els = document.getElementsByTagName('bubble');
         if (els.length>=1){
-          while (els[0]) {
+          for (var j = 0, len = els.length; j < len ; j++ ){
             setTimeout(function () {
-              if (els[0].classList.contains("out")){
-                els[0].classList.remove('out');
+              if (els[j].classList.contains("out")){
+                els[j].classList.remove('out');
               }
-              els[0].classList.add('in');
+              els[j].classList.add('in');
             }, Math.floor(Math.random() * 500));
           }
         }
