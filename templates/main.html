@@ -1035,6 +1035,7 @@
         var els = document.getElementsByTagName('bubble');
         if (els.length>=1){
           for (var j = 0, len = els.length; j < len ; j++ ){
+            console.log(els[j]);
             setTimeout(function () {
               if (els[j].classList.contains("out")){
                 els[j].classList.remove('out');
