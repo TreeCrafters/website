@@ -1034,14 +1034,16 @@
       function pageload_in(){
         var els = document.getElementsByTagName('bubble');
         if (els.length>=1){
-          for (var j = 0, len = els.length; j < len ; j++ ){
-            console.log(els[j]);
-            setTimeout(function () {
-              if (els[j].classList.contains("out")){
-                els[j].classList.remove('out');
-              }
-              els[j].classList.add('in');
-            }, Math.floor(Math.random() * 500));
+          for (var i = 0, len = els.length; i < len ; i++ ){
+            (function(i) {
+              console.log(els[i]);
+              setTimeout(function () {
+                if (els[i].classList.contains("out")){
+                  els[i].classList.remove('out');
+                }
+                els[i].classList.add('in');
+              }, Math.floor(Math.random() * 500));
+            })(i)
           }
         }
       }
