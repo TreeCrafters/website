@@ -8,8 +8,8 @@ else
   f.validate_session()
   s.template("/templates/main.html")
   t.title("Welcome | TreeCrafters")
-  t.content_middle("This is still in progress")
-  t.content_left("left test")
-  t.content_right("right test")
+  t.content_middle("<bubble>This is still in progress</bubble>")
+  t.content_left("<bubble>left test</bubble>")
+  t.content_right("<bubble>right test</bubble>")
 
 end
