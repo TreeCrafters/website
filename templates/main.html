@@ -87,6 +87,12 @@
         width:25%;
       }
 
+      .hide_right middle, .hide_right middle{
+        width:75%;
+      }
+
+
+
       bubble{
         display:block;
         background:#ffffff;
@@ -108,6 +114,14 @@
   			-webkit-animation: fadeOutDown 150ms linear 1 forwards !important;
   			animation: fadeOutDown 150ms linear 1 forwards !important;
   		}
+
+      left bubble{
+        margin-right:10px;
+      }
+
+      right bubble{
+        margin-left:10px;
+      }
 
       header{
         display: block;
@@ -1049,12 +1063,15 @@
 
         if(!$.trim( $('#js_replace_content_left').html()).length){
           $("#js_replace_content_left").addClass("empty");
+          $("#js_replace_content").addClass("hide_left");
         }
         if(!$.trim( $('#js_replace_content_middle').html()).length){
           $("#js_replace_content_middle").addClass("empty");
+          $("#js_replace_content").addClass("hide_middle");
         }
         if(!$.trim( $('#js_replace_content_right').html()).length){
           $("#js_replace_content_right").addClass("empty");
+          $("#js_replace_content").addClass("hide_right");
         }
 
       }
