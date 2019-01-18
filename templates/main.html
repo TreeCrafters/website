@@ -1046,6 +1046,17 @@
             })(i)
           }
         }
+
+        if(!$.trim( $('#js_replace_content_left').html()).length){
+          $("#js_replace_content_left").addClass("empty");
+        }
+        if(!$.trim( $('#js_replace_content_middle').html()).length){
+          $("#js_replace_content_middle").addClass("empty");
+        }
+        if(!$.trim( $('#js_replace_content_right').html()).length){
+          $("#js_replace_content_right").addClass("empty");
+        }
+
       }
 
       function pageload_out(){
