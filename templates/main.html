@@ -1034,12 +1034,12 @@
       function pageload_in(){
         var els = document.getElementsByTagName('bubble');
         if (els.length>=1){
-          for (var i = 0; i < els.length; i++) {
+          while (els[0]) {
             setTimeout(function () {
-              if (els[i].classList.contains("out")){
-                els[i].classList.remove('out');
+              if (els[0].classList.contains("out")){
+                els[0].classList.remove('out');
               }
-              els[i].classList.add('in');
+              els[0].classList.add('in');
             }, Math.floor(Math.random() * 500));
           }
         }
@@ -1048,12 +1048,12 @@
       function pageload_out(){
         var els = document.getElementsByTagName('bubble');
         if (els.length>=1){
-          for (var i = 0; i < els.length; i++) {
+          while (els[0]) {
             setTimeout(function () {
-              if (els[i].classList.contains("in")){
-                els[i].classList.remove('in');
+              if (els[0].classList.contains("in")){
+                els[0].classList.remove('in');
               }
-              els[i].classList.add('out');
+              els[0].classList.add('out');
             }, Math.floor(Math.random() * 500));
           }
         }
