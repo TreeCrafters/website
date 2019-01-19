@@ -19,7 +19,6 @@ if v.file_uploaded true
     v.delete=s.file_delete("/resources/tmp/v.newname")
 
     if v.resize true
-      v.proc_data[image]=v.baseimage
       v.timestampuse=s.timestamp()
       v.queryx=s.mysql_delete("DELETE FROM accounts_images WHERE user='sv.user_id'")
       v.query=s.mysql_insert("INSERT INTO accounts_images(user, code, date) VALUES('sv.user_id', 'v.baseimage','v.timestampuse')")

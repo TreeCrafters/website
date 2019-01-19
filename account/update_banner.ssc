@@ -20,6 +20,7 @@ if v.file_uploaded true
     v.delete=s.file_delete("/resources/tmp/v.newname")
 
     if v.resize true
+      v.timestampuse=s.timestamp()
       v.queryx=s.mysql_delete("DELETE FROM accounts_images WHERE user='sv.user_id'")
       v.query=s.mysql_insert("INSERT INTO accounts_banners(user, code, date) VALUES('sv.user_id', 'v.baseimage','v.timestampuse')")
       t.content("<div id='js_notification_success'>Account banner has been updated.</div><div id='js_modlclose'></div>")
