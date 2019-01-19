@@ -1,7 +1,8 @@
 s.include("/system.ssc")
+s.template("/templates/modl.html")
 f.permission_user_loggedin()
 f.set_pagetitle("Update account image")
-f.set_pagedescription("Your account image will follow you around all NodeHost services. Upload a new image below to update it.")
+f.set_pagedescription("Your account image will follow you around the community. Upload a new image below to update it.")
 
 v.file_uploaded=s.file_uploaded()
 if v.file_uploaded true
@@ -19,9 +20,6 @@ if v.file_uploaded true
 
     if v.resize true
       v.proc_data[image]=v.baseimage
-      f.backend_process_add(sv.user_id,'account_update_info_image',1,'false','true',v.proc_data)
-
-      v.delete=s.file_delete("/resources/tmp/v.newname")
       t.content("<div id='js_notification_success'>Account image change in progress...</div><div id='js_modlclose'></div>")
     else
       v.delete=s.file_delete("/resources/tmp/v.newname")
