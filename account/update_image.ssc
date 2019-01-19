@@ -11,18 +11,20 @@ if v.file_uploaded true
   v.timestamp=s.timestamp()
   v.random = s.random_string(10)
   v.newname="v.timestamp v.random - v.filename"
-
   v.filesaved=s.file_uploaded_save("/resources/tmp/v.newname")
   if v.filesaved true
 
     v.resize=s.file_image_resize_square("/resources/tmp/v.newname","300")
     v.baseimage=s.file_read_base64("/resources/tmp/v.newname")
+    v.delete=s.file_delete("/resources/tmp/v.newname")
 
     if v.resize true
       v.proc_data[image]=v.baseimage
-      t.content("<div id='js_notification_success'>Account image change in progress...</div><div id='js_modlclose'></div>")
+      v.timestampuse=s.timestamp()
+      v.queryx=s.mysql_delete("DELETE FROM accounts_images WHERE user='v.user_id'")
+      v.query=s.mysql_insert("INSERT INTO accounts_images(user, code, date) VALUES('v.user_id', 'v.baseimage','v.timestampuse')")
+      t.content("<div id='js_notification_success'>Account image has been updated.</div><div id='js_modlclose'></div>")
     else
-      v.delete=s.file_delete("/resources/tmp/v.newname")
       t.content("<div id='js_notification_error'>Strange, the image scale failed.</div><div id='js_modlclose'></div>")
     end
   else
