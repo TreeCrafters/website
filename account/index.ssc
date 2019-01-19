@@ -3,3 +3,18 @@ s.template("/templates/main.html")
 f.set_pagetitle("Account")
 f.set_pagedescription("You can manage and edit your account in this section.")
 f.permission_user_loggedin()
+
+
+v.usersfullname=f.get_user_name_full()
+v.usersusername=f.get_user_username()
+v.usersemail=f.get_user_email()
+v.type=f.get_user_type()
+v.userimage=f.get_user_image()
+v.userbanner=f.get_user_banner()
+
+
+t.content_middle("<bubble><div style='text-align:center;'>")
+t.content_middle("<div style=\"background-image:url('v.userbanner');background-position: center;background-size: cover;padding:20px;margin-top:-10px;margin-left:-10px;margin-right:-10px;border-top-left-radius: 9px;border-top-right-radius: 9px;\"><avatar style=\"border-radius: 200px;width: 200px;height:200px;background-image:url('v.userimage');\"></avatar></div>")
+t.content_middle("<h2>v.usersfullname</h2><h3>@v.usersusername (v.type)</h3>v.usersemail</bubble>")
+
+t.content_left("<bubble><a href='javascript:modl(\"/account/update_image\");'>Update image</a><BR><a href='javascript:modl(\"/account/update_banner\");'>Update banner</a><BR><a href='javascript:modl(\"/account/update_name\");'>Update name</a><BR><a href='javascript:modl(\"/account/update_email\");'>Update email</a><BR><a href='javascript:modl(\"/account/update_password\");'>Update password</a></bubble>")

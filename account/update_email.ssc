@@ -1,0 +1,13 @@
+s.include("/system.ssc")
+f.permission_user_loggedin()
+f.set_pagetitle("Update account email")
+f.set_pagedescription("Make sure the email you use is valid and works, otherwise you may lose access to your account.")
+
+if set pv.email
+  v.proc_data[email]=pv.email
+  f.backend_process_add(sv.user_id,'account_update_info_email',1,'false','true',v.proc_data)
+  t.content("<div id='js_notification_success'>Account email change in progress...</div><div id='js_modlclose'></div>")
+else
+  v.current_email=f.get_user_email()
+  t.content('<form enctype="multipart/form-data" action="/account/update_email" method="POST"><input type="text" class="input" name="email" size="100" maxlength="200" value="v.current_email" placeholder="First name"><BR><BR><input id="button" type="submit" value="Update Email"></form>')
+end

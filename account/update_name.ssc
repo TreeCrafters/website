@@ -1,0 +1,26 @@
+s.include("/system.ssc")
+f.permission_user_loggedin()
+f.set_pagetitle("Update account name")
+f.set_pagedescription("Your name is important, it is a part of you.")
+
+if set pv.firstname
+
+  v.size_f=s.string_length(pv.firstname)
+  v.size_l=s.string_length(pv.lastname)
+  if v.size_f>=1
+    if v.size_l>=1
+      v.proc_data[firstname]=pv.firstname
+      v.proc_data[lastname]=pv.lastname
+      f.backend_process_add(sv.user_id,'account_update_info_name',1,'false','true',v.proc_data)
+      t.content("<div id='js_notification_success'>Account name change in progress...</div><div id='js_redirect'>/account/</div>")
+    else
+      t.content("<div id='js_notification_error'>We need somthing to set your name as</div><div id='js_redirect'>/account/</div>")
+    end
+  else
+    t.content("<div id='js_notification_error'>We need somthing to set your name as</div><div id='js_redirect'>/account/</div>")
+  end
+else
+  v.current_firstname=f.get_user_name_first()
+  v.current_lastname=f.get_user_name_last()
+  t.content('<form enctype="multipart/form-data" action="/account/update_name" method="POST"><input type="text" class="input" name="firstname" size="100" maxlength="100" value="v.current_firstname" placeholder="First name"><BR><input type="text" class="input" name="lastname" size="100" maxlength="100" value="v.current_lastname" placeholder="Last name"><BR><BR><input id="button" type="submit" value="Update Name"></form>')
+end
