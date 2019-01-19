@@ -7,7 +7,7 @@ f.set_pagedescription("Make sure the email you use is valid and works, otherwise
 if set pv.email
   if s.check_valid_email(pv.email) true
     v.email=s.string_clean(pv.email)
-    s.mysql_update("UPDATE accounts SET email='v.email' WHERE id='sv.user_id'")
+    v.update=s.mysql_update("UPDATE accounts SET email='v.email' WHERE id='sv.user_id'")
     t.content("<div id='js_notification_success'>Account email has been changed.</div><div id='js_modlclose'></div>")
   else
     t.content("<div id='js_notification_error'>Sorry this email is invalid.</div><div id='js_modlclose'></div>")
