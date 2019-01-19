@@ -3,8 +3,8 @@ gv.system_cookies=".treecrafters.online"
 
 s.include("/system_database.ssc")
 s.include("/system_sessions.ssc")
-s.include("/function.ssc")
-s.include("/function_get_user.ssc")
+s.include("/functions.ssc")
+s.include("/functions_get_user.ssc")
 
 //On session start clear data
 if notset sv.user_id
