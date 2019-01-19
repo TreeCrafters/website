@@ -1,4 +1,5 @@
 s.include("/system.ssc")
+s.template("/templates/modl.html")
 f.permission_user_loggedin()
 f.set_pagetitle("Update account banner")
 f.set_pagedescription("Your account banner will follow you around all NodeHost services. Upload a new banner below to update it.")
@@ -16,15 +17,13 @@ if v.file_uploaded true
 
     v.resize=s.file_image_resize("/resources/tmp/v.newname","1000")
     v.baseimage=s.file_read_base64("/resources/tmp/v.newname")
+    v.delete=s.file_delete("/resources/tmp/v.newname")
 
     if v.resize true
-      v.proc_data[image]=v.baseimage
-      f.backend_process_add(sv.user_id,'account_update_info_banner',1,'false','true',v.proc_data)
-
-      v.delete=s.file_delete("/resources/tmp/v.newname")
-      t.content("<div id='js_notification_success'>Account banner change in progress...</div><div id='js_modlclose'></div>")
+      v.queryx=s.mysql_delete("DELETE FROM accounts_images WHERE user='sv.user_id'")
+      v.query=s.mysql_insert("INSERT INTO accounts_banners(user, code, date) VALUES('sv.user_id', 'v.baseimage','v.timestampuse')")
+      t.content("<div id='js_notification_success'>Account banner has been updated.</div><div id='js_modlclose'></div>")
     else
-      v.delete=s.file_delete("/resources/tmp/v.newname")
       t.content("<div id='js_notification_error'>Strange, the banner scale failed.</div><div id='js_modlclose'></div>")
     end
   else
