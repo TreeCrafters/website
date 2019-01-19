@@ -1,0 +1,5 @@
+s.include("/system.ssc");
+s.template("/templates/main.html")
+f.set_pagetitle("Account")
+f.set_pagedescription("You can manage and edit your account in this section.")
+f.permission_user_loggedin()

@@ -14,7 +14,6 @@ if set sv.user_id
 
     v.newid = s.random_string(45)
     s.cookie_set("sessionid", v.newid, v.timeset, gv.system_cookies)
-    //s.echo("sessionid  v.newid v.timeset .nodehost.cloud")
     v.insert=s.mysql_insert("INSERT INTO accounts_sessions SET session='v.newid',user='sv.user_id',useragent='v.useragent',lastused='v.timecode'")
   end
 else
