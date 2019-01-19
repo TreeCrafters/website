@@ -1,0 +1,102 @@
+f.get_user_username{
+  if set v.function_passed[0]
+    v.userid=v.function_passed[0]
+  else
+    v.userid=sv.user_id
+  end
+  v.data_db=s.mysql_select("SELECT username FROM accounts WHERE id='v.userid' LIMIT 1")
+  s.echo("v.data_db[username]")
+}
+
+f.get_user_image{
+  if set v.function_passed[0]
+    v.userid=v.function_passed[0]
+  else
+    v.userid=sv.user_id
+  end
+  v.usersusername=f.get_user_username(v.userid)
+  v.timecode=0
+  v.data_db=s.mysql_select("SELECT date FROM accounts_images WHERE user='v.userid' LIMIT 1")
+  if not v.data_db false
+    v.timecode=v.data_db[date]
+  end
+  s.echo("//gv.system_domain/images/generate?content=account_image&account=v.usersusername&cache=v.timecode")
+}
+
+
+f.get_user_banner{
+  if set v.function_passed[0]
+    v.userid=v.function_passed[0]
+  else
+    v.userid=sv.user_id
+  end
+  v.usersusername=f.get_user_username(v.userid)
+  v.timecode=0
+  v.data_db=s.mysql_select("SELECT date FROM accounts_banners WHERE user='v.userid' LIMIT 1")
+  if not v.data_db false
+    v.timecode=v.data_db[date]
+  end
+  s.echo("//gv.system_domain/images/generate?content=account_banner&account=v.usersusername&cache=v.timecode")
+}
+
+
+f.get_user_id{
+  if set v.function_passed[0]
+    v.userid=v.function_passed[0]
+  else
+    v.userid=sv.user_username
+  end
+  v.data_db=s.mysql_select("SELECT id FROM accounts WHERE username='v.userid' LIMIT 1")
+  s.echo("v.data_db[id]")
+}
+
+
+f.get_user_name_full{
+  if set v.function_passed[0]
+    v.userid=v.function_passed[0]
+  else
+    v.userid=sv.user_id
+  end
+  v.data_db=s.mysql_select("SELECT first_name,last_name FROM accounts WHERE id='v.userid' LIMIT 1")
+  s.echo("v.data_db[first_name] v.data_db[last_name]")
+}
+
+f.get_user_name_first{
+  if set v.function_passed[0]
+    v.userid=v.function_passed[0]
+  else
+    v.userid=sv.user_id
+  end
+  v.data_db=s.mysql_select("SELECT first_name FROM accounts WHERE id='v.userid' LIMIT 1")
+  s.echo("v.data_db[first_name]")
+}
+
+f.get_user_name_last{
+  if set v.function_passed[0]
+    v.userid=v.function_passed[0]
+  else
+    v.userid=sv.user_id
+  end
+  v.data_db=s.mysql_select("SELECT last_name FROM accounts WHERE id='v.userid' LIMIT 1")
+  s.echo("v.data_db[last_name]")
+}
+
+f.get_user_type{
+  if set v.function_passed[0]
+    v.userid=v.function_passed[0]
+  else
+    v.userid=sv.user_id
+  end
+  v.data_db=s.mysql_select("SELECT type FROM accounts WHERE id='v.userid' LIMIT 1")
+  s.echo("v.data_db[type]")
+}
+
+f.get_user_email{
+  if set v.function_passed[0]
+    v.userid=v.function_passed[0]
+  else
+    v.userid=sv.user_id
+  end
+  v.data_db=s.mysql_select("SELECT email FROM accounts WHERE id='v.userid' LIMIT 1")
+  s.echo("v.data_db[email]")
+}

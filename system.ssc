@@ -1,50 +1,31 @@
-//Connect MYSQL
-v.db_info_host=s.storage_get("db_host")
-v.db_info_user=s.storage_get("db_user")
-v.db_info_name=s.storage_get("db_name")
-v.db_info_pass=s.storage_get("db_pass")
+gv.system_domain="beta.treecrafters.online"
+gv.system_cookies=".treecrafters.online"
 
-if set uv.db_user
-  if notset v.db_info_host
-    s.storage_set("db_host",uv.db_host)
-    s.storage_set("db_user",uv.db_user)
-    s.storage_set("db_name",uv.db_name)
-    s.storage_set("db_pass",uv.db_pass)
-    s.echo("Thanks for the update!!!")
-    s.quit()
-  end
-end
-if set v.db_info_host
-  v.db_connected=s.mysql_connect(v.db_info_host,v.db_info_user,v.db_info_pass,v.db_info_name)
-  if v.db_connected false
-    s.echo("Database connection failed.")
-    s.quit()
-  end
-else
-  s.echo("We are missing info")
-  s.quit()
-end
+s.include("/system_database.ssc")
+s.include("/system_sessions.ssc")
+s.include("/function.ssc")
+s.include("/function_get_user.ssc")
 
 //On session start clear data
-if notset sv.system_user_id
-  sv.system_user_id=0
-  sv.system_user_username=false
-  sv.system_user_firstname=false
-  sv.system_user_lastname=false
+if notset sv.user_id
+  sv.user_id=0
+  sv.user_username=false
+  sv.user_firstname=false
+  sv.user_lastname=false
 end
 gv.valid_user=false
 
 //Check if user info is valid
-if not sv.system_user_id==0
-  v.data_db_xn=s.mysql_select("SELECT id,username,first_name,last_name FROM accounts WHERE id='sv.system_user_id' LIMIT 1")
+if not sv.user_id==0
+  v.data_db_xn=s.mysql_select("SELECT id,username,first_name,last_name FROM accounts WHERE id='sv.user_id' LIMIT 1")
   if not v.data_db_xn false
-    sv.system_user_id=v.data_db_xn[id]
-    sv.system_user_username=v.data_db_xn[username]
-    sv.system_user_firstname=v.data_db_xn[first_name]
-    sv.system_user_lastname=v.data_db_xn[last_name]
+    sv.user_id=v.data_db_xn[id]
+    sv.user_username=v.data_db_xn[username]
+    sv.user_firstname=v.data_db_xn[first_name]
+    sv.user_lastname=v.data_db_xn[last_name]
     gv.valid_user=true
   else
-    sv.system_user_id=0
+    sv.user_id=0
   end
 end
 

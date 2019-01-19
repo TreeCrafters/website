@@ -1,6 +1,6 @@
 s.include("/system.ssc");
 
-if notset sv.system_user_id
+if notset sv.user_id
   s.template("/templates/splash.html")
   t.title("TreeCrafters | A Unique Multiplayer Survival Challenge for Minecraft")
 else

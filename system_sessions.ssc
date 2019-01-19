@@ -1,0 +1,58 @@
+
+if set sv.user_id
+  //save session info
+    //save data now
+    if notset cv.sessionid
+    //60 days - Session system cleared now
+    v.timeset=60
+    v.timeset*60
+    v.timeset*24
+    v.timeset*60
+    v.timecode=s.timestamp()
+    v.useragent=s.get_useragent()
+    v.userip=s.get_ip()
+
+    v.newid = s.random_string(45)
+    s.cookie_set("sessionid", v.newid, v.timeset, gv.system_cookies)
+    //s.echo("sessionid  v.newid v.timeset .nodehost.cloud")
+    v.insert=s.mysql_insert("INSERT INTO accounts_sessions SET session='v.newid',user='sv.user_id',useragent='v.useragent',lastused='v.timecode'")
+  end
+else
+  //load session if can be found...
+
+  if set cv.sessionid
+    v.sessioncheck=cv.sessionid
+    v.useragent=s.get_useragent()
+
+    v.sessdata_db=s.mysql_select("SELECT * FROM accounts_sessions WHERE session='v.sessioncheck' LIMIT 1")
+    if set v.sessdata_db[user]
+      v.userallowed=true
+      v.usertype=f.get_user_type(v.sessdata_db[user])
+      if v.usertype=="banned"
+        v.userallowed=false
+      end
+      if v.usertype=="closed"
+        v.userallowed=false
+      end
+
+      if v.userallowed true
+        v.gotuseragent=v.sessdata_db[useragent]
+        if v.gotuseragent==v.useragent
+          sv.user_id=v.sessdata_db[user]
+          sv.user_verified=true
+          sv.user_username=f.get_user_username(sv.user_id)
+          v.location=s.system_url()
+          s.header("Location: v.location")
+        else
+          cv.sessionid=""
+          s.header("Location: /logout")
+        end
+      else
+        cv.sessionid=""
+        s.header("Location: /logout")
+      end
+    else
+      s.cookie_set("sessionid", "exit", "-50", gv.system_cookies)
+    end
+  end
+end
