@@ -43,6 +43,10 @@
         color: #494949;
       }
 
+      checkupaction{
+        display:none;
+      }
+
       .aspect_ratio_box_16x9{
         width: 100%;
         padding-top: 56.25%;
@@ -388,15 +392,20 @@
 			}
 		}
 
-		.light .modl_close:hover{
+		.modl_close:hover{
 			background: rgba(231,76,60,0.8);
 			color: rgb(255,255,255);
 		}
 
-		.dark .modl_close:hover{
-			background: rgba(231,76,60,0.8);
-			color: rgb(255,255,255);
-		}
+    .modl_in {
+      -webkit-animation: zoomIn 200ms linear 1 forwards !important;
+      animation: zoomIn 200ms linear 1 forwards !important;
+    }
+
+    .modl_out {
+      -webkit-animation: zoomOut 200ms linear 1 forwards !important;
+      animation: zoomOut 200ms linear 1 forwards !important;
+    }
 
     textarea {
       background: #f7f7f7;
@@ -562,6 +571,73 @@
   			transform: rotate(360deg);
   		}
   	}
+
+    .notification {
+    	margin-right:10px;
+    	margin-top:10px;
+    	text-align: left;
+    	max-width: 400px;
+    	min-height: 20px;
+    	font-weight:500;
+    	padding: 20px;
+    	border-radius: 9px;
+    	color:rgb(255,255,255);
+    	box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
+    	-webkit-box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
+    	-moz-box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
+    	background: rgba(255, 255, 255, 1);
+    	color:#555555;
+    }
+
+    .notification .notification-title {
+    	font-weight: 600;
+    	color: #4D4D4F;
+    	cursor: default;
+    }
+
+    .notification a{
+    	display:inline-block;
+    	margin-right:10px;
+    	background: rgb(46, 204, 113);
+    	color: rgb(255,255,255);
+    	font-weight: 600;
+    	border-radius: 6px;
+    	padding:5px;
+    	padding-right:15px;
+    	padding-left:15px;
+    	text-align:center;
+    }
+    .notification a:hover{
+    	background: rgba(46, 204, 113, 0.8);
+    	color: rgb(255,255,255);
+    }
+
+    .notification-success {
+    	border-bottom:5px solid rgb(46, 204, 113);
+    }
+
+    .notification-normal {
+    	border-bottom:5px solid rgb(34, 130, 248);
+    }
+
+    .notification-error {
+    	border-bottom:5px solid rgb(231,76,60);
+    }
+
+    .notification-alert {
+    	border-bottom:5px solid rgb(249, 221, 112);
+    }
+
+    .notification_slidein {
+    	animation-name: zoomIn;
+    	animation-duration: 1s;
+    	animation-timing-function: linear;
+    }
+
+    .notification_slideout {
+    	-webkit-animation: fadeOutRight 200ms linear 1 forwards !important;
+    	animation: fadeOutRight 200ms linear 1 forwards !important;
+    }
 
     @-webkit-keyframes fadeOutDown {
 			from {
@@ -730,6 +806,7 @@
   </head>
   <body>
     <div id="modl_ajax"></div>
+    <div id="notification_ajax" style='position: fixed; top: 70px;right:0px;z-index: 4000;'></div>
 
   <panel id="js_replace_panel">
     <header>
@@ -768,7 +845,8 @@
     }
     var current_page="/";
     var current_url=window.location.href;
-    var part_modl_open=false;
+    var modl_open=false;
+    var current_notification_id=1;
 
     $.fn.serializefiles = function() {
     		var obj = $(this);
@@ -857,8 +935,162 @@
     }
 
     function checkup(){
-      //Nothing yet
+      $('checkupaction').each(function (){
+  			if (this.hasAttribute("action")){
+
+          var action=this.getAttribute('action');
+          var content=this.getElementById("js_redirect").innerHTML;
+          var clearafter=true;
+
+          //--Redirect
+      		if (action=="redirect"){
+      			app_switch_pages(content);
+      			if (modl_open==true){
+      				modl("close");
+      			}
+      		}
+
+          //close modl
+          if (action=="modlclose"){
+      			if (modl_open==true){
+      				modl("close");
+      			}
+      		}
+
+          //notification
+          if (action=="notification"){
+      			var type=this.getAttribute('type');
+            var linkuse=false;
+            var linkuset=false;
+            var selfclose=true;
+            if (this.getAttribute("selfclose")){
+      				var el=this.getAttribute("selfclose");
+      				if (el=="false"){
+      					selfclose=false;
+      				}else{
+      					selfcose=true;
+      				}
+      			}
+            if (this.getAttribute("link")){
+      				linkuse=this.getAttribute("link");
+      				linkuset=this.getAttribute("link_title");
+      			}
+      			notification(type,content,linkuse,linkuset,selfclose);
+      			textarea_expand();
+      		}
+
+          if (clearafter==true){
+          	if (this){
+              this.remove();
+            }
+          }
+
+        }
+      });
+
+      setTimeout("checkup()", 10);
     }
+
+    function notification(type,text,link,link_title,selfclose){
+  		if (link==undefined){
+  			link=false;
+  			link_title=false;
+  		}
+  		if (selfclose==undefined){
+  			selfclose=true;
+  		}
+  		var theDiv = document.getElementById("notification_ajax");
+  		var content = document.createElement("div");
+  		content.className="notification notification-" + type + " notification_slidein";
+  		content.id="notification_id_" + current_notification_id + "";
+
+  		var linkbutton=false;
+  		if (link!=false){
+  			var linkbutton = document.createElement("a");
+  			linkbutton.href="javascript: notification_clear('" + current_notification_id + "'); app_switch_pages('" + link + "'); notification('success','Taking you to the page now...');";
+  			linkbutton.innerText=link_title;
+  		}
+  		var closebutton=false;
+  		if (selfclose==false){
+  			var closebutton = document.createElement("a");
+  			closebutton.href="javascript:notification_clear('" + current_notification_id + "');";
+  			closebutton.innerText="Close";
+  		}
+
+  		//Text Rules
+  		if (!text.endsWith('?')){
+  			if (!text.endsWith('!')){
+  				if (!text.endsWith('.')){
+  					text=text + ".";
+  				}
+  			}
+  		}
+
+  		if (link!=false){
+  			text=text + "\n\n";
+  		}else{
+  			if (selfclose!=true){
+  				text=text + "\n\n";
+  			}
+  		}
+
+  		content.innerText=replaceNewline(text);
+
+  		//Add elements based on input
+  		if (linkbutton!=false){ content.appendChild(linkbutton); }
+  		if (closebutton!=false){ content.appendChild(closebutton); }
+
+  		theDiv.insertBefore(content, theDiv.firstChild);
+  		if (selfclose==true){
+  			setTimeout("notification_clear('" + current_notification_id + "');", 6000);
+  		}
+  		current_notification_id=current_notification_id+1;
+  	}
+
+  	function notification_clear(id){
+  		$("#notification_id_" + id + "").removeClass("notification_slidein");
+  		setTimeout(function() {
+  			$("#notification_id_" + id + "").addClass("notification_slideout");
+  		}, 25);
+  		setTimeout("notification_delete('" + id + "');", 300);
+  	}
+
+  	function notification_delete(id){
+  		if (document.getElementById("notification_id_" + id + "")!=undefined){
+  			var element = document.getElementById("notification_id_" + id + "");
+  			element.parentNode.removeChild(element);
+  		}
+  	}
+
+    function textarea_expand(){
+  		$('textarea').each(function (){
+  			if (this.hasAttribute("base64")){
+  				if (this.getAttribute("base64")=="true"){
+  					var datathis=this.value;
+  					datathis=datathis.replace(/\s/g, "");
+  					datathis=datathis.replace(/-/g, "+");
+  					datathis=datathis.replace(/_/g, "/");
+  					datathis=datathis.replace(/,/g, "=");
+  					datathis=atob(datathis);
+  					this.value=datathis;
+  					this.setAttribute('base64', 'false');
+  				}
+  			}
+  			this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;width:100%;');
+  		}).on('input', function () {
+  			this.style.height = 'auto';
+  			this.style.height = (this.scrollHeight) + 'px';
+  		}).keydown(function(event) {
+  			var TABKEY = 9;
+        if(event.which == TABKEY) {
+          insertAtCaret(this, '\t');
+          if(event.preventDefault) {
+              event.preventDefault();
+          }
+          return false;
+        }
+  		});
+  	}
 
     $("body").on("click", "a", function(event){
     	var thurl=$(this).attr("href");
@@ -879,7 +1111,7 @@
   							event.preventDefault();
   							event.stopPropagation();
   							show_loading();
-								if (part_modl_open==true){
+								if (modl_open==true){
 									modl(thurl);
 								}else{
 									app_switch_pages(thurl);
@@ -903,7 +1135,7 @@
     		e.preventDefault();
     		e.stopPropagation();
     		var data=$(this).serializefiles();
-  			if (part_modl_open==false){
+  			if (modl_open==false){
     			show_loading();
   			}else{
   				document.getElementById("modl_form_post").style.display = "none";
@@ -916,7 +1148,7 @@
     			contentType: false,
     			data:data,
     			success:function(data, textStatus, jqXHR){
-  					if (part_modl_open==true){
+  					if (modl_open==true){
   						modl_content_parsereplace(data);
   						textarea_expand();
   					}else{
@@ -1000,12 +1232,12 @@
     function modl(url,mode){
     	if (mode==undefined){ mode='normal'; }
     	if (url=="close"){
-    		part_modl_open=false;
+    		modl_open=false;
     		$("#modl_frameid").removeClass("modl_in");
     		$("#modl_frameid").addClass("modl_out");
     		$("#modl_caseid").addClass("modl_out");
     	}else{
-    		part_modl_open=true;
+    		modl_open=true;
     		document.getElementById("modl_ajax").innerHTML="<div id='modl_caseid' class='modl_case'><div id='modl_frameid' class='modl_frame modl_in " + mode + "'><div id='modl_content'><div class='spinning_loader'></div></div></div><div onclick='javascript:modl(\"close\");' class='modl_close'>Close Window</div></div>";
     		modl_content_url(url);
     	}
@@ -1048,12 +1280,12 @@
     function modl_content(title,description,content,mode){
     	if (mode==undefined){ mode='normal'; }
     	if (title=="close"){
-    		part_modl_open=false;
+    		modl_open=false;
     		$("#modl_frameid").removeClass("modl_in");
     		$("#modl_frameid").addClass("modl_out");
     		$("#modl_caseid").addClass("modl_out");
     	}else{
-    		part_modl_open=true;
+    		modl_open=true;
     		content_html="<div id='modl_form_post_notification'></div><div id='modl_form_post'><div style='display: block;padding-bottom: 10px;font-size: 32px;font-weight: 600;'>" + title + "</div><div style='margin-top: 0px;border-bottom: 2px solid rgba(22,22,22,0.05);padding-bottom: 10px;font-size: 14px;margin-bottom: 15px;font-weight: 400;'>" + description  + "</div>" + content + "</div>";
 
     		document.getElementById("modl_ajax").innerHTML="<div id='modl_caseid' class='modl_case'><div id='modl_frameid' class='modl_frame modl_in " + mode + "'><div id='modl_content'>" + content_html + "</div></div><div onclick='javascript:modl(\"close\");' class='modl_close'>Close</div></div>";

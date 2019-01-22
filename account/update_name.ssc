@@ -15,12 +15,12 @@ if set pv.firstname
       v.firstname=s.string_trim("v.firstname","60")
       v.lastname=s.string_trim("v.lastname","60")
       v.update=s.mysql_update("UPDATE accounts SET first_name='v.firstname',last_name='v.lastname' WHERE id='sv.user_id'")
-      t.content("<div id='js_notification_success'>Account first and last name has been changed.</div><div id='js_redirect'>/account/</div>")
+      t.content("<checkupaction action='notification' type='success'>Account first and last name has been changed.</checkupaction><checkupaction action='redirect'>/account/</checkupaction>")
     else
-      t.content("<div id='js_notification_error'>We need somthing to set your name as</div><div id='js_redirect'>/account/</div>")
+      t.content("<checkupaction action='notification' type='error'>We need somthing to set your name as</checkupaction><checkupaction action='redirect'>/account/</checkupaction>")
     end
   else
-    t.content("<div id='js_notification_error'>We need somthing to set your name as</div><div id='js_redirect'>/account/</div>")
+    t.content("<checkupaction action='notification' type='error'>We need somthing to set your name a</checkupaction><checkupaction action='redirect'>/account/</checkupaction>")
   end
 else
   v.current_firstname=f.get_user_name_first()

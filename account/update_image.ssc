@@ -22,12 +22,12 @@ if v.file_uploaded true
       v.timestampuse=s.timestamp()
       v.queryx=s.mysql_delete("DELETE FROM accounts_images WHERE user='sv.user_id'")
       v.query=s.mysql_insert("INSERT INTO accounts_images(user, code, date) VALUES('sv.user_id', 'v.baseimage','v.timestampuse')")
-      t.content("<div id='js_notification_success'>Account image has been updated.</div><div id='js_modlclose'></div>")
+      t.content("<checkupaction action='notification' type='success'>Account image has been updated.</checkupaction><checkupaction action='redirect'>/account/</checkupaction>")
     else
-      t.content("<div id='js_notification_error'>Strange, the image scale failed.</div><div id='js_modlclose'></div>")
+      t.content("<checkupaction action='notification' type='error'>Strange, the image scale failed.</checkupaction><checkupaction action='redirect'>/account/</checkupaction>")
     end
   else
-    t.content("<div id='js_notification_error'>We where unable to save the file to disk... Try again in a few minutes...</div><div id='js_modlclose'></div>")
+    t.content("<checkupaction action='notification' type='error'>We where unable to save the file to disk... Try again in a few minutes...</checkupaction><checkupaction action='redirect'>/account/</checkupaction>")
   end
 else
   t.content('<form enctype="multipart/form-data" action="/account/update_image" method="POST"><input name="MAX_FILE_SIZE" value="10000000" type="value" style="display:none;"><input name="file" type="file"><BR><BR><input id="button" type="submit" value="Upload Image"></form>')
