@@ -2,7 +2,7 @@ s.include("/system.ssc")
 s.template("/templates/modl.html")
 f.permission_user_loggedin()
 f.set_pagetitle("Update account banner")
-f.set_pagedescription("Your account banner will follow you around all NodeHost services. Upload a new banner below to update it.")
+f.set_pagedescription("Your account banner will show on your profile page in the community.")
 
 v.file_uploaded=s.file_uploaded()
 if v.file_uploaded true
