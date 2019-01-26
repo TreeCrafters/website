@@ -12,7 +12,6 @@ else
 
   t.content_left("<bubble>left test</bubble>")
   t.content_right("<bubble>right test</bubble>")
-  t.content_middle("<bubble>This is still in progress</bubble>")
 
   v.following=f.get_user_followlist()
 
