@@ -6,7 +6,7 @@ f.set_pagedescription("Oh no, did you make a mistake?")
 
 v.postid=s.string_clean(uv.post)
 
-v.data=s.mysql_select("SELECT * FROM socials_updates_contents WHERE post='v.postid' AND user='sv.user_id' LIMIT 1")
+v.data=s.mysql_select("SELECT * FROM socials_updates WHERE post='v.postid' AND user='sv.user_id' LIMIT 1")
 if not v.data false
   v.content=v.data[content]
   v.content=s.string_clean(v.content)
