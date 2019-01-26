@@ -9,7 +9,7 @@ v.postid=s.string_clean(uv.post)
 v.data_list=s.mysql_select("SELECT * FROM socials_updates WHERE id='v.postid' AND user='sv.user_id' LIMIT 1")
 if not v.data_list false
 
-  v.data_con=s.mysql_select("SELECT * FROM socials_updates_contents WHERE id='v.postid' LIMIT 1")
+  v.data_con=s.mysql_select("SELECT * FROM socials_updates_contents WHERE post='v.postid' LIMIT 1")
   if not v.data_con false
     v.content=v.data_con[content]
     v.content=s.string_clean(v.content)
