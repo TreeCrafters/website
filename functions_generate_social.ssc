@@ -22,6 +22,6 @@ f.generate_social_update_small{
     v.usr_username=f.get_user_username(v.user)
     v.usr_image=f.get_user_image(v.user)
 
-    t.content_middle("<bubble><div><avatar style=\"border-radius: 30px;width: 60px;height:60px;margin-right: 10px;position: relative;margin-bottom: -10px;background-image:url('v.usr_image');\"></avatar><a href='/social/profile/v.usr_username'><h4>v.usr_name</h4></a> @v.usr_username</div>v.content</bubble>")
+    t.content_middle("<bubble><div style='margin-top:-10px;'><avatar style=\"border-radius: 30px;width: 60px;height:60px;margin-right: 10px;position: relative;margin-bottom: -10px;background-image:url('v.usr_image');\"></avatar><a href='/social/profile/v.usr_username'><h2 style='margin-bottom:0px;'>v.usr_name</h2></a> @v.usr_username</div>v.content</bubble>")
   end
 }
