@@ -34,9 +34,9 @@ f.generate_social_update_small{
     v.actions="<div></div>"
 
     if v.user==sv.user_id
-      v.actions="<div style='float:right:'><a href='/actions/update_social_update?post=v.postid'>Edit</a></div>"
+      v.actions="<div style='float:right;margin-top: -20px;'><a href=\"javascript:modl('/actions/update_social_update?post=v.postid');\">Edit</a></div>"
     end
 
-    t.content_middle("<bubble><div style='margin-top:-15px;border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 65px;float:left;height:65px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h2 style='margin-bottom:0px;font-weight:300;'>v.usr_name</h2>v.actions</a><h3 style='margin-top: 4px;margin-bottom: 5px;'>v.generate_tags</h3>Posted v.dateago</div>v.content</bubble>")
+    t.content_middle("<bubble><div style='margin-top:-15px;border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 65px;float:left;height:65px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h2 style='margin-bottom:0px;font-weight:300;'>v.usr_name</h2></a>v.actions<h3 style='margin-top: 4px;margin-bottom: 5px;'>v.generate_tags</h3>Posted v.dateago</div>v.content</bubble>")
   end
 }
