@@ -6,7 +6,7 @@ f.post_social_update{
     v.datecode=s.timestamp()
     v.postid=s.mysql_insert("INSERT INTO socials_updates(user,date) VALUES('sv.user_id','v.datecode')")
     if not v.postid false
-      v.postid=s.mysql_insert("INSERT INTO socials_updates_contents(update,content) VALUES('v.postid','v.compressed')")
+      v.postid=s.mysql_insert("INSERT INTO socials_updates_contents(post,content) VALUES('v.postid','v.compressed')")
     end
   end
 }
