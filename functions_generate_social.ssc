@@ -1,5 +1,8 @@
 f.generate_social_update_small{
   v.postid=v.function_passed[0]
+  if set v.postid[id]
+    v.postid=v.postid[id]
+  end
 
   v.data_id=s.mysql_select("SELECT * FROM socials_updates WHERE id='v.postid' LIMIT 1")
   if not v.data_id false
