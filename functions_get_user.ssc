@@ -100,3 +100,54 @@ f.get_user_email{
   v.data_db=s.mysql_select("SELECT email FROM accounts WHERE id='v.userid' LIMIT 1")
   s.echo("v.data_db[email]")
 }
+
+f.get_user_following{
+  v.user=v.function_passed[0]
+  v.following=v.function_passed[1]
+
+  if set v.post
+    v.data_db=s.mysql_select("SELECT id FROM accounts_followings WHERE user='v.user' AND following='v.following' LIMIT 1")
+    if not v.data_db false
+      s.echo("true")
+    else
+      s.echo("false")
+    end
+  else
+    s.echo("false")
+  end
+}
+
+f.get_user_followlist{
+  if set v.function_passed[0]
+    v.userid=v.function_passed[0]
+  else
+    v.userid=sv.user_id
+  end
+
+  v.data_db=s.mysql_select("SELECT GROUP_CONCAT(DISTINCT following SEPARATOR ', ') AS follow FROM accounts_followings WHERE user='v.userid' GROUP BY user")
+  if not v.data_db false
+    s.echo(v.data_db[follow])
+  else
+    s.echo("false")
+  end
+}
+
+f.get_user_friends{
+  v.user=v.function_passed[0]
+  v.following=v.function_passed[1]
+
+  if set v.post
+    v.data_db=s.mysql_select("SELECT id FROM accounts_followings WHERE (user='v.user' AND following='v.following') AND (following='v.user' AND user='v.following') LIMIT 2")
+    if not v.data_db false
+      if set v.data_db[id]
+        s.echo("true")
+      else
+        s.echo("false")
+      end
+    else
+      s.echo("false")
+    end
+  else
+    s.echo("false")
+  end
+}

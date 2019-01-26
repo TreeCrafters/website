@@ -1,0 +1,12 @@
+f.get_social_update_content{
+  v.postid=v.function_passed[0]
+  v.content=false
+
+  v.data=s.mysql_select("SELECT * FROM socials_updates_contents WHERE update='v.postid' LIMIT 1")
+  if not v.data false
+    v.content=v.data[content]
+    v.content=s.string_clean(v.content)
+  end
+
+  s.echo(v.content)
+}

@@ -1,0 +1,14 @@
+s.include("/system.ssc")
+s.template("/templates/modl.html")
+f.permission_user_loggedin()
+f.set_pagetitle("New status update")
+f.set_pagedescription("What are you up to?")
+
+if set pv.content
+  if s.check_valid_email(pv.email) true
+
+  v.update=f.post_social_update(pv.content)
+  t.content("<checkupaction action='notification' type='success'>Status update has been posted</checkupaction><checkupaction action='redirect'>/</checkupaction>")
+else
+  t.content('<form enctype="multipart/form-data" action="/actions/post_social_update" method="POST"><textarea name="content" style="overflow-y:hidden;width:100%;"></textarea><BR><BR><input id="button" type="submit" value="Post update"></form>')
+end

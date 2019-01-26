@@ -5,6 +5,7 @@ s.include("/system_database.ssc")
 s.include("/system_sessions.ssc")
 s.include("/functions.ssc")
 s.include("/functions_get_user.ssc")
+s.include("/functions_post_social.ssc")
 
 //On session start clear data
 if notset sv.user_id
@@ -28,6 +29,8 @@ if not sv.user_id==0
     sv.user_id=0
   end
 end
+
+t.header_right("<a href=\"modl('/actions/post_social_update')\">New Update</a>")
 
 //validate api key or user
 f.validate_session{

@@ -10,16 +10,24 @@ else
   f.set_pagetitle("Welcome")
   f.set_pagedescription("Welcome back!")
 
-  t.content_middle("<bubble>This is still in progress</bubble>")
   t.content_left("<bubble>left test</bubble>")
   t.content_right("<bubble>right test</bubble>")
   t.content_middle("<bubble>This is still in progress</bubble>")
-  t.content_middle("<bubble>This is still in progress</bubble>")
-  t.content_middle("<bubble>This is still in progress</bubble>")
-  t.content_middle("<bubble>This is still in progress</bubble>")
-  t.content_middle("<bubble>This is still in progress</bubble>")
-  t.content_middle("<bubble>This is still in progress</bubble>")
-  t.content_middle("<bubble>This is still in progress</bubble>")
-  t.content_middle("<bubble>This is still in progress</bubble>")
+
+  v.following=f.get_user_followlist()
+  if v.following false
+    v.following=sv.user_id
+  end
+
+  v.data_posts=s.mysql_select("SELECT * FROM socials_updates WHERE user IN (v.following) ORDER BY id DESC LIMIT 100")
+  if not v.data_posts false
+    if set v.data_posts[user]
+      f.generate_social_update_small(v.data_posts)
+    else
+      s.array_loop("generate_social_update_small",v.data_posts)
+    end
+  else
+    t.content_middle("<bubble><div class='message_warning'>We have no posts to show</div></bubble>")
+  end
 
 end
