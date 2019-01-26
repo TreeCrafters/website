@@ -13,6 +13,7 @@ f.generate_social_update_small{
     v.data_con=s.mysql_select("SELECT * FROM socials_updates_contents WHERE post='v.postid' LIMIT 1")
     if not v.data_con false
       v.content=v.data_con[content]
+      v.content=s.base64_decode(v.content)
       v.content=s.string_clean(v.content)
       v.content=s.markdown(v.content)
     end
