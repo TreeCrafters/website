@@ -8,6 +8,16 @@ f.get_user_username{
   s.echo("v.data_db[username]")
 }
 
+f.get_user_mc_name{
+  if set v.function_passed[0]
+    v.userid=v.function_passed[0]
+  else
+    v.userid=sv.user_id
+  end
+  v.data_db=s.mysql_select("SELECT mc_name FROM accounts WHERE id='v.userid' LIMIT 1")
+  s.echo("v.data_db[mc_name]")
+}
+
 f.get_user_image{
   if set v.function_passed[0]
     v.userid=v.function_passed[0]
