@@ -126,9 +126,9 @@ f.get_user_followlist{
 
   v.data_db=s.mysql_select("SELECT GROUP_CONCAT(DISTINCT following SEPARATOR ', ') AS follow FROM accounts_followings WHERE user='v.userid' GROUP BY user")
   if not v.data_db false
-    s.echo(v.data_db[follow])
+    s.echo("v.userid, v.data_db[follow]")
   else
-    s.echo("false")
+    s.echo("v.userid")
   end
 }
 
