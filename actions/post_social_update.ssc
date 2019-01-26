@@ -5,8 +5,6 @@ f.set_pagetitle("New status update")
 f.set_pagedescription("What are you up to?")
 
 if set pv.content
-  if s.check_valid_email(pv.email) true
-
   v.update=f.post_social_update(pv.content)
   t.content("<checkupaction action='notification' type='success'>Status update has been posted</checkupaction><checkupaction action='redirect'>/</checkupaction>")
 else
