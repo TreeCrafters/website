@@ -31,6 +31,6 @@ f.generate_social_update_small{
       v.generate_tags="v.generate_tags <div class='inlinebutton-info-staff'>Admin</div>"
     end
 
-    t.content_middle("<bubble><div style='margin-top:-10px;border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 65px;float:left;height:65px;margin-right: 10px;position: relative;margin-bottom: -10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h2 style='margin-bottom:0px;'>v.usr_name</h2></a><h3 style='margin-top: 4px;margin-bottom: 5px;'>v.generate_tags</h3>Posted v.dateago</div>v.content</bubble>")
+    t.content_middle("<bubble><div style='margin-top:-10px;border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 65px;float:left;height:65px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h2 style='margin-bottom:0px;'>v.usr_name</h2></a><h3 style='margin-top: 4px;margin-bottom: 5px;'>v.generate_tags</h3>Posted v.dateago</div>v.content</bubble>")
   end
 }
