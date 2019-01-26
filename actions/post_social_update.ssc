@@ -8,5 +8,5 @@ if set pv.content
   v.update=f.post_social_update(pv.content)
   t.content("<checkupaction action='notification' type='success'>Status update has been posted</checkupaction><checkupaction action='redirect'>/</checkupaction>")
 else
-  t.content('<form enctype="multipart/form-data" action="/actions/post_social_update" method="POST"><textarea name="content" style="overflow-y:hidden;width:100%;"></textarea><BR><BR><input id="button" type="submit" value="Post update"></form>')
+  t.content('<form enctype="multipart/form-data" action="/actions/post_social_update" method="POST"><textarea name="content" style="overflow-y:hidden;width:100%;" placeholder="Hey, how is it going?"></textarea><BR><BR><input id="button" type="submit" value="Post update"></form>')
 end
