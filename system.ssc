@@ -6,6 +6,7 @@ s.include("/system_sessions.ssc")
 s.include("/functions.ssc")
 s.include("/functions_get_user.ssc")
 s.include("/functions_post_social.ssc")
+s.include("/functions_update_social.ssc")
 s.include("/functions_generate_social.ssc")
 
 //On session start clear data

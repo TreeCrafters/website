@@ -1,0 +1,23 @@
+s.include("/system.ssc")
+s.template("/templates/modl.html")
+f.permission_user_loggedin()
+f.set_pagetitle("Update status update")
+f.set_pagedescription("Oh no, did you make a mistake?")
+
+v.postid=s.string_clean(uv.post)
+
+v.data=s.mysql_select("SELECT * FROM socials_updates_contents WHERE post='v.postid' AND user='sv.user_id' LIMIT 1")
+if not v.data false
+  v.content=v.data[content]
+  v.content=s.string_clean(v.content)
+
+  if set pv.content
+    v.update=f.update_social_update(v.postid,pv.content)
+    t.content("<checkupaction action='notification' type='success'>Status update has been... well.... updated</checkupaction><checkupaction action='redirect'>/</checkupaction>")
+  else
+    t.content('<form enctype="multipart/form-data" action="/actions/update_social_update?post=v.postid" method="POST"><textarea name="content" style="overflow-y:hidden;width:100%;">v.content</textarea><BR><BR><input id="button" type="submit" value="Update my update"></form>')
+  end
+
+else
+  t.content("Um... This is not your post!")
+end

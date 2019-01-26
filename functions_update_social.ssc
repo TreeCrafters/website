@@ -1,0 +1,15 @@
+f.update_social_update{
+  v.id=v.function_passed[0]
+  v.content=v.function_passed[1]
+
+  v.data=s.mysql_select("SELECT * FROM socials_updates_contents WHERE post='v.id' LIMIT 1")
+  if not v.data false
+    if set v.content
+      v.compressed=s.base64_encode(v.content)
+      v.datecode=s.timestamp()
+
+      v.update=s.mysql_update("UPDATE socials_updates SET date_updated='v.datecode' WHERE id='v.id'")
+      v.contentupdate=s.mysql_update("UPDATE socials_updates_contents SET content='v.compressed' WHERE id='v.id'")
+    end
+  end
+}
