@@ -6,17 +6,21 @@ f.set_pagedescription("Oh no, did you make a mistake?")
 
 v.postid=s.string_clean(uv.post)
 
-v.data=s.mysql_select("SELECT * FROM socials_updates WHERE id='v.postid' AND user='sv.user_id' LIMIT 1")
-if not v.data false
-  v.content=v.data[content]
-  v.content=s.string_clean(v.content)
+v.data_list=s.mysql_select("SELECT * FROM socials_updates WHERE id='v.postid' AND user='sv.user_id' LIMIT 1")
+if not v.data_list false
 
-  if set pv.content
-    v.update=f.update_social_update(v.postid,pv.content)
-    t.content("<checkupaction action='notification' type='success'>Status update has been... well.... updated</checkupaction><checkupaction action='redirect'>/</checkupaction>")
-  else
-    t.content('<form enctype="multipart/form-data" action="/actions/update_social_update?post=v.postid" method="POST"><textarea name="content" id="mdeedit" style="overflow-y:hidden;width:100%;">v.content</textarea><BR><BR><input id="button" type="submit" value="Update my update"></form>')
-    t.content('<script>var simplemde = new SimpleMDE({ element: document.getElementById("mdeedit"), hideIcons: ["guide", "quote"], toolbar: ["bold", "italic", "strikethrough", "heading", "|", "code", "unordered-list", "horizontal-rule", "preview"],spellChecker: false, status: false, forceSync: true, styleSelectedText: false});</script>')
+  v.data_con=s.mysql_select("SELECT * FROM socials_updates_contents WHERE id='v.postid' LIMIT 1")
+  if not v.data_con false
+    v.content=v.data_con[content]
+    v.content=s.string_clean(v.content)
+
+    if set pv.content
+      v.update=f.update_social_update(v.postid,pv.content)
+      t.content("<checkupaction action='notification' type='success'>Status update has been... well.... updated</checkupaction><checkupaction action='redirect'>/</checkupaction>")
+    else
+      t.content('<form enctype="multipart/form-data" action="/actions/update_social_update?post=v.postid" method="POST"><textarea name="content" id="mdeedit" style="overflow-y:hidden;width:100%;">v.content</textarea><BR><BR><input id="button" type="submit" value="Update my update"></form>')
+      t.content('<script>var simplemde = new SimpleMDE({ element: document.getElementById("mdeedit"), hideIcons: ["guide", "quote"], toolbar: ["bold", "italic", "strikethrough", "heading", "|", "code", "unordered-list", "horizontal-rule", "preview"],spellChecker: false, status: false, forceSync: true, styleSelectedText: false});</script>')
+    end
   end
 
 else
