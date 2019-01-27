@@ -104,7 +104,6 @@ f.user_register{
 		v.username=s.string_trim("v.username","90")
 		v.mcname=pv.mcname
 		v.mcname=s.string_clean("v.mcname")
-		v.mcname=s.string_username("v.mcname")
 		v.mcname=s.string_trim("v.mcname","90")
 		v.password=pv.password
 		v.password=s.password_hash(v.password)
