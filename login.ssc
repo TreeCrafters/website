@@ -47,22 +47,26 @@ f.user_login{
 		v.data_db=s.mysql_select("SELECT * FROM accounts WHERE username='v.username' LIMIT 1")
 
 		if set v.data_db[username]
-			v.p_username=v.data_db[username]
-			v.p_password=v.data_db[password]
-			v.validate=s.password_verify("v.password","v.p_password")
-			if v.validate true
-				sv.user_username=v.data_db[username]
-				sv.user_id=v.data_db[id]
+			if v.data_db[type]=="normal"
+				v.message="We are not open to normal users yet, check back later or on the discord server."
+			else
+				v.p_username=v.data_db[username]
+				v.p_password=v.data_db[password]
+				v.validate=s.password_verify("v.password","v.p_password")
+				if v.validate true
+					sv.user_username=v.data_db[username]
+					sv.user_id=v.data_db[id]
 
-				t.content("<div class='good'>Welcome back!</div>")
-				s.header("Location: /")
+					t.content("<div class='good'>Welcome back!</div>")
+					s.header("Location: /")
+				else
+					v.message="Sorry the details provided are not valid"
+					t.content("<div class='error'>v.message</div>")
+				end
 			else
 				v.message="Sorry the details provided are not valid"
 				t.content("<div class='error'>v.message</div>")
 			end
-		else
-			v.message="Sorry the details provided are not valid"
-			t.content("<div class='error'>v.message</div>")
 		end
 
 	else
