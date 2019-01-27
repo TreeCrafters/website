@@ -56,18 +56,33 @@ f.generate_social_update_emotes{
   v.emote_thinking=f.get_social_update_emote(v.postid,"thinking")
   v.myemote=f.get_social_update_myemote(v.postid)
 
+  v.emote_set_heart="notset"
+  v.emote_set_cheese="notset"
+  v.emote_set_shocked="notset"
+  v.emote_set_thinking="notset"
+
   s.echo("<div id='post_emote_case_v.postid'>")
   if not v.myemote false
     if set v.myemote
-      v.myemote=s.string_replace("&#46;",".","v.myemote&#46;png")
-      s.echo("<div class='post_emote set'><img src='/resources/img/emotes/v.myemote'></div>")
+      if v.myemote=="heart"
+        v.emote_set_heart="set"
+      end
+      if v.myemote=="cheese"
+        v.emote_set_cheese="set"
+      end
+      if v.myemote=="shocked"
+        v.emote_set_shocked="set"
+      end
+      if v.myemote=="thinking"
+        v.emote_set_thinking="set"
+      end
     end
   end
 
-  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=heart','post_emote_case_v.postid')\"><img src='/resources/img/emotes/heart.png'></a><number>v.emote_heart</number></div>")
-  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=cheese','post_emote_case_v.postid')\"><img src='/resources/img/emotes/cheese.png'></a><number>v.emote_cheese</number></div>")
-  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=shocked','post_emote_case_v.postid')\"><img src='/resources/img/emotes/shocked.png'></a><number>v.emote_shocked</number></div>")
-  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=thinking','post_emote_case_v.postid')\"><img src='/resources/img/emotes/thinking.png'></a><number>v.emote_thinking</number></div>")
+  s.echo("<div class='post_emote v.emote_set_heart'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=heart','post_emote_case_v.postid')\"><img src='/resources/img/emotes/heart.png'></a><number>v.emote_heart</number></div>")
+  s.echo("<div class='post_emote v.emote_set_cheese'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=cheese','post_emote_case_v.postid')\"><img src='/resources/img/emotes/cheese.png'></a><number>v.emote_cheese</number></div>")
+  s.echo("<div class='post_emote v.emote_set_shocked'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=shocked','post_emote_case_v.postid')\"><img src='/resources/img/emotes/shocked.png'></a><number>v.emote_shocked</number></div>")
+  s.echo("<div class='post_emote v.emote_set_thinking'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=thinking','post_emote_case_v.postid')\"><img src='/resources/img/emotes/thinking.png'></a><number>v.emote_thinking</number></div>")
 
   s.echo("</div>")
 }

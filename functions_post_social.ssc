@@ -20,8 +20,12 @@ f.post_social_update_emote{
   v.emote=s.string_username("v.emote")
   v.emote=s.string_trim("v.emote","90")
 
+  v.myemote=f.get_social_update_myemote(v.post)
+
   if f.check_social_update(v.post) true
     v.delete=s.mysql_delete("DELETE FROM socials_updates_emotes WHERE post='v.post' AND user='sv.user_id'")
-    v.postid=s.mysql_insert("INSERT INTO socials_updates_emotes(user,post,emote) VALUES('sv.user_id','v.post','v.emote')")
+    if not v.myemote==v.emote
+      v.postid=s.mysql_insert("INSERT INTO socials_updates_emotes(user,post,emote) VALUES('sv.user_id','v.post','v.emote')")
+    end
   end
 }
