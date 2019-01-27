@@ -6,3 +6,50 @@ f.permission_user_loggedin()
 
 v.catchall=s.system_file_original()
 v.catchall=s.string_replace("/index.ssc","",v.catchall)
+v.profile_username=s.string_clean(v.catchall)
+
+v.data_profile=s.mysql_select("SELECT * FROM accounts WHERE username='v.profile_username' LIMIT 1")
+if not v.data_profile false
+  v.profileid=v.data_profile[id]
+
+  v.profile_usersfullname=f.get_user_name_full(v.profileid)
+  v.profile_usersfirstname=f.get_user_name_first(v.profileid)
+  v.profile_usersusername=f.get_user_username(v.profileid)
+  v.profile_usersemail=f.get_user_email(v.profileid)
+  v.profile_type=f.get_user_type(v.profileid)
+  v.profile_userimage=f.get_user_image(v.profileid)
+  v.profile_userbanner=f.get_user_banner(v.profileid)
+
+  f.set_pagetitle("v.profile_usersfullname")
+  f.set_pagedescription("Community is where the code is.")
+
+  if not sv.user_id==v.profileid
+    if f.get_community_user_following(sv.user_id,v.profile_id) false
+      t.controls("<a href='javascript:modl(\"/community/view_profile_follow?user=v.profile_usersusername\");'>Follow v.profile_usersfirstname</a>")
+    else
+      t.controls("<a href='javascript:modl(\"/community/view_profile_unfollow?user=v.profile_usersusername\");'>Unfollow v.profile_usersfirstname</a>")
+    end
+
+  end
+
+  t.content_middle("<bubble><div style='text-align:center;'>")
+  t.content_middle("<div style=\"background-image:url('v.profile_userbanner');background-position: center;background-size: cover;padding:20px;margin-top:-10px;margin-left:-10px;margin-right:-10px;border-top-left-radius: 9px;border-top-right-radius: 9px;\"><avatar style=\"border-radius: 200px;width: 200px;height:200px;background-image:url('v.profile_userimage');\"></avatar></div>")
+  t.content_middle("<h2>v.profile_usersfullname</h2><h3>@v.profile_usersusername</h3>")
+  t.content_middle("</div></bubble>")
+
+  //load posts
+  v.data_posts=s.mysql_select("SELECT * FROM socials_updates WHERE user='v.profileid' ORDER BY id DESC LIMIT 100")
+  if not v.data_posts false
+    if set v.data_posts[user]
+      f.generate_social_update_small(v.data_posts)
+    else
+      s.array_loop("generate_social_update_small",v.data_posts)
+    end
+  else
+    t.content_middle("<bubble><div class='message_warning'>We have no posts to show</div></bubble>")
+  end
+
+
+else
+  t.content_middle("<bubble>No user found with this username...</bubble>")
+end
