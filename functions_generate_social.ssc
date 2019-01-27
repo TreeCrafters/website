@@ -64,10 +64,10 @@ f.generate_social_update_emotes{
     end
   end
 
-  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=heart','post_emote_case_v.postid')\"><img src='/resources/img/emotes/heart.png'></a></div>")
-  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=cheese','post_emote_case_v.postid')\"><img src='/resources/img/emotes/cheese.png'></a></div>")
-  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=shocked','post_emote_case_v.postid')\"><img src='/resources/img/emotes/shocked.png'></a></div>")
-  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=thinking','post_emote_case_v.postid')\"><img src='/resources/img/emotes/thinking.png'></a></div>")
+  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=heart','post_emote_case_v.postid')\"><img src='/resources/img/emotes/heart.png'></a><number>v.emote_heart</number></div>")
+  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=cheese','post_emote_case_v.postid')\"><img src='/resources/img/emotes/cheese.png'></a><number>v.emote_cheese</number></div>")
+  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=shocked','post_emote_case_v.postid')\"><img src='/resources/img/emotes/shocked.png'></a><number>v.emote_shocked</number></div>")
+  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=thinking','post_emote_case_v.postid')\"><img src='/resources/img/emotes/thinking.png'></a><number>v.emote_thinking</number></div>")
 
   s.echo("</div>")
 }
