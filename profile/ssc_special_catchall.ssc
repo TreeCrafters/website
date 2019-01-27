@@ -6,8 +6,7 @@ f.permission_user_loggedin()
 
 v.catchall=s.system_file_original()
 v.catchall=s.string_replace("/index.ssc","",v.catchall)
-v.catchall=s.string_replace("/profile","",v.catchall)
-v.catchall=s.string_replace("/","",v.catchall)
+v.catchall=s.string_replace("/profile/","",v.catchall)
 v.profile_username=s.string_clean(v.catchall)
 
 v.data_profile=s.mysql_select("SELECT * FROM accounts WHERE username='v.profile_username' LIMIT 1")
@@ -21,11 +20,12 @@ if not v.data_profile false
   v.profile_type=f.get_user_type(v.profileid)
   v.profile_userimage=f.get_user_image(v.profileid)
   v.profile_userbanner=f.get_user_banner(v.profileid)
+  v.profile_mc_name=f.get_user_mc_name(v.profileid)
 
   f.set_pagetitle("v.profile_usersfullname")
-  f.set_pagedescription("Community is where the code is.")
+  f.set_pagedescription("@v.profile_usersusername")
 
-  t.content_left("<bubble>Soon....</bubble>")
+  t.content_right("<bubble>Soon....</bubble>")
 
   if not sv.user_id==v.profileid
     if f.get_community_user_following(sv.user_id,v.profile_id) false
@@ -36,9 +36,15 @@ if not v.data_profile false
 
   end
 
+  v.generate_tags="<div class='inlinebutton-info-minecraft'>v.profile_mc_name</div>"
+
+  if v.profile_type=="admin"
+    v.generate_tags="v.generate_tags <div class='inlinebutton-info-staff'>Admin</div>"
+  end
+
   t.content_middle("<bubble><div style='text-align:center;'>")
   t.content_middle("<div style=\"background-image:url('v.profile_userbanner');background-position: center;background-size: cover;padding:20px;margin-top:-10px;margin-left:-10px;margin-right:-10px;border-top-left-radius: 9px;border-top-right-radius: 9px;\"><avatar style=\"border-radius: 200px;width: 200px;height:200px;background-image:url('v.profile_userimage');\"></avatar></div>")
-  t.content_middle("<h2>v.profile_usersfullname</h2><h3>@v.profile_usersusername</h3>")
+  t.content_middle("v.generate_tags")
   t.content_middle("</div></bubble>")
 
   //load posts
