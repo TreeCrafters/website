@@ -1307,7 +1307,6 @@
     function fetch_fordiv(url,div,title){
   		if (title==undefined){ title=false; }
   		document.getElementById(div).innerHTML="<div class='spinning_loader'></div>";
-      pageload_out();
   		$.ajax({
   			type : "POST",
   			url : url,
