@@ -1374,6 +1374,7 @@
     	var apptitle = $('#js_replace_pagetitle', tempDom);
     	var appdescription = $('#js_replace_pagedescription', tempDom);
       var dropzone = $('#js_dropzone', tempDom);
+      var mde = $('#js_mde', tempDom);
 
     	content="<div id='modl_form_post_notification'></div><div id='modl_form_post'><div style='display: block;padding-bottom: 10px;font-size: 32px;font-weight: 600;'>" + apptitle[0].innerHTML + "</div><div style='margin-top: 0px;border-bottom: 2px solid rgba(22,22,22,0.05);padding-bottom: 10px;font-size: 14px;margin-bottom: 15px;font-weight: 400;'>" + appdescription[0].innerHTML  + "</div>" + content + "</div>";
 
@@ -1382,6 +1383,10 @@
 
       if (dropzone[0]!=undefined){
     		modl_content_dropzone(dropzone[0].innerHTML);
+    	}
+
+      if (mde[0]!=undefined){
+    		modl_content_mde(mde[0].innerHTML);
     	}
 
     	textarea_expand();
@@ -1406,6 +1411,10 @@
     		var old=document.getElementById("file_uploaded").innerHTML;
       	document.getElementById("file_uploaded").innerHTML="<div>" + content + "</div>" + old;
       });
+    }
+
+    function modl_content_mde(data){
+      var simplemde = new SimpleMDE({ element: document.getElementById("js_mde"), hideIcons: ["guide", "quote"], toolbar: ["bold", "italic", "strikethrough", "heading", "|", "code", "unordered-list", "horizontal-rule", "preview"],spellChecker: false, status: false, forceSync: true, styleSelectedText: false});
     }
 
     function modl_content(title,description,content,mode){

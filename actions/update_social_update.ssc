@@ -19,8 +19,7 @@ if not v.data_list false
       v.update=f.update_social_update(v.postid,pv.content)
       t.content("<checkupaction action='notification' type='success'>Status update has been... well.... updated</checkupaction><checkupaction action='redirect'>/</checkupaction>")
     else
-      t.content('<form enctype="multipart/form-data" action="/actions/update_social_update?post=v.postid" method="POST"><textarea name="content" id="mdeedit" style="overflow-y:hidden;width:100%;">v.content</textarea><BR><BR><input id="button" type="submit" value="Update my update"></form>')
-      t.content('<script>var simplemde = new SimpleMDE({ element: document.getElementById("mdeedit"), hideIcons: ["guide", "quote"], toolbar: ["bold", "italic", "strikethrough", "heading", "|", "code", "unordered-list", "horizontal-rule", "preview"],spellChecker: false, status: false, forceSync: true, styleSelectedText: false});</script>')
+      t.content('<form enctype="multipart/form-data" action="/actions/update_social_update?post=v.postid" method="POST"><textarea name="content" id="js_mde" style="overflow-y:hidden;width:100%;">v.content</textarea><BR><BR><input id="button" type="submit" value="Update my update"></form>')
     end
   end
 
