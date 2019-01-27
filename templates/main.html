@@ -627,6 +627,12 @@
   		animation: anamation-spinner 600ms linear infinite;
   	}
 
+    .spinning_loader.small{
+      	margin-top: 0px;
+        width: 36px;
+    		height: 36px;
+    }
+
   	@-webkit-keyframes anamation-spinner {
   		0% {
   			-webkit-transform: rotate(0deg);
@@ -1319,7 +1325,7 @@
 
     function fetch_fordiv(url,div,title){
   		if (title==undefined){ title=false; }
-  		document.getElementById(div).innerHTML="<div class='spinning_loader'></div>";
+  		document.getElementById(div).innerHTML="<div class='spinning_loader small'></div>";
   		$.ajax({
   			type : "POST",
   			url : url,
