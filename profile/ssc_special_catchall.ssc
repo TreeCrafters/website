@@ -23,6 +23,8 @@ if not v.data_profile false
   f.set_pagetitle("v.profile_usersfullname")
   f.set_pagedescription("Community is where the code is.")
 
+  t.content_left("<bubble>Soon....</bubble>")
+
   if not sv.user_id==v.profileid
     if f.get_community_user_following(sv.user_id,v.profile_id) false
       t.controls("<a href='javascript:modl(\"/community/view_profile_follow?user=v.profile_usersusername\");'>Follow v.profile_usersfirstname</a>")
