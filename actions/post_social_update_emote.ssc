@@ -1,0 +1,16 @@
+s.include("/system.ssc")
+s.template("/templates/modl.html")
+f.permission_user_loggedin()
+f.set_pagetitle("New status update")
+f.set_pagedescription("What are you up to?")
+
+if set uv.post
+  v.post=s.string_clean(uv.post)
+  v.emote=s.string_clean(uv.emote)
+
+  f.post_social_update_emote(v.post,v.emote)
+
+  t.content("<checkupaction action='notification' type='success'>Emote set on update</checkupaction>")
+  v.getgenrated=f.generate_social_update_emotes(v.post)
+  t.content("v.getgenrated")
+end

@@ -10,3 +10,32 @@ f.get_social_update_content{
 
   s.echo(v.content)
 }
+
+
+f.get_social_update_emote{
+  v.postid=v.function_passed[0]
+  v.emote=v.function_passed[1]
+
+  v.data=s.mysql_select("SELECT * FROM socials_updates_emotes WHERE post='v.postid' AND emote='v.emote' LIMIT 1")
+  if not v.data false
+    if set v.data[user]
+      v.number=s.array_count(v.data)
+      s.echo("v.number")
+    else
+      s.echo("1")
+    end
+  else
+    s.echo("0")
+  end
+}
+
+f.get_social_update_myemote{
+  v.postid=v.function_passed[0]
+
+  v.data=s.mysql_select("SELECT * FROM socials_updates_emotes WHERE post='v.postid' AND user='sv.user_id' LIMIT 1")
+  if not v.data false
+    s.echo("v.data[emote]")
+  else
+    s.echo("false")
+  end
+}
