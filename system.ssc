@@ -32,7 +32,9 @@ if not sv.user_id==0
   end
 end
 
-t.header_right("<a href=\"javascript:modl('/actions/post_social_update');\">New Update</a>")
+t.header_left("<a href=\"/\" class='button'>Feed</a>")
+t.header_right("<a href=\"javascript:modl('/actions/post_social_update');\" class='button'>New Update</a>")
+t.header_right("<a href=\"/account\" class='button'>Edit account</a>")
 
 //validate api key or user
 f.validate_session{
