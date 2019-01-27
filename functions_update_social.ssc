@@ -9,7 +9,7 @@ f.update_social_update{
       v.datecode=s.timestamp()
 
       v.update=s.mysql_update("UPDATE socials_updates SET date_updated='v.datecode' WHERE id='v.id'")
-      v.contentupdate=s.mysql_update("UPDATE socials_updates_contents SET content='v.compressed' WHERE id='v.id'")
+      v.contentupdate=s.mysql_update("UPDATE socials_updates_contents SET content='v.compressed' WHERE post='v.id'")
     end
   end
 }
