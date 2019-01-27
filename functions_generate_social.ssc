@@ -58,14 +58,16 @@ f.generate_social_update_emotes{
 
   s.echo("<div id='post_emote_case_v.postid'>")
   if not v.myemote false
-    v.myemote=s.string_replace("&#46;",".","v.myemote&#46;png")
-    s.echo("<div class='post_emote set'><img src='/resources/img/emotes/v.myemote'></div>")
+    if set v.myemote
+      v.myemote=s.string_replace("&#46;",".","v.myemote&#46;png")
+      s.echo("<div class='post_emote set'><img src='/resources/img/emotes/v.myemote'></div>")
+    end
   end
 
-  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/action/post_social_update_emote?post=v.postid&emote=heart','post_emote_case_v.postid')\"><img src='/resources/img/emotes/heart.png'></a></div>")
-  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/action/post_social_update_emote?post=v.postid&emote=cheese','post_emote_case_v.postid')\"><img src='/resources/img/emotes/cheese.png'></a></div>")
-  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/action/post_social_update_emote?post=v.postid&emote=shocked','post_emote_case_v.postid')\"><img src='/resources/img/emotes/shocked.png'></a></div>")
-  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/action/post_social_update_emote?post=v.postid&emote=thinking','post_emote_case_v.postid')\"><img src='/resources/img/emotes/thinking.png'></a></div>")
+  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=heart','post_emote_case_v.postid')\"><img src='/resources/img/emotes/heart.png'></a></div>")
+  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=cheese','post_emote_case_v.postid')\"><img src='/resources/img/emotes/cheese.png'></a></div>")
+  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=shocked','post_emote_case_v.postid')\"><img src='/resources/img/emotes/shocked.png'></a></div>")
+  s.echo("<div class='post_emote'><a href=\"javascript:fetch_fordiv('/actions/post_social_update_emote?post=v.postid&emote=thinking','post_emote_case_v.postid')\"><img src='/resources/img/emotes/thinking.png'></a></div>")
 
   s.echo("</div>")
 }
