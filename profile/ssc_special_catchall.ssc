@@ -44,7 +44,7 @@ if not v.data_profile false
 
   t.content_middle("<bubble><div style='text-align:center;'>")
   t.content_middle("<div style=\"background-image:url('v.profile_userbanner');background-position: center;background-size: cover;padding:20px;margin-top:-10px;margin-left:-10px;margin-right:-10px;border-top-left-radius: 9px;border-top-right-radius: 9px;\"><avatar style=\"border-radius: 200px;width: 200px;height:200px;background-image:url('v.profile_userimage');\"></avatar></div>")
-  t.content_middle("v.generate_tags")
+  t.content_middle("<div style='margin-top:15px;'>v.generate_tags</div>")
   t.content_middle("</div></bubble>")
 
   //load posts
