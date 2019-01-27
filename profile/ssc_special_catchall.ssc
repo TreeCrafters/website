@@ -6,7 +6,8 @@ f.permission_user_loggedin()
 
 v.catchall=s.system_file_original()
 v.catchall=s.string_replace("/index.ssc","",v.catchall)
-v.catchall=s.string_replace("/profile/","",v.catchall)
+v.catchall=s.string_replace("/profile","",v.catchall)
+v.catchall=s.string_replace("/","",v.catchall)
 v.profile_username=s.string_clean(v.catchall)
 
 v.data_profile=s.mysql_select("SELECT * FROM accounts WHERE username='v.profile_username' LIMIT 1")
