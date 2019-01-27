@@ -56,7 +56,7 @@ f.generate_social_update_emotes{
   v.emote_thinking=f.get_social_update_emote(v.postid,"thinking")
   v.myemote=f.get_social_update_myemote(v.postid)
 
-  s.echo("<div id='post_emote_case_v.postid'>")
+  s.echo("<div id='post_emote_case_v.postid'>v.myemote")
   if not v.myemote false
     if set v.myemote
       v.myemote=s.string_replace("&#46;",".","v.myemote&#46;png")
