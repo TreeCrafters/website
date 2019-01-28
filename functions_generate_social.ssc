@@ -53,7 +53,7 @@ f.generate_social_update_small{
 
     //preview content
 
-    v.previewcontent=s.string_trim(v.previewcontent,220)
+    v.previewcontent=s.string_trim(v.content,220)
 
     v.previewmd=s.markdown("v.previewcontent &nbsp;")
     v.previewmd=s.string_replace("<ul>","",v.previewmd)
