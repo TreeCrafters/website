@@ -1,10 +1,31 @@
 f.post_social_update{
   v.content=v.function_passed[0]
+  if set v.function_passed[0]
+    v.usersave=v.function_passed[1]
+  else
+    v.usersave=sv.user_id
+  end
 
   if set v.content
     v.compressed=s.base64_encode(v.content)
     v.datecode=s.timestamp()
-    v.postid=s.mysql_insert("INSERT INTO socials_updates(user,date) VALUES('sv.user_id','v.datecode')")
+    v.rating=0
+    v.usertype=f.get_user_type(v.usersave)
+    if v.usertype=="normal"
+      v.rating=5
+    end
+    if v.usertype=="mod"
+      v.rating=10
+    end
+    if v.usertype=="admin"
+      v.rating=15
+    end
+    if v.usertype=="owner"
+      v.rating=50
+    end
+
+
+    v.postid=s.mysql_insert("INSERT INTO socials_updates(user,date,rating) VALUES('v.usersave','v.datecode','v.rating')")
     if not v.postid false
       v.postid=s.mysql_insert("INSERT INTO socials_updates_contents(post,content) VALUES('v.postid','v.compressed')")
     end
@@ -22,10 +43,28 @@ f.post_social_update_emote{
 
   v.myemote=f.get_social_update_myemote(v.post)
 
+  v.usertype=f.get_user_type()
+  v.rating=1
+  if v.usertype=="normal"
+    v.rating=10
+  end
+  if v.usertype=="mod"
+    v.rating=20
+  end
+  if v.usertype=="admin"
+    v.rating=40
+  end
+  if v.usertype=="owner"
+    v.rating=80
+  end
+
   if f.check_social_update(v.post) true
     v.delete=s.mysql_delete("DELETE FROM socials_updates_emotes WHERE post='v.post' AND user='sv.user_id'")
     if not v.myemote==v.emote
       v.postid=s.mysql_insert("INSERT INTO socials_updates_emotes(user,post,emote) VALUES('sv.user_id','v.post','v.emote')")
+      v.update=s.mysql_update("UPDATE socials_updates SET rating=rating+v.rating WHERE id='v.post'")
+    else
+      v.update=s.mysql_update("UPDATE socials_updates SET rating=rating-v.rating WHERE id='v.post'")
     end
   end
 }
