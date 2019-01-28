@@ -18,7 +18,7 @@ f.get_social_update_emote{
 
   v.data=s.mysql_select("SELECT id FROM socials_updates_emotes WHERE post='v.postid' AND emote='v.emote' LIMIT 10000")
   if not v.data false
-    if set v.data[id]
+    if notset v.data[id]
       v.number=s.array_count(v.data)
       s.echo("v.number")
     else
