@@ -24,10 +24,11 @@ f.post_social_update{
       v.rating=50
     end
 
+    v.linkcode=f.generate_linkcode()
 
-    v.postid=s.mysql_insert("INSERT INTO socials_updates(user,date,rating) VALUES('v.usersave','v.datecode','v.rating')")
+    v.postid=s.mysql_insert("INSERT INTO socials_updates(user,date,rating,linkcode) VALUES('v.usersave','v.datecode','v.rating')")
     if not v.postid false
-      v.postid=s.mysql_insert("INSERT INTO socials_updates_contents(post,content) VALUES('v.postid','v.compressed')")
+      v.postid=s.mysql_insert("INSERT INTO socials_updates_contents(post,content) VALUES('v.postid','v.compressed','v.linkcode')")
     end
   end
 }

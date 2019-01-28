@@ -1,0 +1,20 @@
+s.include("/system.ssc");
+s.template("/templates/main.html")
+f.set_pagetitle("Status update")
+f.set_pagedescription("")
+f.permission_user_loggedin()
+
+v.catchall=s.system_file_original()
+v.catchall=s.string_replace("/index.ssc","",v.catchall)
+v.catchall=s.string_replace("/update/","",v.catchall)
+v.idcode=s.string_clean(v.catchall)
+
+v.data_post=s.mysql_select("SELECT * FROM socials_updates WHERE linkcode='v.idcode' LIMIT 1")
+if not v.data_post false
+
+  v.linkid=v.data_post[id]
+  f.generate_social_update_small(v.linkid)
+
+else
+  t.content_middle("<bubble>No update found with this id</bubble>")
+end
