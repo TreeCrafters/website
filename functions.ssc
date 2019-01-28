@@ -15,7 +15,7 @@ f.generate_linkcode{
   v.datause=s.string_lowercase(v.datause)
   v.data_db=s.mysql_select("SELECT linkcode FROM v.table WHERE linkcode='v.datause' LIMIT 1")
   if not v.data_db false
-    v.databack=f.generate_linkcode()
+    v.databack=f.generate_linkcode(v.table)
     s.echo(v.databack)
   else
     s.echo(v.datause)
