@@ -22,6 +22,15 @@ f.generate_linkcode{
   end
 }
 
+f.clean_md{
+	v.content=v.function_passed[0]
+	v.content=s.string_replace("https://","",v.content)
+	v.content=s.string_replace("http://","",v.content)
+	v.content=s.string_replace("www.youtube.com","https://www.youtube.com",v.content)
+
+	s.echo(v.content)
+}
+
 f.set_pagetitle{
 	v.title=v.function_passed[0]
   t.pagetitle()
