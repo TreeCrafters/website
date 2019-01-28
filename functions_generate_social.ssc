@@ -54,9 +54,9 @@ f.generate_social_update_small{
     //preview content
 
     v.previewcontent=s.string_split_sentence(v.content)
-    //v.previewcontent=s.string_trim(v.previewcontent,220)
+    v.previewcontent=s.string_trim(v.previewcontent,220)
 
-    v.previewmd=s.markdown("v.previewcontent")
+    v.previewmd=s.markdown("v.previewcontent &nbsp;")
 
     if notset v.previewmd
       v.previewmd="<p>This update cant be displayed.</p>"
