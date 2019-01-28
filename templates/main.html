@@ -1482,14 +1482,15 @@
       		delay: 1000,
       	},
         hideIcons: ["guide", "quote"],
-        toolbar: ["bold", "italic", "strikethrough", "heading", "|", "code", "image", "unordered-list", "horizontal-rule", "preview", {
-			name: "custom",
+        toolbar: ["bold", "italic", "strikethrough", "heading", "|", {
+			name: "cus_ytvideo",
 			action: function customFunction(editor){
 				// Add your own code
+        modl_content_mde_youtube();
 			},
-			className: "fa fa-star",
-			title: "Custom Button",
-		}],
+			className: "fab fa-youtube",
+			title: "Youtube Video",
+		}, "|", "code", "image", "unordered-list", "horizontal-rule", "preview"],
         spellChecker: true,
         status: false,
         forceSync: false,
@@ -1501,6 +1502,15 @@
       	},
         styleSelectedText: false
       });
+
+
+      $(".editor-toolbar").after("<div id='mde_editor_custom'></div>");
+    }
+
+    function modl_content_mde_youtube(){
+
+      document.getElementById("mde_editor_custom").innerHTML="<div>Custome editor</div>";
+
     }
 
     function modl_content(title,description,content,mode){
