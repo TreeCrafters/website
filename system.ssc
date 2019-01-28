@@ -44,6 +44,9 @@ t.header_left("<a href=\"#\" class='button'>News</a>")
 if not sv.user_id==0
   t.header_right("<a href=\"javascript:modl('/actions/post_social_update');\" class='button'>New Update</a>")
   t.header_right("<a href=\"/account\" class='button'>Settings</a>")
+else
+  t.header_right("<a href=\"/login\" class='button'>Login</a>")
+  t.header_right("<a href=\"/register\" class='button'>Register</a>")
 end
 
 //validate api key or user
