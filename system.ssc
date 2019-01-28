@@ -34,12 +34,17 @@ if not sv.user_id==0
   end
 end
 
-t.header_left("<a href=\"/\" class='button'>Feed</a>")
-t.header_left("<a href=\"#\" class='button'>Profile</a>")
+if not sv.user_id==0
+  t.header_left("<a href=\"/\" class='button'>Feed</a>")
+  t.header_left("<a href=\"#\" class='button'>Profile</a>")
+end
 t.header_left("<a href=\"#\" class='button'>Wiki</a>")
 t.header_left("<a href=\"#\" class='button'>News</a>")
-t.header_right("<a href=\"javascript:modl('/actions/post_social_update');\" class='button'>New Update</a>")
-t.header_right("<a href=\"/account\" class='button'>Settings</a>")
+
+if not sv.user_id==0
+  t.header_right("<a href=\"javascript:modl('/actions/post_social_update');\" class='button'>New Update</a>")
+  t.header_right("<a href=\"/account\" class='button'>Settings</a>")
+end
 
 //validate api key or user
 f.validate_session{
