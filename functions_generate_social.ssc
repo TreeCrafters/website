@@ -60,6 +60,8 @@ f.generate_social_update_small{
     v.previewmd=s.markdown("v.previewcontent &nbsp;")
     v.previewmd=s.string_replace("<ul>","",v.previewmd)
     v.previewmd=s.string_replace("</ul>","",v.previewmd)
+    v.previewmd=s.string_replace("<li>","*",v.previewmd)
+    v.previewmd=s.string_replace("</li>","",v.previewmd)
 
     if notset v.previewmd
       v.previewmd="<p>This update cant be displayed.</p>"
