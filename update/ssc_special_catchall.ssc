@@ -12,8 +12,10 @@ v.idcode=s.string_clean(v.catchall)
 v.data_post=s.mysql_select("SELECT * FROM socials_updates WHERE linkcode='v.idcode' LIMIT 1")
 if not v.data_post false
 
+  t.content_right("<bubble>soon</bubble>")
+
   v.linkid=v.data_post[id]
-  f.generate_social_update_small(v.linkid)
+  f.generate_social_update_full(v.linkid)
 
 else
   t.content_middle("<bubble>No update found with this id</bubble>")
