@@ -24,7 +24,7 @@ f.post_social_update{
       v.rating=50
     end
 
-    v.linkcode=f.generate_linkcode()
+    v.linkcode=f.generate_linkcode("socials_updates")
 
     v.postid=s.mysql_insert("INSERT INTO socials_updates(user,date,rating,linkcode) VALUES('v.usersave','v.datecode','v.rating')")
     if not v.postid false
