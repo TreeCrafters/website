@@ -1,6 +1,6 @@
 f.post_social_update{
   v.content=v.function_passed[0]
-  if set v.function_passed[0]
+  if set v.function_passed[1]
     v.usersave=v.function_passed[1]
   else
     v.usersave=sv.user_id
