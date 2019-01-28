@@ -56,11 +56,11 @@ f.generate_social_update_small{
     v.previewcontent=s.string_split_sentence(v.content)
     v.previewcontent=s.string_trim(v.previewcontent,220)
 
-    if notset v.previewcontent
-      v.previewcontent="This update cant be displayed."
-    end
-
     v.previewmd=s.markdown(" v.previewcontent ")
+
+    if notset v.previewmd
+      v.previewmd="<p>This update cant be displayed.</p>"
+    end
 
     if not v.content==v.previewcontent
       v.previewmd="v.previewmd<BR><BR><a href='/update/v.linkcode'>View full update</a>"
