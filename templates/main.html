@@ -1477,11 +1477,7 @@
     function modl_content_mde(data){
       var simplemde = new SimpleMDE({
         element: document.getElementById("js_mde"),
-        autosave: {
-      		enabled: true,
-      		uniqueId: "js_mde",
-      		delay: 1000,
-      	},
+        autosave: false,
         hideIcons: ["guide", "quote"],
         toolbar: ["bold", "italic", "strikethrough", "heading", "|", {
 			name: "cus_ytvideo",
