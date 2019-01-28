@@ -8,9 +8,15 @@ f.generate_social_update_small{
   if not v.data_id false
     v.user=v.data_id[user]
     v.date=v.data_id[date]
+    v.editdate=v.data_id[date_updated]
     v.type=v.data_id[type]
     v.rating=v.data_id[rating]
     v.dateago=s.convert_timestamp_ago(v.date,"true")
+
+    if not v.editdate==0
+      v.dateeditago=s.convert_timestamp_ago(v.editdate,"true")
+      v.dateago="v.dateago, edited v.dateeditago"
+    end
 
     v.data_con=s.mysql_select("SELECT * FROM socials_updates_contents WHERE post='v.postid' LIMIT 1")
     if not v.data_con false
