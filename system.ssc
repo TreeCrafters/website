@@ -36,7 +36,7 @@ end
 
 if not sv.user_id==0
   t.header_left("<a href=\"/\" class='button'>Feed</a>")
-  t.header_left("<a href=\"#\" class='button'>Profile</a>")
+  t.header_left("<a href=\"/profile/sv.user_username\" class='button'>Profile</a>")
 end
 t.header_left("<a href=\"#\" class='button'>Wiki</a>")
 t.header_left("<a href=\"#\" class='button'>News</a>")
