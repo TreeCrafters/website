@@ -55,6 +55,7 @@ f.generate_social_update_small{
 
     v.previewcontent=s.string_split_sentence(v.content)
     v.previewcontent=s.string_trim(v.previewcontent,220)
+    v.previewcontent=s.string_replace("*","&#42;",v.previewcontent)
 
     v.previewmd=s.markdown("v.previewcontent &nbsp;")
 
