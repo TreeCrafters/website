@@ -2,7 +2,6 @@ s.include("/system.ssc");
 s.template("/templates/main.html")
 f.set_pagetitle("Status update")
 f.set_pagedescription("")
-f.permission_user_loggedin()
 
 v.catchall=s.system_file_original()
 v.catchall=s.string_replace("/index.ssc","",v.catchall)
