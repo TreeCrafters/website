@@ -1474,7 +1474,33 @@
     }
 
     function modl_content_mde(data){
-      var simplemde = new SimpleMDE({ element: document.getElementById("js_mde"), hideIcons: ["guide", "quote"], toolbar: ["bold", "italic", "strikethrough", "heading", "|", "code", "unordered-list", "horizontal-rule", "preview"],spellChecker: false, status: false, forceSync: true, styleSelectedText: false});
+      var simplemde = new SimpleMDE({
+        element: document.getElementById("js_mde"),
+        autosave: {
+      		enabled: true,
+      		uniqueId: "js_mde",
+      		delay: 1000,
+      	},
+        hideIcons: ["guide", "quote"],
+        toolbar: ["bold", "italic", "strikethrough", "heading", "|", "code", "image", "unordered-list", "horizontal-rule", "preview", {
+			name: "custom",
+			action: function customFunction(editor){
+				// Add your own code
+			},
+			className: "fa fa-star",
+			title: "Custom Button",
+		}],
+        spellChecker: true,
+        status: false,
+        forceSync: false,
+        insertTexts: {
+      		horizontalRule: ["", "\n\n-----\n\n"],
+      		image: ["![](http://", ")"],
+      		link: ["[", "](http://)"],
+      		table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n"],
+      	},
+        styleSelectedText: false
+      });
     }
 
     function modl_content(title,description,content,mode){
