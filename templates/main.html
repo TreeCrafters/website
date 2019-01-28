@@ -1334,7 +1334,8 @@
 
     function show_loading(){
       document.getElementById("js_replace_loading").innerHTML='<div class=\'spinning_loader\'></div>';
-      $("content").addClass("hidden");
+      pageload_out();
+      //$("content").addClass("hidden");
     }
 
     function fetch_fordiv(url,div,title){
@@ -1530,7 +1531,7 @@
     	}
 
       function pageload_in(){
-        var initem=50;
+        var initem=15;
         var els = document.getElementsByTagName('bubble');
         if (els.length>=1){
           for (var i = 0, len = els.length; i < len ; i++ ){
@@ -1561,7 +1562,7 @@
       }
 
       function pageload_out(){
-        var initem=20;
+        var initem=5;
         var els = document.getElementsByTagName('bubble');
         els.reverse();
         if (els.length>=1){
