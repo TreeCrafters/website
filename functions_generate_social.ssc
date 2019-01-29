@@ -26,18 +26,17 @@ f.generate_social_update_small{
       v.content=s.string_clean(v.content)
       v.content=f.clean_md(v.content)
 
-      //v.previewcontent=s.string_split_sentence(v.content)
-	    v.previewcontent=s.string_trim(v.content,320)
-      v.size_after=s.string_length(v.previewcontent)
+	    v.content=s.string_trim(v.content,320)
+      v.size_after=s.string_length(v.content)
       if v.size_after==320
-        v.previewcontent="v.previewcontent&hellip;"
+        v.content="v.content&hellip;"
         v.bottomlink="<p><a href='/update/v.linkcode'>View full update</a></p>"
       else
         v.bottomlink="<div></div>"
       end
 
-      v.previewcontent=s.markdown(v.previewcontent)
-      v.previewcontent=s.string_brokenhtml(v.previewcontent)
+      v.content=s.markdown(v.content)
+      v.content=s.string_brokenhtml(v.content)
     end
 
     v.usr_name=f.get_user_name_full(v.user)
@@ -64,20 +63,19 @@ f.generate_social_update_small{
 
     v.emotegenerated=f.generate_social_update_emotes(v.postid)
 
-    if notset v.previewcontent
-      v.previewcontent="<p>This update cant be displayed.</p>"
+    if notset v.content
+      v.content="<p>This update cant be displayed.</p>"
     end
 
-    if v.previewcontent==""
-      v.previewcontent="<p>This update cant be displayed.</p>"
+    if v.content==""
+      v.content="<p>This update cant be displayed.</p>"
     end
 
-    t.content_middle("<bubble><div style='margin-top:-15px;border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 65px;float:left;height:65px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h2 style='margin-bottom:0px;font-weight:300;'>v.usr_name</h2></a>v.actions<h3 style='margin-top: 4px;margin-bottom: 5px;'>v.generate_tags</h3><a href='/update/v.linkcode'>Posted v.dateago</a></div><div style='max-width:100%;max-height:900px;overflow:hidden;'>v.previewcontent</div>v.bottomlink<div style='border-top: 2px solid #f1f1f1;padding-top:10px;'>v.emotegenerated</div></bubble>")
+    t.content_middle("<bubble><div style='margin-top:-15px;border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 65px;float:left;height:65px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h2 style='margin-bottom:0px;font-weight:300;'>v.usr_name</h2></a>v.actions<h3 style='margin-top: 4px;margin-bottom: 5px;'>v.generate_tags</h3><a href='/update/v.linkcode'>Posted v.dateago</a></div><div style='max-width:100%;max-height:900px;overflow:hidden;'>v.content</div>v.bottomlink<div style='border-top: 2px solid #f1f1f1;padding-top:10px;'>v.emotegenerated</div></bubble>")
   end
 
   v.data_id=""
   v.data_con=""
-  v.previewcontent=""
   v.content=""
 }
 
