@@ -7,22 +7,30 @@ f.post_social_update{
   end
 
   if set v.content
-    v.compressed=s.base64_encode(v.content)
     v.datecode=s.timestamp()
     v.rating=0
+    v.maxsize=220
     v.usertype=f.get_user_type(v.usersave)
     if v.usertype=="normal"
       v.rating=5
+      v.maxsize=1000
     end
     if v.usertype=="mod"
       v.rating=10
+      v.maxsize=2000
     end
     if v.usertype=="admin"
       v.rating=15
+      v.maxsize=4000
     end
     if v.usertype=="owner"
       v.rating=50
+      v.maxsize=8000
     end
+
+    //encode content and add limits
+    v.content=s.string_trim(v.content,v.maxsize)
+    v.compressed=s.base64_encode(v.content)
 
     v.linkcode=f.generate_linkcode("socials_updates")
 
