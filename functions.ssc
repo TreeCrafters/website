@@ -22,7 +22,6 @@ f.generate_linkcode{
   end
 }
 
-
 gv.cachesystem[yes]=true
 
 f.cache_string_fetch{
@@ -31,7 +30,6 @@ f.cache_string_fetch{
 	gv.codecachesystem="v.section - v.string"
 	if set gv.cachesystem[gv.codecachesystem]
 		s.echo("gv.cachesystem[gv.codecachesystem]")
-		t.content_left("Cache HIT! gv.cachesystem[gv.codecachesystem]")
 	else
 		s.echo("cachnofind")
 	end
