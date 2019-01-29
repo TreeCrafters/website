@@ -30,6 +30,9 @@ f.generate_social_update_small{
       //v.previewcontent=s.string_split_sentence(v.content)
 	    v.previewcontent=s.string_trim(v.content,320)
       v.size_after=s.string_length(v.previewcontent)
+      if v.size_after==320
+        v.previewcontent="v.previewcontent&hellip;"
+      end
 
       v.previewcontent=s.markdown(v.previewcontent)
       v.previewcontent=s.string_brokenhtml(v.previewcontent)
