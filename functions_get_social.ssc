@@ -16,26 +16,41 @@ f.get_social_update_emote{
   v.postid=v.function_passed[0]
   v.emote=v.function_passed[1]
 
-  v.data=s.mysql_select("SELECT id FROM socials_updates_emotes WHERE post='v.postid' AND emote='v.emote' LIMIT 10000")
-  if not v.data false
-    if notset v.data[id]
-      v.number=s.array_count(v.data)
-      s.echo("v.number")
-    else
-      s.echo("1")
-    end
+  v.cachecheck=f.cache_string_fetch("social_update_emote","v.postid v.emote")
+  if not v.cachecheck=="cachnofind"
+    s.echo(v.cachecheck)
   else
-    s.echo("0")
+    v.data=s.mysql_select("SELECT id FROM socials_updates_emotes WHERE post='v.postid' AND emote='v.emote' LIMIT 10000")
+    if not v.data false
+      if notset v.data[id]
+        v.number=s.array_count(v.data)
+        s.echo("v.number")
+        f.cache_string_save("social_update_emote","v.postid v.emote","v.number")
+      else
+        s.echo("1")
+        f.cache_string_save("social_update_emote","v.postid v.emote","1")
+      end
+    else
+      s.echo("0")
+      f.cache_string_save("social_update_emote","v.postid v.emote","0")
+    end
   end
 }
 
 f.get_social_update_myemote{
   v.postid=v.function_passed[0]
 
-  v.data=s.mysql_select("SELECT * FROM socials_updates_emotes WHERE post='v.postid' AND user='sv.user_id' LIMIT 1")
-  if not v.data false
-    s.echo("v.data[emote]")
+  v.cachecheck=f.cache_string_fetch("social_update_myemote",v.postid)
+  if not v.cachecheck=="cachnofind"
+    s.echo(v.cachecheck)
   else
-    s.echo("false")
+    v.data=s.mysql_select("SELECT emote FROM socials_updates_emotes WHERE post='v.postid' AND user='sv.user_id' LIMIT 1")
+    if not v.data false
+      s.echo("v.data[emote]")
+      f.cache_string_save("social_update_myemote",v.postid,v.data[emote])
+    else
+      s.echo("false")
+      f.cache_string_save("social_update_myemote",v.postid,"false")
+    end
   end
 }
