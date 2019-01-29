@@ -10,7 +10,7 @@ v.image=false
 
 v.catchall=s.system_file_original()
 v.catchall=s.string_replace("/index.ssc","",v.catchall)
-v.catchall=s.string_replace_pattern("/-(.*).jpg/", "", v.catchall)
+v.catchall=s.string_replace_pattern("/\/([0-9]*)\/img.jpg/", "", v.catchall)
 v.catchall=s.string_replace("/images/account_image/","",v.catchall)
 v.lookupcode=s.string_clean(v.catchall)
 
