@@ -19,7 +19,7 @@ f.generate_social_update_small{
       v.dateago="v.dateago, edited v.dateeditago"
     end
 
-    v.data_con=s.mysql_select("SELECT * FROM socials_updates_contents WHERE post='v.postid' LIMIT 1")
+    v.data_con=s.mysql_select("SELECT SUBSTRING(content, 1, 220) FROM socials_updates_contents WHERE post='v.postid' LIMIT 1")
     if not v.data_con false
       v.content=v.data_con[content]
       v.content=s.base64_decode(v.content)
