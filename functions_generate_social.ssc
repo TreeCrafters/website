@@ -12,7 +12,7 @@ f.generate_social_update_small{
     v.type=v.data_id[type]
     v.rating=v.data_id[rating]
     v.linkcode=v.data_id[linkcode]
-    v.dateago=s.convert_timestamp_ago(v.date,"true")
+    //v.dateago=s.convert_timestamp_ago(v.date,"true")
 
     if not v.editdate==0
       v.dateeditago=s.convert_timestamp_ago(v.editdate,"true")
