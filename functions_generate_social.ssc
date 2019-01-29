@@ -59,8 +59,12 @@ f.generate_social_update_small{
 
     v.emotegenerated=f.generate_social_update_emotes(v.postid)
 
-    if notset v.v.previewcontent
-      v.v.previewcontent="<p>This update cant be displayed.</p>"
+    if notset v.previewcontent
+      v.previewcontent="<p>This update cant be displayed.</p>"
+    end
+
+    if v.previewcontent==""
+      v.previewcontent="<p>This update cant be displayed.</p>"
     end
 
     if v.size_before>=v.size_after
