@@ -51,7 +51,7 @@ f.get_user_image{
       f.cache_string_save("user_image_timecode",v.userid,v.data_db[date])
     end
   end
-  s.echo("//gv.system_domain/images/account_image?account=v.usersusername&cache=v.timecode")
+  s.echo("//gv.system_domain/images/account_image/v.usersusername-v.timecode-ca.jpg")
 }
 
 
@@ -74,7 +74,7 @@ f.get_user_banner{
       f.cache_string_save("user_banner_timecode",v.userid,v.data_db[date])
     end
   end
-  s.echo("//gv.system_domain/images/account_banner?account=v.usersusername&cache=v.timecode")
+  s.echo("//gv.system_domain/images/account_banner/v.usersusername-v.timecode-ca.jpg")
 }
 
 
