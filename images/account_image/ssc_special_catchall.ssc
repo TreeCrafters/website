@@ -10,13 +10,15 @@ v.image=false
 
 v.catchall=s.system_file_original()
 v.catchall=s.string_replace("/index.ssc","",v.catchall)
-v.catchall=s.string_replace_pattern("/\/([0-9]*)\/img.jpg/", "", v.catchall)
+v.catchall=s.string_replace_pattern("/\/([0-9]*).jpg/", "", v.catchall)
 v.catchall=s.string_replace("/images/account_image/","",v.catchall)
 v.lookupcode=s.string_clean(v.catchall)
 
-v.userid=f.get_user_id(uv.account)
-v.data_db=s.mysql_select("SELECT code FROM accounts_images WHERE user='v.userid' LIMIT 1")
-v.image=v.data_db[code]
+if set v.lookupcode
+	v.userid=f.get_user_id(v.lookupcode)
+	v.data_db=s.mysql_select("SELECT code FROM accounts_images WHERE user='v.userid' LIMIT 1")
+	v.image=v.data_db[code]
+end
 
 if v.image false
 	//user avatar default image
