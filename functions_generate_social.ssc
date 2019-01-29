@@ -28,7 +28,7 @@ f.generate_social_update_small{
 
 	    v.content=s.string_trim(v.content,320)
       v.size_after=s.string_length(v.content)
-      if v.size_after==320
+      if v.size_after>=315
         v.content="v.content&hellip;"
         v.bottomlink="<p><a href='/update/v.linkcode'>View full update</a></p>"
       else
