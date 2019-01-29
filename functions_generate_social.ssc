@@ -24,10 +24,10 @@ f.generate_social_update_small{
       v.content=v.data_con[content]
       v.content=s.base64_decode(v.content)
       v.content=s.string_clean(v.content)
-      v.previewcontent=f.clean_md(v.content)
+      v.content=f.clean_md(v.content)
 
-      //v.previewcontent=s.string_split_sentence(v.content)
-	    //v.previewcontent=s.string_trim(v.content,320)
+      v.previewcontent=s.string_split_sentence(v.content)
+	    v.previewcontent=s.string_trim(v.previewcontent,320)
       v.size_after=s.string_length(v.previewcontent)
       if v.size_after==320
         v.previewcontent="v.previewcontent&hellip;"
