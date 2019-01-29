@@ -25,8 +25,14 @@ f.generate_social_update_small{
       v.content=s.base64_decode(v.content)
       v.content=s.string_clean(v.content)
       v.content=f.clean_md(v.content)
-      v.content=s.markdown(v.content)
-      v.size=s.string_length(v.content)
+      v.size_before=s.string_length(v.content)
+
+      v.previewcontent=s.string_split_sentence(v.content)
+	    v.previewcontent=s.string_trim(v.previewcontent,220)
+      v.size_after=s.string_length(v.previewcontent)
+
+      v.previewcontent=s.markdown(v.previewcontent)
+      v.previewcontent=s.string_brokenhtml(v.previewcontent)
     end
 
     v.usr_name=f.get_user_name_full(v.user)
@@ -63,7 +69,7 @@ f.generate_social_update_small{
       v.bottomlink="&nbsp;"
     end
 
-    t.content_middle("<bubble><div style='margin-top:-15px;border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 65px;float:left;height:65px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h2 style='margin-bottom:0px;font-weight:300;'>v.usr_name</h2></a>v.actions<h3 style='margin-top: 4px;margin-bottom: 5px;'>v.generate_tags</h3><a href='/update/v.linkcode'>Posted v.dateago</a></div><div style='max-width:100%;max-height:400px;overflow:hidden;'>v.content</div>v.bottomlink<div style='border-top: 2px solid #f1f1f1;padding-top:10px;'>v.emotegenerated</div></bubble>")
+    t.content_middle("<bubble><div style='margin-top:-15px;border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 65px;float:left;height:65px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h2 style='margin-bottom:0px;font-weight:300;'>v.usr_name</h2></a>v.actions<h3 style='margin-top: 4px;margin-bottom: 5px;'>v.generate_tags</h3><a href='/update/v.linkcode'>Posted v.dateago</a></div><div style='max-width:100%;max-height:900px;overflow:hidden;'>v.previewcontent</div>v.bottomlink<div style='border-top: 2px solid #f1f1f1;padding-top:10px;'>v.emotegenerated</div></bubble>")
   end
 }
 
