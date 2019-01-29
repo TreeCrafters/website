@@ -34,8 +34,8 @@ f.generate_social_update_small{
         v.previewcontent="v.previewcontent&hellip;"
       end
 
-      v.previewcontent=s.markdown(v.previewcontent)
-      v.previewcontent=s.string_brokenhtml(v.previewcontent)
+      //v.previewcontent=s.markdown(v.previewcontent)
+      //v.previewcontent=s.string_brokenhtml(v.previewcontent)
     end
 
     v.usr_name=f.get_user_name_full(v.user)
