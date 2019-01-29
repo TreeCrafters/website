@@ -27,7 +27,7 @@ f.generate_social_update_small{
       v.content=f.clean_md(v.content)
       v.size_before=s.string_length(v.content)
 
-      v.previewcontent=s.string_split_sentence(v.content)
+      //v.previewcontent=s.string_split_sentence(v.content)
 	    v.previewcontent=s.string_trim(v.previewcontent,320)
       v.size_after=s.string_length(v.previewcontent)
 
