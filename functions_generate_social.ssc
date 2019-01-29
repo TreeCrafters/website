@@ -19,25 +19,7 @@ f.generate_social_update_small{
       v.dateago="v.dateago, edited v.dateeditago"
     end
 
-    v.data_con=s.mysql_select("SELECT content FROM socials_updates_contents WHERE post='v.postid' LIMIT 1")
-    if not v.data_con false
-      v.content=v.data_con[content]
-      v.content=s.base64_decode(v.content)
-      v.content=s.string_clean(v.content)
-      v.content=f.clean_md(v.content)
-
-	    v.content=s.string_trim(v.content,320)
-      v.size_after=s.string_length(v.content)
-      if v.size_after>=315
-        v.content="v.content&hellip;"
-        v.bottomlink="<p><a href='/update/v.linkcode'>View full update</a></p>"
-      else
-        v.bottomlink="<div></div>"
-      end
-
-      v.content=s.markdown(v.content)
-      v.content=s.string_brokenhtml(v.content)
-    end
+    v.content="h1"
 
     v.usr_name=f.get_user_name_full(v.user)
     v.usr_username=f.get_user_username(v.user)
