@@ -67,7 +67,7 @@ f.generate_social_update_small{
       v.previewcontent="<p>This update cant be displayed.</p>"
     end
 
-    if v.size_before>=v.size_after
+    if not v.size_before==v.size_after
       v.bottomlink="<p><a href='/update/v.linkcode'>View full update</a></p>"
     else
       v.bottomlink="&nbsp;"

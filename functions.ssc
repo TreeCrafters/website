@@ -22,6 +22,28 @@ f.generate_linkcode{
   end
 }
 
+
+gv.cachesystem[yes]=true
+
+f.cache_string_fetch{
+	v.section=v.function_passed[0]
+	v.string=v.function_passed[1]
+	gv.codecachesystem="v.section - v.string"
+	if set gv.cachesystem[gv.codecachesystem]
+		s.echo("gv.cachesystem[gv.codecachesystem]")
+	else
+		s.echo("cachnofind")
+	end
+}
+
+f.cache_string_save{
+	v.section=v.function_passed[0]
+	v.string=v.function_passed[1]
+	v.data=v.function_passed[2]
+	gv.codecachesystem="v.section - v.string"
+	gv.cachesystem[gv.codecachesystem]=v.data
+}
+
 f.clean_md{
 	v.content=v.function_passed[0]
 	v.content=s.string_replace("https://","",v.content)
