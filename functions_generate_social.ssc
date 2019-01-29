@@ -32,6 +32,8 @@ f.generate_social_update_small{
       if v.size_after==320
         v.previewcontent="v.previewcontent&hellip;"
         v.bottomlink="<p><a href='/update/v.linkcode'>View full update</a></p>"
+      else
+        v.bottomlink="&nbsp;"
       end
 
       v.previewcontent=s.markdown(v.previewcontent)
