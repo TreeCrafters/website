@@ -1391,12 +1391,12 @@
 
     function app_refresh_page(){
   		$.ajax({
-  			url: current_url,
+  			url: current_page,
   			type:'GET',
   			processData: false,
   			contentType: false,
   			success:function(data, textStatus, jqXHR){
-  				ajax_pagereplace(current_url,data);
+  				ajax_pagereplace(current_page,data);
   			}
   		});
   	}
