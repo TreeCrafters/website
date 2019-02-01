@@ -151,6 +151,7 @@ f.post_social_comment{
     v.postid=s.mysql_insert("INSERT INTO socials_comments(user,date,rating,linkcode,updateid) VALUES('v.usersave','v.datecode','v.rating','v.linkcode','v.parentid')")
     if not v.postid false
       v.postid=s.mysql_insert("INSERT INTO socials_comments_contents(comment,content) VALUES('v.postid','v.compressed')")
+      v.update=s.mysql_update("UPDATE socials_updates SET rating=rating+v.rating WHERE id='v.parentid'")
     end
   end
 }
