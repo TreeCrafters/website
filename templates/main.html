@@ -1131,6 +1131,12 @@
       			}
       		}
 
+          //ajaxload
+          if (action=="ajaxload"){
+      			var el=this.getAttribute("divajax");
+            fetch_fordiv(content,el);
+      		}
+
           //notification
           if (action=="notification"){
       			var type=this.getAttribute('type');

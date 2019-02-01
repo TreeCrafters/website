@@ -15,12 +15,12 @@ else
 
   v.following=f.get_user_followlist()
 
-  v.data_posts=s.mysql_select("SELECT id,user FROM socials_updates WHERE user IN (v.following) ORDER BY id DESC LIMIT 100")
+  v.data_posts=s.mysql_select("SELECT id,user,linkcode FROM socials_updates WHERE user IN (v.following) ORDER BY id DESC LIMIT 100")
   if not v.data_posts false
     if set v.data_posts[user]
-      f.generate_social_update_small(v.data_posts)
+      f.generate_social_update_ajax(v.data_posts)
     else
-      s.array_loop("generate_social_update_small",v.data_posts)
+      s.array_loop("generate_social_update_ajax",v.data_posts)
     end
   else
     t.content_middle("<bubble><div class='message_warning'>We have no posts to show</div></bubble>")
