@@ -1,4 +1,5 @@
 s.include("/system.ssc");
+s.template("/templates/modl.html")
 
 v.postid=s.string_clean(uv.post)
 v.data_posts=s.mysql_select("SELECT id FROM socials_updates WHERE linkcode='v.postid' LIMIT 1")
