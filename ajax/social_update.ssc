@@ -4,7 +4,7 @@ s.template("/templates/modl.html")
 v.postid=s.string_clean(uv.post)
 v.data_posts=s.mysql_select("SELECT id FROM socials_updates WHERE linkcode='v.postid' LIMIT 1")
 if not v.data_posts false
-  f.generate_social_update_small(v.data_posts,"nobubble")
+  f.generate_social_update_small(v.data_posts,"ajax")
 else
   t.content("<div class='message_warning'>We have no posts to show</div>")
 end
