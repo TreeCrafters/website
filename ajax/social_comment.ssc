@@ -1,0 +1,10 @@
+s.include("/system.ssc");
+s.template("/templates/modl.html")
+
+v.postid=s.string_clean(uv.comment)
+v.data_posts=s.mysql_select("SELECT id FROM socials_comments WHERE linkcode='v.postid' LIMIT 1")
+if not v.data_posts false
+  f.generate_social_comment_small(v.data_posts,"ajax")
+else
+  t.content("<div class='message_warning'>We have no comment to show</div>")
+end

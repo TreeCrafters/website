@@ -77,3 +77,80 @@ f.post_social_update_emote{
     end
   end
 }
+
+f.post_social_comment_emote{
+  v.post=s.string_clean(v.function_passed[0])
+  v.emote=s.string_clean(v.function_passed[1])
+
+  v.emote=s.string_clean("v.emote")
+  v.emote=s.string_lowercase("v.emote")
+  v.emote=s.string_username("v.emote")
+  v.emote=s.string_trim("v.emote","90")
+
+  v.myemote=f.get_social_update_myemote(v.post)
+
+  v.usertype=f.get_user_type()
+  v.rating=1
+  if v.usertype=="normal"
+    v.rating=10
+  end
+  if v.usertype=="mod"
+    v.rating=20
+  end
+  if v.usertype=="admin"
+    v.rating=40
+  end
+  if v.usertype=="owner"
+    v.rating=80
+  end
+
+  if f.check_social_update(v.post) true
+    v.delete=s.mysql_delete("DELETE FROM socials_comments_emotes WHERE comment='v.post' AND user='sv.user_id'")
+    if not v.myemote==v.emote
+      v.postid=s.mysql_insert("INSERT INTO socials_comments_emotes(user,comment,emote) VALUES('sv.user_id','v.post','v.emote')")
+      v.update=s.mysql_update("UPDATE socials_comments SET rating=rating+v.rating WHERE id='v.post'")
+    else
+      v.update=s.mysql_update("UPDATE socials_comments SET rating=rating-v.rating WHERE id='v.post'")
+    end
+  end
+}
+
+f.post_social_comment{
+  v.content=v.function_passed[0]
+  v.parentid=v.function_passed[1]
+  v.usersave=sv.user_id
+
+  if set v.content
+    v.datecode=s.timestamp()
+    v.rating=0
+    v.maxsize=220
+    v.usertype=f.get_user_type(v.usersave)
+    if v.usertype=="normal"
+      v.rating=5
+      v.maxsize=1000
+    end
+    if v.usertype=="mod"
+      v.rating=10
+      v.maxsize=2000
+    end
+    if v.usertype=="admin"
+      v.rating=15
+      v.maxsize=4000
+    end
+    if v.usertype=="owner"
+      v.rating=50
+      v.maxsize=8000
+    end
+
+    //encode content and add limits
+    v.content=s.string_trim(v.content,v.maxsize)
+    v.compressed=s.base64_encode(v.content)
+
+    v.linkcode=f.generate_linkcode("socials_comments")
+
+    v.postid=s.mysql_insert("INSERT INTO socials_comments(user,date,rating,linkcode,updateid) VALUES('v.usersave','v.datecode','v.rating','v.linkcode','v.parentid')")
+    if not v.postid false
+      v.postid=s.mysql_insert("INSERT INTO socials_comments_contents(comment,content) VALUES('v.postid','v.compressed')")
+    end
+  end
+}

@@ -6,7 +6,7 @@ f.set_pagedescription("What are you up to?")
 
 if set pv.content
   v.update=f.post_social_update(pv.content)
-  t.content("<checkupaction action='notification' type='success'>Status update has been posted</checkupaction><checkupaction action='redirect'>/</checkupaction>")
+  t.content("<checkupaction action='notification' type='success'>Status update has been posted</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
 else
   t.content('<form enctype="multipart/form-data" action="/actions/post_social_update" method="POST"><textarea name="content" style="overflow-y:hidden;width:100%;" id="js_mde"></textarea><BR><BR><input id="button" type="submit" value="Post update"></form>')
 end

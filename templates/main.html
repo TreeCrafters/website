@@ -1124,6 +1124,13 @@
       			}
       		}
 
+          if (action=="backgroundrefresh"){
+      			app_refresh_page();
+      			if (modl_open==true){
+      				modl("close");
+      			}
+      		}
+
           //close modl
           if (action=="modlclose"){
       			if (modl_open==true){
@@ -1378,6 +1385,18 @@
   			error : function(jqXHR, textStatus, errorThrown){
   				//--Nothing, we failed, relaunch self.
   				setTimeout("fetch_fordiv('" + url + "','" + div + "');", 1000);
+  			}
+  		});
+  	}
+
+    function app_refresh_page(){
+  		$.ajax({
+  			url: current_url,
+  			type:'GET',
+  			processData: false,
+  			contentType: false,
+  			success:function(data, textStatus, jqXHR){
+  				ajax_pagereplace(url,data);
   			}
   		});
   	}

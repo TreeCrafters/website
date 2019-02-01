@@ -54,3 +54,46 @@ f.get_social_update_myemote{
     end
   end
 }
+
+f.get_social_comment_emote{
+  v.postid=v.function_passed[0]
+  v.emote=v.function_passed[1]
+
+  v.cachecheck=f.cache_string_fetch("social_comment_emote","v.postid v.emote")
+  if not v.cachecheck=="cachnofind"
+    s.echo(v.cachecheck)
+  else
+    v.data=s.mysql_select("SELECT id FROM socials_comments_emotes WHERE comment='v.postid' AND emote='v.emote' LIMIT 10000")
+    if not v.data false
+      if notset v.data[id]
+        v.number=s.array_count(v.data)
+        s.echo("v.number")
+        f.cache_string_save("social_comment_emote","v.postid v.emote","v.number")
+      else
+        s.echo("1")
+        f.cache_string_save("social_comment_emote","v.postid v.emote","1")
+      end
+    else
+      s.echo("0")
+      f.cache_string_save("social_comment_emote","v.postid v.emote","0")
+    end
+  end
+}
+
+f.get_social_comment_myemote{
+  v.postid=v.function_passed[0]
+
+  v.cachecheck=f.cache_string_fetch("social_comment_myemote",v.postid)
+  if not v.cachecheck=="cachnofind"
+    s.echo(v.cachecheck)
+  else
+    v.data=s.mysql_select("SELECT emote FROM socials_comments_emotes WHERE comment='v.postid' AND user='sv.user_id' LIMIT 1")
+    if not v.data false
+      s.echo("v.data[emote]")
+      f.cache_string_save("social_comment_myemote",v.postid,v.data[emote])
+    else
+      s.echo("false")
+      f.cache_string_save("social_comment_myemote",v.postid,"false")
+    end
+  end
+}

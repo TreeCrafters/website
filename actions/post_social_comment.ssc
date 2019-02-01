@@ -1,0 +1,19 @@
+s.include("/system.ssc")
+s.template("/templates/modl.html")
+f.permission_user_loggedin()
+f.set_pagetitle("New comment")
+f.set_pagedescription("We all have opinions, so share.")
+
+v.postid=s.string_clean(uv.post)
+
+v.data_list=s.mysql_select("SELECT * FROM socials_updates WHERE linkcode='v.postid' LIMIT 1")
+if not v.data_list false
+  if set pv.content
+    v.update=f.post_social_comment(pv.content,v.postid)
+    t.content("<checkupaction action='notification' type='success'>Comment has been posted</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
+  else
+    t.content('<form enctype="multipart/form-data" action="/actions/post_social_comment?post=v.postid" method="POST"><textarea name="content" style="overflow-y:hidden;width:100%;" id="js_mde"></textarea><BR><BR><input id="button" type="submit" value="Post comment"></form>')
+  end
+else
+  t.content("Um... We cant find this update to make a comment on.")
+end
