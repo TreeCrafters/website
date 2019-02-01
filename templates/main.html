@@ -1366,7 +1366,11 @@
   				var tempDom = $('<output>').append($.parseHTML(data));
   				var appcontent = $('#js_replace_content', tempDom);
 
-  				var content=appcontent[0].innerHTML;
+          if (appcontent[0]==undefined){
+            var content="Unable to fetch content...";
+          }else{
+  				  var content=appcontent[0].innerHTML;
+          }
 
   				document.getElementById(div).innerHTML=content;
   				textarea_expand();

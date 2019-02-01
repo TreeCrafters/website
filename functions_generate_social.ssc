@@ -1,5 +1,5 @@
 f.generate_social_update_ajax{
-  v.data=v.function_passed[0]
+  v.postid=v.function_passed[0]
   if set v.postid[linkcode]
     v.postid=v.postid[linkcode]
   end
