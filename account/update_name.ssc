@@ -9,21 +9,29 @@ if set pv.firstname
   v.size_f=s.string_length(pv.firstname)
   v.size_l=s.string_length(pv.lastname)
   if v.size_f>=1
+    v.firstname=s.string_clean(pv.firstname)
+    v.lastname=s.string_clean(pv.lastname)
+    v.firstname=s.string_trim("v.firstname","60")
+    v.lastname=s.string_trim("v.lastname","60")
+
     if v.size_l>=1
-      v.firstname=s.string_clean(pv.firstname)
-      v.lastname=s.string_clean(pv.lastname)
-      v.firstname=s.string_trim("v.firstname","60")
-      v.lastname=s.string_trim("v.lastname","60")
       v.update=s.mysql_update("UPDATE accounts SET first_name='v.firstname',last_name='v.lastname' WHERE id='sv.user_id'")
-      t.content("<checkupaction action='notification' type='success'>Account first and last name has been changed.</checkupaction><checkupaction action='redirect'>/account/</checkupaction>")
     else
-      t.content("<checkupaction action='notification' type='error'>We need something to set your name as</checkupaction><checkupaction action='redirect'>/account/</checkupaction>")
+      v.update=s.mysql_update("UPDATE accounts SET first_name='v.firstname',last_name='' WHERE id='sv.user_id'")
     end
+    t.content("<checkupaction action='notification' type='success'>Account first and last name has been changed.</checkupaction><checkupaction action='redirect'>/account/</checkupaction>")
   else
-    t.content("<checkupaction action='notification' type='error'>We need something to set your name a</checkupaction><checkupaction action='redirect'>/account/</checkupaction>")
+    t.content("<checkupaction action='notification' type='error'>We need something to set your name as</checkupaction><checkupaction action='redirect'>/account/</checkupaction>")
   end
 else
   v.current_firstname=f.get_user_name_first()
   v.current_lastname=f.get_user_name_last()
-  t.content('<form enctype="multipart/form-data" action="/account/update_name" method="POST"><input type="text" class="input" name="firstname" size="100" maxlength="100" value="v.current_firstname" placeholder="First name"><BR><input type="text" class="input" name="lastname" size="100" maxlength="100" value="v.current_lastname" placeholder="Last name"><BR><BR><input id="button" type="submit" value="Update Name"></form>')
+  t.content('<form enctype="multipart/form-data" action="/account/update_name" method="POST"><input type="text" class="input" name="firstname" size="100" maxlength="100" value="v.current_firstname" placeholder="First name"><BR>')
+  if notset v.current_lastname
+    t.content('<input type="text" class="input" name="lastname" size="100" maxlength="100" value="" placeholder="Last name (optional)">')
+  else
+    t.content('<input type="text" class="input" name="lastname" size="100" maxlength="100" value="v.current_lastname" placeholder="Last name (optional)">')
+  end
+
+  t.content('<BR><BR><input id="button" type="submit" value="Update Name"></form>')
 end

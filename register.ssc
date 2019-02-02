@@ -32,9 +32,9 @@ else
 	t.content("<h3>First Name</h3><input type=\"text\" name=\"firstname\" value=\"pv.firstname\">")
 end
 if notset pv.lastname
-	t.content("<h3>Last Name</h3><input type=\"text\" name=\"lastname\">")
+	t.content("<h3>Last Name (optional)</h3><input type=\"text\" name=\"lastname\">")
 else
-	t.content("<h3>Last Name</h3><input type=\"text\" name=\"lastname\" value=\"pv.lastname\">")
+	t.content("<h3>Last Name (optional)</h3><input type=\"text\" name=\"lastname\" value=\"pv.lastname\">")
 end
 t.content("<h3>Password</h3><input type=\"password\" name=\"password\">")
 t.content("<BR><BR><input type=\"submit\" value=\"Register\">")
@@ -120,7 +120,12 @@ f.user_register{
 		v.date=s.timestamp()
 
 		//Register account
-		v.query=s.mysql_insert("INSERT INTO accounts(username,first_name,last_name,date,email,password,mc_name) VALUES('v.username','v.firstname','v.lastname','v.date','v.email','v.password','v.mcname')")
+
+		if set v.lastname
+			v.query=s.mysql_insert("INSERT INTO accounts(username,first_name,last_name,date,email,password,mc_name) VALUES('v.username','v.firstname','v.lastname','v.date','v.email','v.password','v.mcname')")
+		else
+			v.query=s.mysql_insert("INSERT INTO accounts(username,first_name,last_name,date,email,password,mc_name) VALUES('v.username','v.firstname','','v.date','v.email','v.password','v.mcname')")
+		end
 		if not v.query false
 			s.header("Location: /login")
 		else
