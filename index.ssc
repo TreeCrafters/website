@@ -10,8 +10,6 @@ else
   f.set_pagetitle("Welcome")
   f.set_pagedescription("Welcome back!")
 
-  t.content_right("<bubble>right test</bubble>")
-
   t.content_left("<bubble>")
   t.content_left("<h2 style='margin-top:0px;'>Update Feeds</h2>")
   t.content_left("<a href='/' class='sidebar_menu'>Friends</a>")
@@ -64,6 +62,6 @@ else
   else
     t.content_right("No content found...")
   end
-  t.content_right("<bubble>")
+  t.content_right("</bubble>")
 
 end
