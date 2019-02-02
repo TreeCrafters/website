@@ -41,7 +41,7 @@ f.generate_social_feed{
     v.usr_username=f.get_user_username(v.user)
     v.usr_image=f.get_user_image(v.user)
 
-    t.content_right("<div style='margin-bottom: 10px;border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 30px;float:left;height:30px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'>v.usr_name</a> v.action v.dateago ago&hellip; v.linktext</div>")
+    t.content_right("<div style='margin-bottom: 10px;border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 30px;float:left;height:30px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'>v.usr_name</a> v.action v.dateago&hellip; v.linktext</div>")
 
   end
 }
