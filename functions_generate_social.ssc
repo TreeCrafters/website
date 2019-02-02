@@ -105,7 +105,7 @@ f.generate_social_update_small{
       v.content=s.string_clean(v.content)
       v.content=f.clean_md(v.content)
 
-	    v.content=s.string_trim_utf8(v.content,320)
+	    //v.content=s.string_trim_utf8(v.content,320)
       v.size_after=s.string_length(v.content)
       if v.size_after>=315
         v.content="v.content&hellip;"
