@@ -148,7 +148,7 @@ f.generate_social_update_small{
     v.actions="<div></div>"
 
     if v.user==sv.user_id
-      v.actions="<div style='float:right;'><a href=\"javascript:modl('/actions/update_social_update?post=v.postid');\">Edit</a></div>"
+      v.actions="<div style='float:right;background: #f1f1f1;padding: 5px;display: inline-block;border-radius:4px;padding-left:10px;padding-right:10px;'><a href=\"javascript:modl('/actions/update_social_update?post=v.postid');\">Edit</a></div>"
     end
 
     v.emotegenerated=f.generate_social_update_emotes(v.postid)
@@ -244,7 +244,7 @@ f.generate_social_update_full{
     v.actions="<div></div>"
 
     if v.user==sv.user_id
-      v.actions="<div style='float:right;'><a href=\"javascript:modl('/actions/update_social_update?post=v.postid');\">Edit</a></div>"
+      v.actions="<div style='float:right;background: #f1f1f1;padding: 5px;display: inline-block;border-radius:4px;padding-left:10px;padding-right:10px;'><a href=\"javascript:modl('/actions/update_social_update?post=v.postid');\">Edit</a></div>"
     end
 
     v.emotegenerated=f.generate_social_update_emotes(v.postid)
@@ -492,7 +492,7 @@ f.generate_social_comment_small{
     v.actions="<div></div>"
 
     if v.user==sv.user_id
-      v.actions="<div style='float:right;'><a href=\"javascript:modl('/actions/update_social_comment?comment=v.postid');\">Edit</a></div>"
+      v.actions="<div style='float:right;background: #f1f1f1;padding: 5px;display: inline-block;border-radius:4px;padding-left:10px;padding-right:10px;'><a href=\"javascript:modl('/actions/update_social_comment?comment=v.postid');\">Edit</a></div>"
     end
 
     v.emotegenerated=f.generate_social_comment_emotes(v.postid)
@@ -582,7 +582,7 @@ f.generate_social_comment_full{
     v.actions="<div></div>"
 
     if v.user==sv.user_id
-      v.actions="<div style='float:right;'><a href=\"javascript:modl('/actions/update_social_comment?comment=v.postid');\">Edit</a></div>"
+      v.actions="<div style='float:right;background: #f1f1f1;padding: 5px;display: inline-block;border-radius:4px;padding-left:10px;padding-right:10px;'><a href=\"javascript:modl('/actions/update_social_comment?comment=v.postid');\">Edit</a></div>"
     end
 
     v.emotegenerated=f.generate_social_comment_emotes(v.postid)
