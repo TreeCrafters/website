@@ -122,7 +122,7 @@ f.user_register{
 
 		//Register account
 
-		if set v.lastname
+		if set pv.lastname
 			v.query=s.mysql_insert("INSERT INTO accounts(username,first_name,last_name,date,email,password,mc_name) VALUES('v.username','v.firstname','v.lastname','v.date','v.email','v.password','v.mcname')")
 		else
 			v.query=s.mysql_insert("INSERT INTO accounts(username,first_name,last_name,date,email,password,mc_name) VALUES('v.username','v.firstname','','v.date','v.email','v.password','v.mcname')")
