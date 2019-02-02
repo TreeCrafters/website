@@ -15,7 +15,7 @@ if not v.data_list false
     v.content=s.string_clean(v.content)
 
     if set pv.content
-      v.update=f.update_social_update(v.postid,pv.content)
+      v.update=f.update_social_comment(v.postid,pv.content)
       t.content("<checkupaction action='notification' type='success'>Comment update has been... well.... updated</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
     else
       t.content('<form enctype="multipart/form-data" action="/actions/update_social_comment?comment=v.postid" method="POST"><textarea name="content" id="js_mde" style="overflow-y:hidden;width:100%;">v.content</textarea><BR><BR><input id="button" type="submit" value="Update my comment"></form>')
