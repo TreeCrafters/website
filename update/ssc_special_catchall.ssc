@@ -11,10 +11,23 @@ v.idcode=s.string_clean(v.catchall)
 v.data_post=s.mysql_select("SELECT * FROM socials_updates WHERE linkcode='v.idcode' LIMIT 1")
 if not v.data_post false
 
-  t.content_right("<bubble>soon</bubble>")
-
   v.linkid=v.data_post[id]
   f.generate_social_update_full(v.linkid)
+
+  //Generate feed events
+  t.content_right("<bubble>")
+  t.content_right("<h2 style='margin-top:0px;'>Events on this update</h2>")
+  v.data_feeds=s.mysql_select("SELECT id,user FROM socials_feeds WHERE (type='comment' AND source='v.linkid') OR (type='update_reaction' AND source='v.linkid') ORDER BY id DESC LIMIT 30")
+  if not v.data_feeds false
+    if set v.data_feeds[user]
+      f.generate_social_feed(v.data_feeds)
+    else
+      s.array_loop("generate_social_feed",v.data_feeds)
+    end
+  else
+    t.content_right("No content found...")
+  end
+  t.content_right("</bubble>")
 
 else
   t.content_middle("<bubble>No update found with this id</bubble>")
