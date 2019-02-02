@@ -102,11 +102,10 @@ f.generate_social_update_small{
     if not v.data_con false
       v.content=v.data_con[content]
       v.content=s.base64_decode(v.content)
-      v.content=s.string_utf8_encode(v.content)
       v.content=s.string_clean(v.content)
       v.content=f.clean_md(v.content)
 
-	    v.content=s.string_trim(v.content,320)
+	    v.content=s.string_trim_utf8(v.content,320)
       v.size_after=s.string_length(v.content)
       if v.size_after>=315
         v.content="v.content&hellip;"
@@ -366,7 +365,7 @@ f.generate_social_comment_micro{
       v.content=s.string_clean(v.content)
       v.content=f.clean_md(v.content)
 
-	    v.content=s.string_trim(v.content,100)
+	    v.content=s.string_trim_utf8(v.content,100)
       v.size_after=s.string_length(v.content)
       if v.size_after>=95
         v.content="v.content&hellip;"
@@ -450,7 +449,7 @@ f.generate_social_comment_small{
       v.content=s.string_clean(v.content)
       v.content=f.clean_md(v.content)
 
-	    v.content=s.string_trim(v.content,320)
+	    v.content=s.string_trim_utf8(v.content,320)
       v.size_after=s.string_length(v.content)
       if v.size_after>=315
         v.content="v.content&hellip;"

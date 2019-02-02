@@ -41,7 +41,7 @@ f.user_login{
 		v.username=s.string_clean("v.username")
 		v.username=s.string_lowercase("v.username")
 		v.username=s.string_username("v.username")
-		v.username=s.string_trim("v.username","90")
+		v.username=s.string_trim_utf8("v.username","90")
 		v.password=pv.password
 		v.password=s.string_clean("v.password")
 

@@ -9,12 +9,10 @@ if set pv.firstname
   v.size_f=s.string_length(pv.firstname)
   v.size_l=s.string_length(pv.lastname)
   if v.size_f>=1
-    v.firstname=s.string_utf8_encode(v.firstname)
-    v.lastname=s.string_utf8_encode(v.lastname)
     v.firstname=s.string_clean(pv.firstname)
     v.lastname=s.string_clean(pv.lastname)
-    v.firstname=s.string_trim("v.firstname","60")
-    v.lastname=s.string_trim("v.lastname","60")
+    v.firstname=s.string_trim_utf8("v.firstname","60")
+    v.lastname=s.string_trim_utf8("v.lastname","60")
 
     if v.size_l>=1
       v.update=s.mysql_update("UPDATE accounts SET first_name='v.firstname',last_name='v.lastname' WHERE id='sv.user_id'")
