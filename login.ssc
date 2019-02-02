@@ -49,6 +49,7 @@ f.user_login{
 		if set v.data_db[username]
 			if v.data_db[type]=="new"
 				v.message="We are not open to normal users yet, check back later or on the discord server."
+				t.content("<div class='error'>v.message</div>")
 			else
 				v.p_username=v.data_db[username]
 				v.p_password=v.data_db[password]
@@ -63,9 +64,6 @@ f.user_login{
 					v.message="Sorry the details provided are not valid"
 					t.content("<div class='error'>v.message</div>")
 				end
-			else
-				v.message="Sorry the details provided are not valid"
-				t.content("<div class='error'>v.message</div>")
 			end
 		end
 
