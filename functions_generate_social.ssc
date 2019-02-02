@@ -518,3 +518,93 @@ f.generate_social_comment_small{
   v.data_con=""
   v.content=""
 }
+
+f.generate_social_comment_full{
+  v.postid=v.function_passed[0]
+  if set v.postid[id]
+    v.postid=v.postid[id]
+  end
+
+  v.rules=v.function_passed[1]
+
+  v.data_id=s.mysql_select("SELECT * FROM socials_comments WHERE id='v.postid' LIMIT 1")
+  if not v.data_id false
+    v.user=v.data_id[user]
+    v.date=v.data_id[date]
+    v.editdate=v.data_id[date_updated]
+    v.rating=v.data_id[rating]
+    v.linkcode=v.data_id[linkcode]
+    v.dateago=s.convert_timestamp_ago(v.date,"true")
+
+    if not v.editdate==0
+      v.dateeditago=s.convert_timestamp_ago(v.editdate,"true")
+      v.dateago="v.dateago, edited v.dateeditago"
+    end
+
+    v.data_con=s.mysql_select("SELECT content FROM socials_comments_contents WHERE comment='v.postid' LIMIT 1")
+    if not v.data_con false
+      v.content=v.data_con[content]
+      v.content=s.base64_decode(v.content)
+      v.content=s.string_clean(v.content)
+      v.content=f.clean_md(v.content)
+
+      v.content=s.markdown(v.content)
+      v.content=s.string_brokenhtml(v.content)
+    end
+
+    v.usr_name=f.get_user_name_full(v.user)
+    v.usr_username=f.get_user_username(v.user)
+    v.usr_image=f.get_user_image(v.user)
+    v.usr_mc=f.get_user_mc_name(v.user)
+    v.usr_type=f.get_user_type(v.user)
+
+    v.generate_tags="<div class='inlinebutton-info-minecraft'>v.usr_mc</div>"
+
+    if v.usr_type=="admin"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-admin'>Admin</div>"
+    end
+    if v.usr_type=="mod"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-mod'>Mod</div>"
+    end
+    if v.usr_type=="owner"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-owner'>Owner</div>"
+    end
+    if v.usr_type=="bug"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-bug'>Bug Finder</div>"
+    end
+    if v.usr_type=="build"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-build'>Build Squad</div>"
+    end
+    if v.usr_type=="buildlead"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-buildlead'>Build Team Lead</div>"
+    end
+
+    v.actions="<div></div>"
+
+    if v.user==sv.user_id
+      v.actions="<div style='float:right;margin-top: -20px;'><a href=\"javascript:modl('/actions/update_social_comment?comment=v.postid');\">Edit</a></div>"
+    end
+
+    v.emotegenerated=f.generate_social_comment_emotes(v.postid)
+
+    if notset v.content
+      v.content="<p>This comment cant be displayed.</p>"
+    end
+
+    if v.content==""
+      v.content="<p>This comment cant be displayed.</p>"
+    end
+
+    v.displaycontent="<div style='margin-top:-15px;border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 65px;float:left;height:65px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h2 style='margin-bottom:0px;font-weight:300;'>v.usr_name</h2></a>v.actions<h3 style='margin-top: 4px;margin-bottom: 5px;'>v.generate_tags</h3><a href='/comment/v.linkcode'>Posted v.dateago</a></div><div style='max-width:100%;overflow:hidden;'>v.content</div><div style='border-top: 2px solid #f1f1f1;padding-top:10px;'>v.emotegenerated</div>"
+
+    if v.rules=="ajax"
+      t.content("v.displaycontent")
+    else
+      t.content_middle("<bubble>v.displaycontent</bubble>")
+    end
+  end
+
+  v.data_id=""
+  v.data_con=""
+  v.content=""
+}
