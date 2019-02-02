@@ -1150,6 +1150,7 @@
     var current_url=window.location.href;
     var modl_open=false;
     var current_notification_id=1;
+    var simplemde=false;
 
     $.fn.serializefiles = function() {
     		var obj = $(this);
@@ -1641,7 +1642,8 @@
     }
 
     function modl_content_mde(data){
-      var simplemde = new SimpleMDE({
+      simplemde=false;
+      simplemde = new SimpleMDE({
         element: document.getElementById("js_mde"),
         autosave: false,
         hideIcons: ["guide", "quote"],
@@ -1672,11 +1674,11 @@
     function modl_content_mde_youtube(){
 
       //[![](https://img.youtube.com/vi/bktinKUsPws/maxresdefault.jpg)](https://www.youtube.com/watch?v=bktinKUsPws)
-      document.getElementById("mde_editor_custom").innerHTML="<div>Custome editor</div>";
+      document.getElementById("mde_editor_custom").innerHTML="<div><form><input type=\"text\" id=\"videoid\" name=\"video\"/><input type=\"button\" id=\"mde_youtubeattach\" value=\"Insert video\"></form></div>";
 
 
-      var button = document.getElementById("theButton"),
-      value =  button.form.valueId.value;
+      var button = document.getElementById("mde_youtubeattach"),
+      value =  button.form.video.value;
       button.onclick = function() {
           modl_content_mde_youtube_embed(value);
       }
@@ -1689,7 +1691,9 @@
       if(ampersandPosition != -1) {
         video_id = video_id.substring(0, ampersandPosition);
       }
-
+      pos = simplemde.codemirror.getCursor();
+      simplemde.codemirror.setSelection(pos, pos);
+      simplemde.codemirror.replaceSelection("[![](https://img.youtube.com/vi/" + video_id + "/maxresdefault.jpg)](https://www.youtube.com/watch?v=" + video_id + ")");
       document.getElementById("mde_editor_custom").innerHTML="";
     }
 
