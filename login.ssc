@@ -43,6 +43,7 @@ f.user_login{
 		v.username=s.string_username("v.username")
 		v.username=s.string_trim("v.username","90")
 		v.password=pv.password
+		v.password=s.string_clean("v.password")
 
 		v.data_db=s.mysql_select("SELECT * FROM accounts WHERE username='v.username' LIMIT 1")
 
