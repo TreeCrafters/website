@@ -184,6 +184,9 @@ f.post_social_comment{
     if not v.postid false
       v.postid=s.mysql_insert("INSERT INTO socials_comments_contents(comment,content) VALUES('v.postid','v.compressed')")
       v.update=s.mysql_update("UPDATE socials_updates SET rating=rating+v.rating WHERE id='v.parentid'")
+
+      v.linkcode=f.get_social_update_linkcode(v.parentid)
+      f.new_social_feed(sv.user_id,"made a comment on a update",v.parentid,"/update/v.linkcode")
     end
   end
 }

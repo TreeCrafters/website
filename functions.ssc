@@ -22,6 +22,16 @@ f.generate_linkcode{
   end
 }
 
+f.new_social_feed{
+	v.user=v.function_passed[0]
+	v.action=v.function_passed[1]
+	v.source=v.function_passed[2]
+	v.link=v.function_passed[3]
+	v.date=s.timestamp()
+
+	v.postid=s.mysql_insert("INSERT INTO socials_feed(date,user,action,source,link) VALUES('v.date','v.user','v.action','v.source','v.link')")
+}
+
 gv.cachesystem[yes]=true
 
 f.cache_string_fetch{
