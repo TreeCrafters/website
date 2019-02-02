@@ -104,7 +104,7 @@ f.post_social_comment_emote{
     v.rating=80
   end
 
-  if f.check_social_update(v.post) true
+  if f.check_social_comment(v.post) true
     v.delete=s.mysql_delete("DELETE FROM socials_comments_emotes WHERE comment='v.post' AND user='sv.user_id'")
     if not v.myemote==v.emote
       v.postid=s.mysql_insert("INSERT INTO socials_comments_emotes(user,comment,emote) VALUES('sv.user_id','v.post','v.emote')")
