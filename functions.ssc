@@ -27,9 +27,10 @@ f.new_social_feed{
 	v.action=v.function_passed[1]
 	v.source=v.function_passed[2]
 	v.link=v.function_passed[3]
+	v.type=v.function_passed[4]
 	v.date=s.timestamp()
 
-	v.postid=s.mysql_insert("INSERT INTO socials_feeds(date,user,action,source,link) VALUES('v.date','v.user','v.action','v.source','v.link')")
+	v.postid=s.mysql_insert("INSERT INTO socials_feeds(date,user,action,source,link,type) VALUES('v.date','v.user','v.action','v.source','v.link','v.type')")
 }
 
 gv.cachesystem[yes]=true
