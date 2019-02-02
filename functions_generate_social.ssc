@@ -64,6 +64,7 @@ f.generate_social_feed_local{
 
     v.action=s.string_replace("on a update","",v.action)
     v.action=s.string_replace("reacted to a update","reacted",v.action)
+    v.action=s.string_replace("a new update","the update",v.action)
 
     v.usr_name=f.get_user_name_full(v.user)
     v.usr_username=f.get_user_username(v.user)

@@ -44,7 +44,7 @@ f.post_social_update{
 
     v.postid=s.mysql_insert("INSERT INTO socials_updates(user,date,rating,linkcode) VALUES('v.usersave','v.datecode','v.rating','v.linkcode')")
     if not v.postid false
-      v.postid=s.mysql_insert("INSERT INTO socials_updates_contents(post,content) VALUES('v.postid','v.compressed')")
+      v.postfinal=s.mysql_insert("INSERT INTO socials_updates_contents(post,content) VALUES('v.postid','v.compressed')")
 
       f.new_social_feed(sv.user_id,"posted a new update",v.postid,"/update/v.linkcode","update")
     end

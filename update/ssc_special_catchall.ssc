@@ -17,7 +17,7 @@ if not v.data_post false
   //Generate feed events
   t.content_right("<bubble>")
   t.content_right("<h2 style='margin-top:0px;'>Events on this update</h2>")
-  v.data_feeds=s.mysql_select("SELECT id,user FROM socials_feeds WHERE (type='comment' AND source='v.linkid') OR (type='update_reaction' AND source='v.linkid') ORDER BY id DESC LIMIT 30")
+  v.data_feeds=s.mysql_select("SELECT id,user FROM socials_feeds WHERE (type='comment' AND source='v.linkid') OR (type='update_reaction' AND source='v.linkid') OR (type='update' AND source='v.linkid') ORDER BY id DESC LIMIT 30")
   if not v.data_feeds false
     if set v.data_feeds[user]
       f.generate_social_feed_local(v.data_feeds)
