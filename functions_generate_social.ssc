@@ -320,19 +320,19 @@ f.generate_social_comment_micro{
 
     v.generate_tags="<div class='inlinebutton-info-minecraft' style='font-size: 8px;'>v.usr_mc</div>"
     if v.usr_type=="admin"
-      v.generate_tags="v.generate_tags <div class='inlinebutton-info-admin'>Admin</div>"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-admin' style='font-size: 8px;'>Admin</div>"
     end
     if v.usr_type=="mod"
-      v.generate_tags="v.generate_tags <div class='inlinebutton-info-mod'>Mod</div>"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-mod' style='font-size: 8px;'>Mod</div>"
     end
     if v.usr_type=="owner"
-      v.generate_tags="v.generate_tags <div class='inlinebutton-info-owner'>Owner</div>"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-owner' style='font-size: 8px;'>Owner</div>"
     end
     if v.usr_type=="build"
-      v.generate_tags="v.generate_tags <div class='inlinebutton-info-build'>Build Squad</div>"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-build' style='font-size: 8px;'>Build Squad</div>"
     end
     if v.usr_type=="buildlead"
-      v.generate_tags="v.generate_tags <div class='inlinebutton-info-buildlead'>Build Team Lead</div>"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-buildlead' style='font-size: 8px;'>Build Team Lead</div>"
     end
 
     if notset v.content
