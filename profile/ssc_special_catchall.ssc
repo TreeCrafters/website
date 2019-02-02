@@ -32,6 +32,8 @@ if not v.data_profile false
     else
       t.content_right("<a href='javascript:modl(\"/actions/profile_unfollow?user=v.profile_usersusername\");' class='sidebar_menu'>Unfollow v.profile_usersfirstname</a>")
     end
+  else
+    t.content_right("<a href="javascript:modl('/actions/post_social_update');" class='sidebar_menu'>New update</a>")
   end
   t.content_right("</bubble>")
 
