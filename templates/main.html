@@ -1677,7 +1677,7 @@
       document.getElementById("mde_editor_custom").innerHTML="<div><form><input type=\"text\" id=\"videoid\" name=\"mde_youtubeattach_video\"/> <input type=\"button\" id=\"mde_youtubeattach\" value=\"Insert video\"></form></div>";
 
 
-      var button = document.getElementById("mde_youtubeattach"),
+      var button = document.getElementById("mde_youtubeattach");
       button.onclick = function() {
         var value=mde_youtubeattach_video.value;
         modl_content_mde_youtube_embed(value);
