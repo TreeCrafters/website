@@ -5,7 +5,7 @@ f.set_pagedescription("")
 
 v.catchall=s.system_file_original()
 v.catchall=s.string_replace("/index.ssc","",v.catchall)
-v.catchall=s.string_replace("/update/","",v.catchall)
+v.catchall=s.string_replace("/comment/","",v.catchall)
 v.idcode=s.string_clean(v.catchall)
 
 v.data_post=s.mysql_select("SELECT * FROM socials_comments WHERE linkcode='v.idcode' LIMIT 1")
