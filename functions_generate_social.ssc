@@ -315,7 +315,7 @@ f.generate_social_comment_micro{
       v.content="<p>This comment cant be displayed.</p>"
     end
 
-    v.displaycontent="<div style='padding-left: 20px;'><div style='margin-top: 10px;padding-bottom: 10px;border-top: 2px solid #f1f1f1;padding-top: 10px;'><avatar style=\"border-radius: 35px;width: 35px;float:left;height:35px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h3 style='margin-bottom:0px;font-weight:300;margin-top: 0px;'>v.usr_name v.generate_tags</h3></a><div style='font-size:10px;'>Posted v.dateago</div></div><div style='max-width:100%;max-height:900px;overflow:hidden;margin-top: -15px;margin-bottom: -10px;'>v.content</div></div>"
+    v.displaycontent="<div style='padding-left: 20px;'><div style='margin-top: 10px;padding-bottom: 10px;padding-top: 10px;'><avatar style=\"border-radius: 35px;width: 35px;float:left;height:35px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h3 style='margin-bottom:0px;font-weight:300;margin-top: 0px;'>v.usr_name v.generate_tags</h3></a><div style='font-size:10px;'>Posted v.dateago</div></div><div style='max-width:100%;max-height:900px;overflow:hidden;margin-top: -15px;margin-bottom: -10px;'>v.content</div></div>"
 
     s.echo("v.displaycontent")
   end
