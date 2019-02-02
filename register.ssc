@@ -37,6 +37,7 @@ else
 	t.content("<h3>Last Name (optional)</h3><input type=\"text\" name=\"lastname\" value=\"pv.lastname\">")
 end
 t.content("<h3>Password</h3><input type=\"password\" name=\"password\">")
+t.content("<h3>Confirm Password</h3><input type=\"password\" name=\"confirm_password\">")
 t.content("<BR><BR><input type=\"submit\" value=\"Register\">")
 t.content("</form></div>")
 
@@ -70,6 +71,10 @@ f.user_register{
 	if notset pv.lastname
 		v.valid=false
 		v.message="You need to provide us with your last name."
+	end
+	if not pv.confirm_password==pv.password
+		v.valid=false
+		v.message="The 2 passwords do not match."
 	end
 
 	//Check if username taken already
