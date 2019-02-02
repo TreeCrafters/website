@@ -68,11 +68,19 @@ f.generate_social_update_small{
     v.generate_tags="<div class='inlinebutton-info-minecraft'>v.usr_mc</div>"
 
     if v.usr_type=="admin"
-      v.generate_tags="v.generate_tags <div class='inlinebutton-info-staff'>Admin</div>"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-admin'>Admin</div>"
     end
-
+    if v.usr_type=="mod"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-mod'>Mod</div>"
+    end
     if v.usr_type=="owner"
-      v.generate_tags="v.generate_tags <div class='inlinebutton-info-staff'>Owner</div>"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-owner'>Owner</div>"
+    end
+    if v.usr_type=="build"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-build'>Build Squad</div>"
+    end
+    if v.usr_type=="buildlead"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-buildlead'>Build Team Lead</div>"
     end
 
     v.actions="<div></div>"
@@ -153,11 +161,19 @@ f.generate_social_update_full{
     v.generate_tags="<div class='inlinebutton-info-minecraft'>v.usr_mc</div>"
 
     if v.usr_type=="admin"
-      v.generate_tags="v.generate_tags <div class='inlinebutton-info-staff'>Admin</div>"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-admin'>Admin</div>"
     end
-
+    if v.usr_type=="mod"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-mod'>Mod</div>"
+    end
     if v.usr_type=="owner"
-      v.generate_tags="v.generate_tags <div class='inlinebutton-info-staff'>Owner</div>"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-owner'>Owner</div>"
+    end
+    if v.usr_type=="build"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-build'>Build Squad</div>"
+    end
+    if v.usr_type=="buildlead"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-buildlead'>Build Team Lead</div>"
     end
 
     v.actions="<div></div>"
@@ -304,10 +320,19 @@ f.generate_social_comment_micro{
 
     v.generate_tags="<div class='inlinebutton-info-minecraft' style='font-size: 8px;'>v.usr_mc</div>"
     if v.usr_type=="admin"
-      v.generate_tags="v.generate_tags <div class='inlinebutton-info-staff' style='font-size: 8px;'>Admin</div>"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-admin'>Admin</div>"
+    end
+    if v.usr_type=="mod"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-mod'>Mod</div>"
     end
     if v.usr_type=="owner"
-      v.generate_tags="v.generate_tags <div class='inlinebutton-info-staff' style='font-size: 8px;'>Owner</div>"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-owner'>Owner</div>"
+    end
+    if v.usr_type=="build"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-build'>Build Squad</div>"
+    end
+    if v.usr_type=="buildlead"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-buildlead'>Build Team Lead</div>"
     end
 
     if notset v.content
@@ -378,11 +403,19 @@ f.generate_social_comment_small{
     v.generate_tags="<div class='inlinebutton-info-minecraft'>v.usr_mc</div>"
 
     if v.usr_type=="admin"
-      v.generate_tags="v.generate_tags <div class='inlinebutton-info-staff'>Admin</div>"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-admin'>Admin</div>"
     end
-
+    if v.usr_type=="mod"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-mod'>Mod</div>"
+    end
     if v.usr_type=="owner"
-      v.generate_tags="v.generate_tags <div class='inlinebutton-info-staff'>Owner</div>"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-owner'>Owner</div>"
+    end
+    if v.usr_type=="build"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-build'>Build Squad</div>"
+    end
+    if v.usr_type=="buildlead"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-buildlead'>Build Team Lead</div>"
     end
 
     v.actions="<div></div>"

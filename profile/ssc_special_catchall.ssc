@@ -38,7 +38,19 @@ if not v.data_profile false
   v.generate_tags="<div class='inlinebutton-info-minecraft'>v.profile_mc_name</div>"
 
   if v.profile_type=="admin"
-    v.generate_tags="v.generate_tags <div class='inlinebutton-info-staff'>Admin</div>"
+    v.generate_tags="v.generate_tags <div class='inlinebutton-info-admin'>Admin</div>"
+  end
+  if v.profile_type=="mod"
+    v.generate_tags="v.generate_tags <div class='inlinebutton-info-mod'>Mod</div>"
+  end
+  if v.profile_type=="owner"
+    v.generate_tags="v.generate_tags <div class='inlinebutton-info-owner'>Owner</div>"
+  end
+  if v.profile_type=="build"
+    v.generate_tags="v.generate_tags <div class='inlinebutton-info-build'>Build Squad</div>"
+  end
+  if v.profile_type=="buildlead"
+    v.generate_tags="v.generate_tags <div class='inlinebutton-info-buildlead'>Build Team Lead</div>"
   end
 
   t.content_middle("<bubble><div style='text-align:center;'>")
