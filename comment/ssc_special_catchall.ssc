@@ -1,7 +1,7 @@
 s.include("/system.ssc");
 s.template("/templates/main.html")
 f.set_pagetitle("Status update comment")
-f.set_pagedescription("")
+f.set_pagedescription("This is a comment on a update, you can see the original below")
 
 v.catchall=s.system_file_original()
 v.catchall=s.string_replace("/index.ssc","",v.catchall)
