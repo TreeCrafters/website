@@ -87,7 +87,7 @@ f.post_social_comment_emote{
   v.emote=s.string_username("v.emote")
   v.emote=s.string_trim("v.emote","90")
 
-  v.myemote=f.get_social_update_myemote(v.post)
+  v.myemote=f.get_social_comment_myemote(v.post)
 
   v.usertype=f.get_user_type()
   v.rating=1
