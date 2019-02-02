@@ -24,16 +24,21 @@ if not v.data_profile false
   f.set_pagetitle("v.profile_usersfullname")
   f.set_pagedescription("@v.profile_usersusername")
 
-  t.content_right("<bubble>Soon....</bubble>")
-
+  t.content_right("<bubble>")
+  t.content_right("<h2 style='margin-top:0px;'>Actions</h2>")
   if not sv.user_id==v.profileid
     if f.get_community_user_following(sv.user_id,v.profile_id) false
-      t.controls("<a href='javascript:modl(\"/community/view_profile_follow?user=v.profile_usersusername\");'>Follow v.profile_usersfirstname</a>")
+      t.content_right("<a href='javascript:modl(\"/community/view_profile_follow?user=v.profile_usersusername\");'>Follow v.profile_usersfirstname</a>")
     else
-      t.controls("<a href='javascript:modl(\"/community/view_profile_unfollow?user=v.profile_usersusername\");'>Unfollow v.profile_usersfirstname</a>")
+      t.content_right("<a href='javascript:modl(\"/community/view_profile_unfollow?user=v.profile_usersusername\");'>Unfollow v.profile_usersfirstname</a>")
     end
-
   end
+  t.content_left("</bubble>")
+
+  t.content_right("<bubble>")
+  t.content_right("<h2 style='margin-top:0px;'>Links</h2>")
+  t.content_right("<a href='/profile/v.profile_username' class='sidebar_menu'>Updates</a>")
+  t.content_left("</bubble>")
 
   v.generate_tags="<div class='inlinebutton-info-minecraft'>v.profile_mc_name</div>"
 

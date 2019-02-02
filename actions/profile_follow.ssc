@@ -1,0 +1,30 @@
+s.include("/system.ssc")
+s.template("/templates/modl.html")
+f.permission_user_loggedin()
+f.set_pagetitle("Follow")
+f.set_pagedescription("Just a event")
+
+if set uv.user
+  v.user=s.string_clean(uv.user)
+
+  v.data_profile=s.mysql_select("SELECT * FROM accounts WHERE username='v.user' LIMIT 1")
+  if not v.data_profile false
+    v.profileid=v.data_profile[id]
+
+    if not v.profileid==sv.user_id
+      v.profile_usersfullname=f.get_user_name_full(v.profileid)
+
+      v.amfollowing=f.get_user_following(sv.user_id,v.profileid)
+      if v.amfollowing false
+        v.postid=s.mysql_insert("INSERT INTO accounts_followings(user,following) VALUES('sv.user_id','v.profileid')")
+        t.content("<checkupaction action='notification' type='success'>You are now following v.profile_usersfullname</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
+      else
+        t.content("<checkupaction action='notification' type='error'>You are already following v.profile_usersfullname</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
+      end
+    else
+      t.content("<checkupaction action='notification' type='error'>You cant folow yourself, that's just strange</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
+    end
+  else
+    t.content("<checkupaction action='notification' type='error'>We cant find this account to follow</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
+  end
+end

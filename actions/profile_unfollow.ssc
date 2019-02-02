@@ -1,0 +1,30 @@
+s.include("/system.ssc")
+s.template("/templates/modl.html")
+f.permission_user_loggedin()
+f.set_pagetitle("Unfollow")
+f.set_pagedescription("Just a event")
+
+if set uv.user
+  v.user=s.string_clean(uv.user)
+
+  v.data_profile=s.mysql_select("SELECT * FROM accounts WHERE username='v.user' LIMIT 1")
+  if not v.data_profile false
+    v.profileid=v.data_profile[id]
+
+    if not v.profileid==sv.user_id
+      v.profile_usersfullname=f.get_user_name_full(v.profileid)
+
+      v.amfollowing=f.get_user_following(sv.user_id,v.profileid)
+      if v.amfollowing true
+        v.postid=s.mysql_delete("DELETE FROM accounts_followings WHERE user='sv.user_id' AND following='v.profileid'")
+        t.content("<checkupaction action='notification' type='success'>You are no longer following v.profile_usersfullname</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
+      else
+        t.content("<checkupaction action='notification' type='error'>You are dont follow v.profile_usersfullname already</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
+      end
+    else
+      t.content("<checkupaction action='notification' type='error'>You cant unfolow yourself, that's just strange</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
+    end
+  else
+    t.content("<checkupaction action='notification' type='error'>We cant find this account to unfollow</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
+  end
+end
