@@ -135,6 +135,9 @@ f.generate_social_update_small{
     if v.usr_type=="owner"
       v.generate_tags="v.generate_tags <div class='inlinebutton-info-owner'>Owner</div>"
     end
+    if v.usr_type=="bug"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-bug'>Bug Finder</div>"
+    end
     if v.usr_type=="build"
       v.generate_tags="v.generate_tags <div class='inlinebutton-info-build'>Build Squad</div>"
     end
@@ -227,6 +230,9 @@ f.generate_social_update_full{
     end
     if v.usr_type=="owner"
       v.generate_tags="v.generate_tags <div class='inlinebutton-info-owner'>Owner</div>"
+    end
+    if v.usr_type=="bug"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-bug'>Bug Finder</div>"
     end
     if v.usr_type=="build"
       v.generate_tags="v.generate_tags <div class='inlinebutton-info-build'>Build Squad</div>"
@@ -387,6 +393,9 @@ f.generate_social_comment_micro{
     if v.usr_type=="owner"
       v.generate_tags="v.generate_tags <div class='inlinebutton-info-owner' style='font-size: 8px;'>Owner</div>"
     end
+    if v.usr_type=="bug"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-bug' style='font-size: 8px;'>Bug Finder</div>"
+    end
     if v.usr_type=="build"
       v.generate_tags="v.generate_tags <div class='inlinebutton-info-build' style='font-size: 8px;'>Build Squad</div>"
     end
@@ -469,6 +478,9 @@ f.generate_social_comment_small{
     end
     if v.usr_type=="owner"
       v.generate_tags="v.generate_tags <div class='inlinebutton-info-owner'>Owner</div>"
+    end
+    if v.usr_type=="bug"
+      v.generate_tags="v.generate_tags <div class='inlinebutton-info-bug'>Bug Finder</div>"
     end
     if v.usr_type=="build"
       v.generate_tags="v.generate_tags <div class='inlinebutton-info-build'>Build Squad</div>"

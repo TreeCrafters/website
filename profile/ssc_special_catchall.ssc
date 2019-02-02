@@ -69,6 +69,9 @@ if not v.data_profile false
   if v.profile_type=="owner"
     v.generate_tags="v.generate_tags <div class='inlinebutton-info-owner'>Owner</div>"
   end
+  if v.profile_type=="bug"
+    v.generate_tags="v.generate_tags <div class='inlinebutton-info-bug'>Bug Finder</div>"
+  end
   if v.profile_type=="build"
     v.generate_tags="v.generate_tags <div class='inlinebutton-info-build'>Build Squad</div>"
   end
