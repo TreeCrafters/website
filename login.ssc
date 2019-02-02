@@ -66,7 +66,6 @@ f.user_login{
 				end
 			end
 		end
-
 	else
 		t.content("<div class='error'>v.message</div>")
 	end
