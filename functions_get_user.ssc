@@ -224,6 +224,28 @@ f.get_user_followlist{
   end
 }
 
+f.get_user_stafflist{
+  if set v.function_passed[0]
+    v.userid=v.function_passed[0]
+  else
+    v.userid=sv.user_id
+  end
+
+  v.cachecheck=f.cache_string_fetch("user_stafflist",v.userid)
+  if not v.cachecheck=="cachnofind"
+    s.echo(v.cachecheck)
+  else
+    v.data_db=s.mysql_select("SELECT GROUP_CONCAT(DISTINCT id SEPARATOR ', ') AS follow FROM accounts WHERE type!='normal' AND type!='new' GROUP BY username")
+    if not v.data_db false
+      s.echo("v.data_db[follow]")
+      f.cache_string_save("user_stafflist",v.userid,"v.userid, v.data_db[follow]")
+    else
+      s.echo("0")
+      f.cache_string_save("user_stafflist",v.userid,v.userid)
+    end
+  end
+}
+
 f.get_user_friends{
   v.user=v.function_passed[0]
   v.following=v.function_passed[1]
