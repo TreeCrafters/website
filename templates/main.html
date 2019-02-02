@@ -1674,20 +1674,20 @@
     function modl_content_mde_youtube(){
 
       //[![](https://img.youtube.com/vi/bktinKUsPws/maxresdefault.jpg)](https://www.youtube.com/watch?v=bktinKUsPws)
-      document.getElementById("mde_editor_custom").innerHTML="<div><form><input type=\"text\" id=\"videoid\" name=\"video\"/><input type=\"button\" id=\"mde_youtubeattach\" value=\"Insert video\"></form></div>";
+      document.getElementById("mde_editor_custom").innerHTML="<div><form><input type=\"text\" id=\"videoid\" name=\"mde_youtubeattach_video\"/> <input type=\"button\" id=\"mde_youtubeattach\" value=\"Insert video\"></form></div>";
 
 
       var button = document.getElementById("mde_youtubeattach"),
-      value =  button.form.video.value;
       button.onclick = function() {
-          modl_content_mde_youtube_embed(value);
+        var value=mde_youtubeattach_video.value;
+        modl_content_mde_youtube_embed(value);
       }
 
     }
 
     function modl_content_mde_youtube_embed(url){
       var video_id = url.split('v=')[1];
-      if (video_id.indexOf('&')){
+      if (video_id.indexOf('&')==object){
         var ampersandPosition = video_id.indexOf('&');
         if(ampersandPosition != -1) {
           video_id = video_id.substring(0, ampersandPosition);
