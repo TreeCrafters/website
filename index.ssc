@@ -51,4 +51,19 @@ else
     t.content_middle("<bubble><div class='message_warning'>We have no posts to show</div></bubble>")
   end
 
+
+  t.content_right("<bubble>")
+  t.content_right("<h2 style='margin-top:0px;'>Recent events</h2>")
+  v.data_feeds=s.mysql_select("SELECT id,user FROM socials_feeds ORDER BY id DESC LIMIT 30")
+  if not v.data_feeds false
+    if set v.data_feeds[user]
+      f.generate_social_feed(v.data_feeds)
+    else
+      s.array_loop("generate_social_feed",v.data_feeds)
+    end
+  else
+    t.content_right("No content found...")
+  end
+  t.content_right("<bubble>")
+
 end

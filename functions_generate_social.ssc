@@ -16,6 +16,34 @@ f.generate_social_comment_ajax{
   t.content_middle("<bubble><checkupaction action='ajaxload' divajax='v.postid'>/ajax/social_comment?comment=v.postid</checkupaction><div id='v.postid'></div></bubble>")
 }
 
+f.generate_social_feed{
+  v.postid=v.function_passed[0]
+  if set v.postid[linkcode]
+    v.postid=v.postid[linkcode]
+  end
+
+  v.data_id=s.mysql_select("SELECT * FROM socials_feeds WHERE id='v.postid' LIMIT 1")
+  if not v.data_id false
+    v.user=v.data_id[user]
+    v.date=v.data_id[date]
+    v.action=v.data_id[action]
+    v.source=v.data_id[source]
+    v.link=v.data_id[link]
+
+    v.linktext="<text></text>"
+    if not v.linktext=="/"
+      v.linktext="<a href='v.link'>Take a look</a>."
+    end
+
+    v.usr_name=f.get_user_name_full(v.user)
+    v.usr_username=f.get_user_username(v.user)
+    v.usr_image=f.get_user_image(v.user)
+
+    t.content_right("<div style='margin-bottom:10px;'><avatar style=\"border-radius: 35px;width: 30px;float:left;height:30px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'>v.usr_name</a> v.action&hellip; v.linktext</div>")
+
+  end
+}
+
 f.generate_social_update_small{
   v.postid=v.function_passed[0]
   if set v.postid[id]
