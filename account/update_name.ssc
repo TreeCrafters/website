@@ -9,6 +9,8 @@ if set pv.firstname
   v.size_f=s.string_length(pv.firstname)
   v.size_l=s.string_length(pv.lastname)
   if v.size_f>=1
+    v.firstname=s.string_utf8_encode(v.firstname)
+    v.lastname=s.string_utf8_encode(v.lastname)
     v.firstname=s.string_clean(pv.firstname)
     v.lastname=s.string_clean(pv.lastname)
     v.firstname=s.string_trim("v.firstname","60")
