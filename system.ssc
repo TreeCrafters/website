@@ -49,6 +49,12 @@ else
   t.header_right("<a href=\"/register\" class='button'>Register</a>")
 end
 
+
+if not sv.user_id==0
+  v.stylebanner=f.get_user_banner()
+  t.backgroundelement("<div style=\"background-image:url('v.stylebanner');background-position: center;background-size: cover;filter: blur(3px);width: 100%;height: 100%;position: fixed;left: 0px;top: 0px;z-index: -5000;\"><div style=\"width: 100%;height: 100%;background: rgba(255, 255, 255, 0.65);\"></div></div>")
+end
+
 //validate api key or user
 f.validate_session{
   if gv.valid_user false
