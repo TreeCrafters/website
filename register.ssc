@@ -68,10 +68,6 @@ f.user_register{
 		v.valid=false
 		v.message="You need to provide us with your first name."
 	end
-	if notset pv.lastname
-		v.valid=false
-		v.message="You need to provide us with your last name."
-	end
 	if not pv.confirm_password==pv.password
 		v.valid=false
 		v.message="The 2 passwords do not match."
