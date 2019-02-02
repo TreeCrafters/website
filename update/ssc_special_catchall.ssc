@@ -20,9 +20,9 @@ if not v.data_post false
   v.data_feeds=s.mysql_select("SELECT id,user FROM socials_feeds WHERE (type='comment' AND source='v.linkid') OR (type='update_reaction' AND source='v.linkid') ORDER BY id DESC LIMIT 30")
   if not v.data_feeds false
     if set v.data_feeds[user]
-      f.generate_social_feed(v.data_feeds)
+      f.generate_social_feed_local(v.data_feeds)
     else
-      s.array_loop("generate_social_feed",v.data_feeds)
+      s.array_loop("generate_social_feed_local",v.data_feeds)
     end
   else
     t.content_right("No content found...")

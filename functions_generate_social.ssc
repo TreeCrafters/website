@@ -46,6 +46,34 @@ f.generate_social_feed{
   end
 }
 
+f.generate_social_feed_local{
+  v.postid=v.function_passed[0]
+  if set v.postid[id]
+    v.postid=v.postid[id]
+  end
+
+  v.data_id=s.mysql_select("SELECT * FROM socials_feeds WHERE id='v.postid' LIMIT 1")
+  if not v.data_id false
+    v.user=v.data_id[user]
+    v.date=v.data_id[date]
+    v.action=v.data_id[action]
+    v.source=v.data_id[source]
+    v.link=v.data_id[link]
+
+    v.dateago=s.convert_timestamp_ago(v.date,"true")
+
+    v.action=s.string_replace("on a update","",v.action)
+    v.action=s.string_replace("reacted to a update","reacted",v.action)
+
+    v.usr_name=f.get_user_name_full(v.user)
+    v.usr_username=f.get_user_username(v.user)
+    v.usr_image=f.get_user_image(v.user)
+
+    t.content_right("<div style='margin-bottom: 10px;border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 30px;float:left;height:30px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'>v.usr_name</a> v.action v.dateago&hellip;</div>")
+
+  end
+}
+
 f.generate_social_update_small{
   v.postid=v.function_passed[0]
   if set v.postid[id]
