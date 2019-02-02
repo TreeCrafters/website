@@ -12,7 +12,12 @@ v.data_post=s.mysql_select("SELECT * FROM socials_comments WHERE linkcode='v.idc
 if not v.data_post false
 
   v.linkid=v.data_post[id]
+  v.updateid=v.data_post[updateid]
   f.generate_social_comment_full(v.linkid)
+
+
+  t.content_middle("<h1 style='margin-top:50px;margin-bottom:50px;'>Original update</h1>")
+  f.generate_social_update_full(v.updateid)
 
   //Generate feed events
   t.content_right("<bubble>")
