@@ -45,6 +45,8 @@ f.post_social_update{
     v.postid=s.mysql_insert("INSERT INTO socials_updates(user,date,rating,linkcode) VALUES('v.usersave','v.datecode','v.rating','v.linkcode')")
     if not v.postid false
       v.postid=s.mysql_insert("INSERT INTO socials_updates_contents(post,content) VALUES('v.postid','v.compressed')")
+
+      f.new_social_feed(sv.user_id,"just posted a new update",v.postid,"/update/v.linkcode")
     end
   end
 }
@@ -88,6 +90,9 @@ f.post_social_update_emote{
     if not v.myemote==v.emote
       v.postid=s.mysql_insert("INSERT INTO socials_updates_emotes(user,post,emote) VALUES('sv.user_id','v.post','v.emote')")
       v.update=s.mysql_update("UPDATE socials_updates SET rating=rating+v.rating WHERE id='v.post'")
+
+      v.linkcode=f.get_social_update_linkcode(v.post)
+      f.new_social_feed(sv.user_id,"just reacted to a update with the v.emote emote",v.post,"/update/v.linkcode")
     else
       v.update=s.mysql_update("UPDATE socials_updates SET rating=rating-v.rating WHERE id='v.post'")
     end
@@ -133,6 +138,9 @@ f.post_social_comment_emote{
     if not v.myemote==v.emote
       v.postid=s.mysql_insert("INSERT INTO socials_comments_emotes(user,comment,emote) VALUES('sv.user_id','v.post','v.emote')")
       v.update=s.mysql_update("UPDATE socials_comments SET rating=rating+v.rating WHERE id='v.post'")
+
+      v.linkcode=f.get_social_comment_linkcode(v.post)
+      f.new_social_feed(sv.user_id,"just reacted to a comment with the v.emote emote",v.post,"/comment/v.linkcode")
     else
       v.update=s.mysql_update("UPDATE socials_comments SET rating=rating-v.rating WHERE id='v.post'")
     end
