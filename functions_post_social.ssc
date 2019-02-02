@@ -41,7 +41,7 @@ f.post_social_update{
     end
 
     //encode content and add limits
-    v.content=s.string_trim(v.content,v.maxsize)
+    v.content=s.string_trim_utf8(v.content,v.maxsize)
     v.compressed=s.base64_encode(v.content)
 
     v.linkcode=f.generate_linkcode("socials_updates")
@@ -62,7 +62,7 @@ f.post_social_update_emote{
   v.emote=s.string_clean("v.emote")
   v.emote=s.string_lowercase("v.emote")
   v.emote=s.string_username("v.emote")
-  v.emote=s.string_trim("v.emote","90")
+  v.emote=s.string_trim_utf8("v.emote","90")
 
   v.myemote=f.get_social_update_myemote(v.post)
 
@@ -111,7 +111,7 @@ f.post_social_comment_emote{
   v.emote=s.string_clean("v.emote")
   v.emote=s.string_lowercase("v.emote")
   v.emote=s.string_username("v.emote")
-  v.emote=s.string_trim("v.emote","90")
+  v.emote=s.string_trim_utf8("v.emote","90")
 
   v.myemote=f.get_social_comment_myemote(v.post)
 
@@ -193,7 +193,7 @@ f.post_social_comment{
     end
 
     //encode content and add limits
-    v.content=s.string_trim(v.content,v.maxsize)
+    v.content=s.string_trim_utf8(v.content,v.maxsize)
     v.compressed=s.base64_encode(v.content)
 
     v.linkcode=f.generate_linkcode("socials_comments")

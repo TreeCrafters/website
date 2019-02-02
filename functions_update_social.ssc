@@ -38,7 +38,7 @@ f.update_social_update{
       end
 
       //encode content and add limits
-      v.content=s.string_trim(v.content,v.maxsize)
+      v.content=s.string_trim_utf8(v.content,v.maxsize)
       v.compressed=s.base64_encode(v.content)
       v.datecode=s.timestamp()
 
@@ -88,7 +88,7 @@ f.update_social_comment{
       end
 
       //encode content and add limits
-      v.content=s.string_trim(v.content,v.maxsize)
+      v.content=s.string_trim_utf8(v.content,v.maxsize)
       v.compressed=s.base64_encode(v.content)
       v.datecode=s.timestamp()
 
