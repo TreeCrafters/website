@@ -28,9 +28,9 @@ if not v.data_profile false
   t.content_right("<h2 style='margin-top:0px;'>Actions</h2>")
   if not sv.user_id==v.profileid
     if f.get_user_following(sv.user_id,v.profileid) false
-      t.content_right("<a href='javascript:modl(\"/actions/profile_follow?user=v.profile_usersusername\");'>Follow v.profile_usersfirstname</a>")
+      t.content_right("<a href='javascript:modl(\"/actions/profile_follow?user=v.profile_usersusername\");' class='sidebar_menu'>Follow v.profile_usersfirstname</a>")
     else
-      t.content_right("<a href='javascript:modl(\"/actions/profile_unfollow?user=v.profile_usersusername\");'>Unfollow v.profile_usersfirstname</a>")
+      t.content_right("<a href='javascript:modl(\"/actions/profile_unfollow?user=v.profile_usersusername\");' class='sidebar_menu'>Unfollow v.profile_usersfirstname</a>")
     end
   end
   t.content_right("</bubble>")
