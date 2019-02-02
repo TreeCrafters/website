@@ -23,6 +23,14 @@ f.post_social_update{
       v.rating=15
       v.maxsize=4000
     end
+    if v.usertype=="build"
+      v.rating=15
+      v.maxsize=4000
+    end
+    if v.usertype=="buildlead"
+      v.rating=15
+      v.maxsize=4000
+    end
     if v.usertype=="owner"
       v.rating=50
       v.maxsize=8000
@@ -59,6 +67,14 @@ f.post_social_update_emote{
   end
   if v.usertype=="mod"
     v.rating=20
+  end
+  if v.usertype=="build"
+    v.rating=15
+    v.maxsize=4000
+  end
+  if v.usertype=="buildlead"
+    v.rating=15
+    v.maxsize=4000
   end
   if v.usertype=="admin"
     v.rating=40
@@ -97,6 +113,14 @@ f.post_social_comment_emote{
   if v.usertype=="mod"
     v.rating=20
   end
+  if v.usertype=="build"
+    v.rating=15
+    v.maxsize=4000
+  end
+  if v.usertype=="buildlead"
+    v.rating=15
+    v.maxsize=4000
+  end
   if v.usertype=="admin"
     v.rating=40
   end
@@ -132,6 +156,14 @@ f.post_social_comment{
     if v.usertype=="mod"
       v.rating=10
       v.maxsize=2000
+    end
+    if v.usertype=="build"
+      v.rating=15
+      v.maxsize=4000
+    end
+    if v.usertype=="buildlead"
+      v.rating=15
+      v.maxsize=4000
     end
     if v.usertype=="admin"
       v.rating=15
