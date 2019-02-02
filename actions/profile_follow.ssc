@@ -28,6 +28,8 @@ if set uv.user
         end
 
         t.content("<checkupaction action='notification' type='success'>You are now following v.profile_usersfullname</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
+
+        f.new_social_feed(sv.user_id,"is now following v.profile_usersfullname",v.profileid,"/profile/v.user")
       else
         t.content("<checkupaction action='notification' type='error'>You are already following v.profile_usersfullname</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
       end

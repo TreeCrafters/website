@@ -42,6 +42,22 @@ if not v.data_profile false
   t.content_right("<a href='/profile/v.profile_username' class='sidebar_menu'>Updates</a>")
   t.content_right("</bubble>")
 
+
+  //Generate feed events
+  t.content_right("<bubble>")
+  t.content_right("<h2 style='margin-top:0px;'>Recent events</h2>")
+  v.data_feeds=s.mysql_select("SELECT id,user FROM socials_feeds WHERE user='v.profileid' ORDER BY id DESC LIMIT 30")
+  if not v.data_feeds false
+    if set v.data_feeds[user]
+      f.generate_social_feed(v.data_feeds)
+    else
+      s.array_loop("generate_social_feed",v.data_feeds)
+    end
+  else
+    t.content_right("No content found...")
+  end
+  t.content_right("</bubble>")
+
   v.generate_tags="<div class='inlinebutton-info-minecraft'>v.profile_mc_name</div>"
 
   if v.profile_type=="admin"
