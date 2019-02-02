@@ -41,6 +41,8 @@
       .maincase{
         height:100vh;
         margin-bottom:80px;
+        min-height: 700px;
+        overflow:hidden;
       }
 
       .secondcase{
@@ -57,6 +59,16 @@
       }
 
 	  .content .name{
+		  font-style: normal;
+		font-weight: bold;
+		line-height: 26px;
+		font-size: 16px;
+		color: rgb(0,0,0);
+		margin-bottom:180px;
+	  }
+
+    .content .menu{
+      float:right;
 		  font-style: normal;
 		font-weight: bold;
 		line-height: 26px;
@@ -191,6 +203,7 @@
     <div class='maincase'>
   	  <div class='left'>
   		  <div class='content'>
+          <div class='menu'><a href='/login'>Login</a> / <a href='/register'>Register</a></div>
   			  <div class='name'>TreeCrafters</div>
   			  <div class='header'>Welcome to TreeCrafters Online!</div>
   			  <div class='tagline'>Want to join the Community?</div>
