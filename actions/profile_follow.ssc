@@ -17,6 +17,16 @@ if set uv.user
       v.amfollowing=f.get_user_following(sv.user_id,v.profileid)
       if v.amfollowing false
         v.postid=s.mysql_insert("INSERT INTO accounts_followings(user,following) VALUES('sv.user_id','v.profileid')")
+
+        v.usr_type=f.get_user_type(v.profileid)
+        v.mytype=f.get_user_type()
+
+        if not v.mytype=="new"
+          if v.usr_type=="new"
+            v.update=s.mysql_update("UPDATE accounts SET type='normal' WHERE id='v.profileid'")
+          end
+        end
+
         t.content("<checkupaction action='notification' type='success'>You are now following v.profile_usersfullname</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
       else
         t.content("<checkupaction action='notification' type='error'>You are already following v.profile_usersfullname</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
