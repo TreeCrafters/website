@@ -169,7 +169,7 @@ f.generate_social_update_full{
 
     t.content_middle("<bubble><div style='margin-top:-15px;border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 65px;float:left;height:65px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h2 style='margin-bottom:0px;font-weight:300;'>v.usr_name</h2></a>v.actions<h3 style='margin-top: 4px;margin-bottom: 5px;'>v.generate_tags</h3>Posted v.dateago</div>v.content<div style='border-top: 2px solid #f1f1f1;padding-top:10px;'>v.emotegenerated</div></bubble>")
 
-    t.content_middle("<h1 style='margin-top:50px;margin-bottom:50px;'>Comments<a href="javascript:modl('/actions/post_social_comment?post=v.linkcode');" style='background: #f1f1f1;padding: 5px;margin-top: -29px;display: inline-block;float:right;'>Make comment</a></h1>")
+    t.content_middle("<h1 style='margin-top:50px;margin-bottom:15px;'>Comments</h1><h2 style='margin-bottom:20px;'><a href="javascript:modl('/actions/post_social_comment?post=v.linkcode');" style='background: #ffffff;border-radius: 8px;padding: 5px;display: inline-block;float: right;'>Make comment</a></h2>")
 
     v.data_posts=s.mysql_select("SELECT id,user,linkcode FROM socials_comments WHERE updateid='v.postid' ORDER BY id DESC LIMIT 100")
     if not v.data_posts false
