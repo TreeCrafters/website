@@ -86,7 +86,7 @@ f.generate_social_update_small{
     v.actions="<div></div>"
 
     if v.user==sv.user_id
-      v.actions="<div style='float:right;margin-top: -20px;'><a href=\"javascript:modl('/actions/update_social_update?post=v.postid');\">Edit</a> - v.rating</div>"
+      v.actions="<div style='float:right;margin-top: -20px;'><a href=\"javascript:modl('/actions/update_social_update?post=v.postid');\">Edit</a></div>"
     end
 
     v.emotegenerated=f.generate_social_update_emotes(v.postid)
@@ -179,7 +179,7 @@ f.generate_social_update_full{
     v.actions="<div></div>"
 
     if v.user==sv.user_id
-      v.actions="<div style='float:right;margin-top: -20px;'><a href=\"javascript:modl('/actions/update_social_update?post=v.postid');\">Edit</a> - v.rating</div>"
+      v.actions="<div style='float:right;margin-top: -20px;'><a href=\"javascript:modl('/actions/update_social_update?post=v.postid');\">Edit</a></div>"
     end
 
     v.emotegenerated=f.generate_social_update_emotes(v.postid)
@@ -421,7 +421,7 @@ f.generate_social_comment_small{
     v.actions="<div></div>"
 
     if v.user==sv.user_id
-      v.actions="<div style='float:right;margin-top: -20px;'><a href=\"javascript:modl('/actions/update_social_comment?comment=v.postid');\">Edit</a> - v.rating</div>"
+      v.actions="<div style='float:right;margin-top: -20px;'><a href=\"javascript:modl('/actions/update_social_comment?comment=v.postid');\">Edit</a></div>"
     end
 
     v.emotegenerated=f.generate_social_comment_emotes(v.postid)
