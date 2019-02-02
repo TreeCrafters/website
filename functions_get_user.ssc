@@ -75,8 +75,12 @@ f.get_user_banner{
       f.cache_string_save("user_banner_timecode",v.userid,v.data_db[date])
     end
   end
-  v.timecode=s.string_replace("&#46;",".","v.timecode&#46;jpg")
-  s.echo("//gv.system_domain/images/account_banner/v.usersusername/v.timecode")
+  if v.userid=="4"
+    s.echo("//gv.system_domain/resources/img/glitch_banner.gif")
+  else
+    v.timecode=s.string_replace("&#46;",".","v.timecode&#46;jpg")
+    s.echo("//gv.system_domain/images/account_banner/v.usersusername/v.timecode")
+  end
 }
 
 
