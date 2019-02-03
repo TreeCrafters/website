@@ -58,6 +58,7 @@ f.clean_md{
 	v.content=v.function_passed[0]
 	v.content=s.string_replace("https://","",v.content)
 	v.content=s.string_replace("http://","",v.content)
+	v.content=s.string_replace("media0.giphy.com","https://media.giphy.com",v.content)
 	v.content=s.string_replace("www.youtube.com","https://www.youtube.com",v.content)
 	v.content=s.string_replace("img.youtube.com","https://img.youtube.com",v.content)
 	v.content=s.string_replace("media.giphy.com","https://media.giphy.com",v.content)
