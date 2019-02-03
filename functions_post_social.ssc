@@ -156,7 +156,7 @@ f.post_social_comment_emote{
 f.post_social_comment{
   v.content=v.function_passed[0]
   v.parentid=v.function_passed[1]
-  v.replyid=v.function_passed[3]
+  v.replyid=v.function_passed[2]
   v.usersave=sv.user_id
 
   if set v.content
