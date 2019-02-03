@@ -1655,7 +1655,15 @@
 			},
 			className: "fab fa-youtube",
 			title: "Youtube Video",
-		}, "|", "code", "image", "unordered-list", "horizontal-rule", "|", "preview"],
+		}, {
+  name: "cus_giphy",
+  action: function customFunction(editor){
+    // Add your own code
+    modl_content_mde_giphy();
+  },
+  className: "fas fa-guitar",
+  title: "Giphy GIF",
+}, "|", "code", "image", "unordered-list", "horizontal-rule", "|", "preview"],
         spellChecker: true,
         status: false,
         forceSync: false,
@@ -1696,6 +1704,50 @@
       pos = simplemde.codemirror.getCursor();
       simplemde.codemirror.setSelection(pos, pos);
       simplemde.codemirror.replaceSelection("[![](https://img.youtube.com/vi/" + video_id + "/maxresdefault.jpg)](https://www.youtube.com/watch?v=" + video_id + ")");
+      document.getElementById("mde_editor_custom").innerHTML="";
+    }
+
+    function modl_content_mde_giphy(){
+      document.getElementById("mde_editor_custom").innerHTML="<div><form><input type=\"text\" id=\"mde_giphyattach_search\"/> <input type=\"button\" id=\"mde_giphyattach\" value=\"Search GIF's\"></form></div><div id='mde_giphyattach_results'></div>";
+
+      var button=document.getElementById("mde_giphyattach");
+      button.onclick = function() {
+        var value=document.getElementById("mde_giphyattach_search").value;
+        modl_content_mde_giphy_search(value);
+      }
+
+    }
+
+    function modl_content_mde_giphy_search(search){
+      search = search.replace(/ /g, "+");
+      document.getElementById("mde_giphyattach_results").innerHTML="";
+
+      request = new XMLHttpRequest;
+    	request.open('GET', 'http://api.giphy.com/v1/gifs/search?q=' + search + '&api_key=dc6zaTOxFJmzC', true);
+    	request.onload = function() {
+    		if (request.status >= 200 && request.status < 400){
+    			data = JSON.parse(request.responseText).data;
+
+          data.forEach(function(element) {
+            console.log(element);
+            document.getElementById("mde_giphyattach_results").innerHTML = '<center><img src = "'+element["original"]["url"]+'"  title="GIF via Giphy"></center>';
+          });
+    		} else {
+    			document.getElementById("mde_giphyattach_results").innerHTML="We did reach Giphy, but the API returned an error";
+    		 }
+    	};
+    	request.onerror = function() {
+    		document.getElementById("mde_giphyattach_results").innerHTML="Connection error";
+    	};
+
+    	request.send();
+
+    }
+
+    function modl_content_mde_giphy_embed(url){
+      pos = simplemde.codemirror.getCursor();
+      simplemde.codemirror.setSelection(pos, pos);
+      simplemde.codemirror.replaceSelection("![](" + url + ")");
       document.getElementById("mde_editor_custom").innerHTML="";
     }
 
