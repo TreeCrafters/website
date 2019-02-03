@@ -1708,7 +1708,7 @@
     }
 
     function modl_content_mde_giphy(){
-      document.getElementById("mde_editor_custom").innerHTML="<div><form><input type=\"text\" id=\"mde_giphyattach_search\"/> <input type=\"button\" id=\"mde_giphyattach\" value=\"Search GIF's\"></form></div><div id='mde_giphyattach_results' style='overflow:hidden;height:200px;overflow-x: scroll;'></div>";
+      document.getElementById("mde_editor_custom").innerHTML="<div><form><input type=\"text\" id=\"mde_giphyattach_search\"/> <input type=\"button\" id=\"mde_giphyattach\" value=\"Search GIF's\"></form></div><div id='mde_giphyattach_results' style='overflow:hidden;width:100%;max-height:200px;overflow-x: scroll;'></div>";
 
       var button=document.getElementById("mde_giphyattach");
       button.onclick = function() {
@@ -1730,7 +1730,7 @@
 
           data.forEach(function(element){
             console.log(element);
-            document.getElementById("mde_giphyattach_results").innerHTML='<img src = "' + element["images"]["fixed_height"]["url"] + '" onclick="javascript:modl_content_mde_giphy_embed(\'' + element["images"]["fixed_height"]["url"] + '\');" style="margin-left:2px;margin-right:2px;" title="GIF via Giphy">';
+            document.getElementById("mde_giphyattach_results").innerHTML='' + document.getElementById("mde_giphyattach_results").innerHTML + '<img src = "' + element["images"]["fixed_height"]["url"] + '" onclick="javascript:modl_content_mde_giphy_embed(\'' + element["images"]["original"]["url"] + '\');" style="border-radius:5px;margin-left:2px;margin-right:2px;" title="GIF via Giphy">';
           });
     		} else {
     			document.getElementById("mde_giphyattach_results").innerHTML="We did reach Giphy, but the API returned an error";
