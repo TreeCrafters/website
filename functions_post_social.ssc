@@ -211,7 +211,7 @@ f.post_social_comment{
 
       if set v.replyid
         v.linkcode=f.get_social_comment_linkcode(v.replyid)
-        f.new_social_feed(sv.user_id,"made a reply to a comment",v.parentid,"/comment/v.linkcode","comment_reply")
+        f.new_social_feed(sv.user_id,"made a reply to a comment",v.replyid,"/comment/v.linkcode","comment_reply")
       else
         v.linkcode=f.get_social_update_linkcode(v.parentid)
         f.new_social_feed(sv.user_id,"made a comment on a update",v.parentid,"/update/v.linkcode","comment")
