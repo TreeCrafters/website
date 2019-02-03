@@ -1708,10 +1708,10 @@
     }
 
     function modl_content_mde_giphy(){
-      document.getElementById("mde_editor_custom").innerHTML="<div><form><input type=\"text\" id=\"mde_giphyattach_search\"/> <input type=\"button\" id=\"mde_giphyattach\" value=\"Search GIF's\"></form></div><div id='mde_giphyattach_results' style='overflow:hidden;width:100%;max-height:200px;overflow-x: scroll;'></div>";
+      document.getElementById("mde_editor_custom").innerHTML="<div><form><input type=\"text\" id=\"mde_giphyattach_search\"/> <input type=\"button\" id=\"mde_giphyattach\" value=\"Search GIF's\"></form></div><div id='mde_giphyattach_results' style='overflow-x: scroll;overflow-y: hidden;white-space: nowrap;'></div>";
 
       var button=document.getElementById("mde_giphyattach");
-      button.onclick = function() {
+      button.onclick = function(){
         var value=document.getElementById("mde_giphyattach_search").value;
         modl_content_mde_giphy_search(value);
       }
@@ -1720,7 +1720,7 @@
 
     function modl_content_mde_giphy_search(search){
       search = search.replace(/ /g, "+");
-      document.getElementById("mde_giphyattach_results").innerHTML="";
+      document.getElementById("mde_giphyattach_results").innerHTML='<div class=\'spinning_loader\'></div>';
 
       request = new XMLHttpRequest;
     	request.open('GET', 'http://api.giphy.com/v1/gifs/search?q=' + search + '&api_key=dc6zaTOxFJmzC', true);
