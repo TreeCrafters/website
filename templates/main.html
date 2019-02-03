@@ -1730,7 +1730,7 @@
 
           data.forEach(function(element){
             console.log(element);
-            document.getElementById("mde_giphyattach_results").innerHTML.='<center><img src = "' + element["images"]["original"]["url"] + '"  title="GIF via Giphy"></center>';
+            document.getElementById("mde_giphyattach_results").innerHTML='<img src = "' + element["images"]["original"]["url"] + '"  title="GIF via Giphy">';
           });
     		} else {
     			document.getElementById("mde_giphyattach_results").innerHTML="We did reach Giphy, but the API returned an error";
