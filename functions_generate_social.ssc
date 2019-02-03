@@ -486,7 +486,7 @@ f.generate_social_comment_small{
           v.conreply=s.string_brokenhtml(v.conreply)
           v.conlinkcode=f.get_social_comment_linkcode(v.data_crparent[id])
           v.conlinkuser=f.get_user_name_full(v.data_crparent[user])
-          v.conreply="<div style='padding:10px;border-radius:5px;background:#f1f1f1;margin-top:10px;margin-bottom:10px;'>v.conreply<p><a href='/comment/v.conlinkcode'>View original comment by v.conlinkuser</a></p></div>"
+          v.conreply="<div style='padding:10px;padding-top:5px;padding-bottom:5px;border-radius:5px;background:#f1f1f1;margin-top:10px;margin-bottom:10px;'>v.conreply<p><a href='/comment/v.conlinkcode'>View original comment by v.conlinkuser</a></p></div>"
         end
       end
     end
