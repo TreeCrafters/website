@@ -1712,7 +1712,7 @@
       }
       pos = simplemde.codemirror.getCursor();
       simplemde.codemirror.setSelection(pos, pos);
-      simplemde.codemirror.replaceSelection("[![](https://img.youtube.com/vi/" + video_id + "/maxresdefault.jpg)](https://www.youtube.com/watch?v=" + video_id + ")");
+      simplemde.codemirror.replaceSelection("\n\n[![](https://img.youtube.com/vi/" + video_id + "/maxresdefault.jpg)](https://www.youtube.com/watch?v=" + video_id + ")\n");
       document.getElementById("mde_editor_custom").innerHTML="";
     }
 
@@ -1756,7 +1756,7 @@
     function modl_content_mde_giphy_embed(url){
       pos = simplemde.codemirror.getCursor();
       simplemde.codemirror.setSelection(pos, pos);
-      simplemde.codemirror.replaceSelection("![](" + url + ")");
+      simplemde.codemirror.replaceSelection("\n\n![](" + url + ")\n\n");
       document.getElementById("mde_editor_custom").innerHTML="";
     }
 
