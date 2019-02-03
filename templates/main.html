@@ -1727,7 +1727,7 @@
     	request.onload = function() {
     		if (request.status >= 200 && request.status < 400){
     			data = JSON.parse(request.responseText).data;
-
+          document.getElementById("mde_giphyattach_results").innerHTML="";
           data.forEach(function(element){
             console.log(element);
             document.getElementById("mde_giphyattach_results").innerHTML='' + document.getElementById("mde_giphyattach_results").innerHTML + '<img src = "' + element["images"]["fixed_height"]["url"] + '" onclick="javascript:modl_content_mde_giphy_embed(\'' + element["images"]["original"]["url"] + '\');" style="border-radius:5px;max-height: 100px;margin-left:2px;margin-right:2px;" title="GIF via Giphy">';
