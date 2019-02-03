@@ -156,6 +156,7 @@ f.post_social_comment_emote{
 f.post_social_comment{
   v.content=v.function_passed[0]
   v.parentid=v.function_passed[1]
+  v.replyid=v.function_passed[3]
   v.usersave=sv.user_id
 
   if set v.content
@@ -198,13 +199,23 @@ f.post_social_comment{
 
     v.linkcode=f.generate_linkcode("socials_comments")
 
-    v.postid=s.mysql_insert("INSERT INTO socials_comments(user,date,rating,linkcode,updateid) VALUES('v.usersave','v.datecode','v.rating','v.linkcode','v.parentid')")
+    if set v.replyid
+      v.postid=s.mysql_insert("INSERT INTO socials_comments(user,date,rating,linkcode,updateid,replyto) VALUES('v.usersave','v.datecode','v.rating','v.linkcode','v.parentid','v.replyid')")
+    else
+      v.postid=s.mysql_insert("INSERT INTO socials_comments(user,date,rating,linkcode,updateid) VALUES('v.usersave','v.datecode','v.rating','v.linkcode','v.parentid')")
+    end
+
     if not v.postid false
       v.postid=s.mysql_insert("INSERT INTO socials_comments_contents(comment,content) VALUES('v.postid','v.compressed')")
       v.update=s.mysql_update("UPDATE socials_updates SET rating=rating+v.rating WHERE id='v.parentid'")
 
-      v.linkcode=f.get_social_update_linkcode(v.parentid)
-      f.new_social_feed(sv.user_id,"made a comment on a update",v.parentid,"/update/v.linkcode","comment")
+      if set v.replyid
+        v.linkcode=f.get_social_comment_linkcode(v.replyid)
+        f.new_social_feed(sv.user_id,"made a reply to a comment",v.parentid,"/comment/v.linkcode","comment_reply")
+      else
+        v.linkcode=f.get_social_update_linkcode(v.parentid)
+        f.new_social_feed(sv.user_id,"made a comment on a update",v.parentid,"/update/v.linkcode","comment")
+      end
     end
   end
 }
