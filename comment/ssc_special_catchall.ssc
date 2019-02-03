@@ -15,9 +15,18 @@ if not v.data_post false
   v.updateid=v.data_post[updateid]
   f.generate_social_comment_full(v.linkid)
 
+  v.data_feeds=s.mysql_select("SELECT id,user FROM socials_comments WHERE replyto='v.linkid' ORDER BY id DESC LIMIT 100")
+  if not v.data_comreply false
+    t.content_right("<h2 style='margin-top:0px;'>Reply's to this comment</h2>")
+    if set v.data_comreply[user]
+      f.generate_social_comment_small(v.data_comreply)
+    else
+      s.array_loop("generate_social_comment_small",v.data_comreply)
+    end
+  emd
 
   t.content_middle("<h1 style='margin-top:50px;margin-bottom:50px;'>Original update</h1>")
-  f.generate_social_update_full(v.updateid)
+  f.generate_social_update_small(v.updateid)
 
   //Generate feed events
   t.content_right("<bubble>")
