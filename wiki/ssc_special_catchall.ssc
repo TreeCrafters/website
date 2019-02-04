@@ -8,7 +8,7 @@ v.catchall=s.string_replace("/index.ssc","",v.catchall)
 v.catchall=s.string_replace("/wiki/","",v.catchall)
 v.wikipage=s.string_clean(v.catchall)
 
-if set v.wikipage
+if not v.wikipage==""
   t.content_middle("<bubble>find content</bubble>")
 else
   t.content_middle("<bubble>Main page</bubble>")
