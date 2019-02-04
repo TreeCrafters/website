@@ -1,0 +1,6 @@
+s.include("/system.ssc");
+s.template("/templates/main.html")
+f.set_pagetitle("Wiki")
+f.set_pagedescription("Welcome to the Tree Crafters Wiki")
+
+t.content_middle("<bubble>Main page</bubble>")
