@@ -1659,7 +1659,6 @@
         toolbar: ["bold", "italic", "strikethrough", "heading", "|", {
 			name: "cus_ytvideo",
 			action: function customFunction(editor){
-				// Add your own code
         modl_content_mde_youtube();
 			},
 			className: "fab fa-youtube",
@@ -1667,11 +1666,17 @@
 		}, {
   name: "cus_giphy",
   action: function customFunction(editor){
-    // Add your own code
     modl_content_mde_giphy();
   },
   className: "fas fa-guitar",
-  title: "Giphy GIF",
+  title: "Uploaded photo",
+}, {
+name: "cus_photo",
+action: function customFunction(editor){
+modl_content_mde_photo();
+},
+className: "fas fa-guitar",
+title: "Giphy GIF",
 }, "|", "code", "image", "unordered-list", "horizontal-rule", "|", "preview"],
         spellChecker: true,
         status: false,
@@ -1724,12 +1729,11 @@
         var value=document.getElementById("mde_giphyattach_search").value;
         modl_content_mde_giphy_search(value);
       }
-
     }
 
     function modl_content_mde_giphy_search(search){
       search = search.replace(/ /g, "+");
-      document.getElementById("mde_giphyattach_results").innerHTML='<div class=\'spinning_loader\'></div>';
+      document.getElementById("mde_giphyattach_results").innerHTML='<div class=\'spinning_loader small\'></div>';
 
       request = new XMLHttpRequest;
     	request.open('GET', 'http://api.giphy.com/v1/gifs/search?q=' + search + '&api_key=dc6zaTOxFJmzC', true);
@@ -1750,10 +1754,22 @@
     	};
 
     	request.send();
-
     }
 
     function modl_content_mde_giphy_embed(url){
+      pos = simplemde.codemirror.getCursor();
+      simplemde.codemirror.setSelection(pos, pos);
+      simplemde.codemirror.replaceSelection("\n\n![](" + url + ")\n\n");
+      document.getElementById("mde_editor_custom").innerHTML="";
+    }
+
+    function modl_content_mde_photo(){
+      document.getElementById("mde_editor_custom").innerHTML="<div><div id='mde_photoattach_results' style='overflow-x: scroll;overflow-y: hidden;white-space: nowrap;'></div>";
+
+      fetch_fordiv("/ajax/user_media_photos","mde_photoattach_results");
+    }
+
+    function modl_content_mde_photo_embed(url){
       pos = simplemde.codemirror.getCursor();
       simplemde.codemirror.setSelection(pos, pos);
       simplemde.codemirror.replaceSelection("\n\n![](" + url + ")\n\n");

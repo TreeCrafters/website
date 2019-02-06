@@ -1,0 +1,23 @@
+s.include("/system.ssc");
+s.template("/templates/modl.html")
+
+v.postid=s.string_clean(uv.post)
+v.data_photos=s.mysql_select("SELECT * FROM storage_images WHERE user='sv.user_id' ORDER BY id DESC LIMIT 30")
+if not v.data_photos false
+  if set v.data_photos[user]
+    f.local_generate_photoinclude(v.data_photos)
+  else
+    s.array_loop("local_generate_photoinclude",v.data_photos)
+  end
+else
+  t.content("<div class='message_warning'>We have no photos to show</div>")
+end
+
+
+f.local_generate_photoinclude{
+  v.file=v.function_passed[0]
+
+  v.timecode=s.string_replace("&#46;",".","v.file[linkcode]&#46;jpg")
+  v.url="//gv.system_domain/images/account_media_photo/v.timecode"
+  t.content("<img src=\"v.url\" onclick=\"javascript:modl_content_mde_photo_embed('v.url');\" style=\"border-radius:5px;max-height: 100px;margin-left:2px;margin-right:2px;\">")
+}
