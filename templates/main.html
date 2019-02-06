@@ -1029,6 +1029,61 @@
 		top: -1200px;
 	}
 }
+
+
+.message_error,
+		.message_warning,
+		.message_good,
+		.message_normal,
+		.message_grey{
+			border-radius: 9px;
+			padding: 10px;
+			border: 0px;
+			max-width: 1000px;
+			font-weight: 600;
+			margin: 0px auto;
+			color:#ffffff;
+			margin-top: 0px;
+			margin-bottom:0px;
+			text-align:center;
+			-webkit-animation: fadeIn 200ms linear 1 forwards !important;
+			animation: fadeIn 200ms linear 1 forwards !important;
+		}
+
+		.message_error strong,
+		.message_warning strong,
+		.message_good strong,
+		.message_normal strong,
+		.message_grey strong{
+			text-decoration: underline;
+		}
+
+		/* ELEMENT */
+
+		.message_good {
+			background: rgb(46, 204, 113);
+		}
+
+		/* ELEMENT */
+
+		.message_error {
+			background: #e74c3c;
+		}
+
+		/* ELEMENT */
+
+		.message_warning {
+			background: #f1c40f;
+		}
+
+		/* ELEMENT */
+		.message_normal {
+			background: rgb(34, 130, 248);
+		}
+
+		.message_grey {
+			background: rgb(240,240,240);
+		}
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/dropzone.css">

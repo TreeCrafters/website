@@ -10,7 +10,7 @@ if not v.data_photos false
     s.array_loop("local_generate_photoinclude",v.data_photos)
   end
 else
-  t.content("<div class='message_warning'>We have no photos to show</div>")
+  t.content("<div class='message_warning'>You have not uploaded any photos to your account yet.</div>")
 end
 
 
