@@ -55,6 +55,28 @@ f.get_user_image{
   s.echo("//gv.system_domain/images/account_image/v.usersusername/v.timecode")
 }
 
+f.get_user_media_photos{
+  if set v.function_passed[0]
+    v.userid=v.function_passed[0]
+  else
+    v.userid=sv.user_id
+  end
+  v.foundcount=0
+
+  v.cachecheck=f.cache_string_fetch("user_media_photos",v.userid)
+  if not v.cachecheck=="cachnofind"
+    v.foundcount=v.cachecheck
+  else
+    v.data_db=s.mysql_select("SELECT date FROM storage_images WHERE user='v.userid'")
+    if not v.data_db false
+      v.number=s.array_count(v.data_db)
+      v.foundcount=v.number
+      f.cache_string_save("user_media_photos",v.userid,v.number)
+    end
+  end
+  s.echo(v.foundcount)
+}
+
 
 f.get_user_banner{
   if set v.function_passed[0]

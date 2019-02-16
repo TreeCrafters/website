@@ -1338,6 +1338,10 @@
             fetch_fordiv(content,el);
       		}
 
+          if (action=="dropzone"){
+      			modl_content_dropzone(content);
+      		}
+
           //notification
           if (action=="notification"){
       			var type=this.getAttribute('type');
@@ -1665,17 +1669,12 @@
     	var content=appcontent[0].innerHTML;
     	var apptitle = $('#js_replace_pagetitle', tempDom);
     	var appdescription = $('#js_replace_pagedescription', tempDom);
-      var dropzone = $('#js_dropzone', tempDom);
       var mde = $('#js_mde', tempDom);
 
     	content="<div id='modl_form_post_notification'></div><div id='modl_form_post'><div style='display: block;padding-bottom: 10px;font-size: 32px;font-weight: 600;'>" + apptitle[0].innerHTML + "</div><div style='margin-top: 0px;border-bottom: 2px solid rgba(22,22,22,0.05);padding-bottom: 10px;font-size: 14px;margin-bottom: 15px;font-weight: 400;'>" + appdescription[0].innerHTML  + "</div>" + content + "</div>";
 
     	//document.getElementById("modl_content").innerHTML=content;
     	$("#modl_content").html(content);
-
-      if (dropzone[0]!=undefined){
-    		modl_content_dropzone(dropzone[0].innerHTML);
-    	}
 
       if (mde[0]!=undefined){
     		modl_content_mde(mde[0].innerHTML);
@@ -1819,7 +1818,7 @@ title: "Uploaded photo",
     }
 
     function modl_content_mde_photo(){
-      document.getElementById("mde_editor_custom").innerHTML="<div><div id='mde_photoattach_results' style='overflow-x: scroll;overflow-y: hidden;white-space: nowrap;'></div>";
+      document.getElementById("mde_editor_custom").innerHTML="<div><div id='mde_photoattach_uploader' style=''><a href=\"javascript:fetch_fordiv('/actions/post_media_photo','mde_photoattach_uploader');\">Upload images to your account</a></div><div id='mde_photoattach_results' style='overflow-x: scroll;overflow-y: hidden;white-space: nowrap;'></div>";
 
       fetch_fordiv("/ajax/user_media_photos","mde_photoattach_results");
     }

@@ -1,0 +1,101 @@
+s.system_memory(150)
+s.system_maxtime(200)
+s.include("/system.ssc")
+s.template("/templates/modl.html")
+f.permission_user_loggedin()
+f.set_pagetitle("Upload photos to your account")
+f.set_pagedescription("Just storage...")
+
+
+v.file_uploaded=s.file_uploaded()
+
+if v.file_uploaded true
+  //get file name and save to disk with a random name in a temp folder
+  v.filename=s.file_uploaded_name()
+  v.timestamp=s.timestamp()
+  v.random = s.random_string(10)
+  v.newname="v.timestamp v.random - v.filename"
+
+  //if file saved to disk we can upload
+  v.filesaved=s.file_uploaded_save("/resources/tmp/v.newname")
+  if v.filesaved true
+
+    v.file_name=s.file_uploaded_name()
+    v.file_size=s.file_uploaded_size()
+    v.file_type=s.file_uploaded_type()
+    v.imagesgot=f.get_user_media_photos()
+    v.imagesallowed=200
+    v.usertype=f.get_user_type()
+    v.imagesize=800
+    if v.usertype=="normal"
+      v.imagesallowed=200
+      v.imagesize=800
+    end
+    if v.usertype=="mod"
+      v.imagesallowed=500
+      v.imagesize=1000
+    end
+    if v.usertype=="bug"
+      v.imagesallowed=500
+      v.imagesize=1000
+    end
+    if v.usertype=="build"
+      v.imagesallowed=4000
+      v.imagesize=2000
+    end
+    if v.usertype=="buildlead"
+      v.imagesallowed=4000
+      v.imagesize=2000
+    end
+    if v.usertype=="admin"
+      v.imagesallowed=6000
+      v.imagesize=4000
+    end
+    if v.usertype=="owner"
+      v.imagesallowed=10000
+      v.imagesize=4000
+    end
+
+    v.allowed=true
+
+    if v.imagesgot>=v.imagesallowed
+      v.allowed=false
+    end
+
+    v.resize=s.file_image_resize("/resources/tmp/v.newname",v.imagesize)
+    v.baseimage=s.file_read_base64("/resources/tmp/v.newname")
+
+    if v.allowed true
+      if v.resize true
+        v.timestamp=s.timestamp()
+        v.linkcode=f.generate_linkcode("storage_images")
+        v.idcodeuse=s.md5(v.linkcode)
+        v.tablestorage=s.string_trim(v.idcodeuse,1)
+        v.query=s.mysql_insert("INSERT INTO storage_images(user, date, linkcode, storage) VALUES('sv.user_id', 'v.timestmap','v.linkcode','v.tablestorage')")
+        if not v.query false
+          v.imagestorage=s.mysql_insert("INSERT INTO storage_images_v.tablestorage(image, code) VALUES('v.query', 'v.baseimage')")
+
+          t.content("<div class='box'><h3 style='margin-top:0px;'>Image uploaded</h3><div>Here is the link to the file<pre>gv.system_domainimages/account_media_photo/v.linkcode/image.jpg</pre></div></div>")
+        else
+          t.content("We are unable to save the image...")
+        end
+      else
+        t.content("We are unable to scale the image...")
+      end
+    else
+      t.content("This image cant be saved, you might have hit your account limit or this may not be an image.")
+    end
+  else
+    t.content("We where unable to save the file to disk... Try again in a few minutes...")
+  end
+
+  //clear resources
+  v.baseimage=false
+  v.delete=s.file_delete("/resources/tmp/v.newname")
+else
+
+  t.content('<form class="dropzone" id="my-awesome-dropzone"></form>');
+  t.content('<div id="file_uploaded"></div>');
+  t.content("<checkupaction action='dropzone'>/actions/post_media_photo</div></checkupaction>")
+end
+end
