@@ -71,7 +71,7 @@ if v.file_uploaded true
         v.linkcode=f.generate_linkcode("storage_images")
         v.idcodeuse=s.md5(v.linkcode)
         v.tablestorage=s.string_trim(v.idcodeuse,1)
-        v.query=s.mysql_insert("INSERT INTO storage_images(user, date, linkcode, storage) VALUES('sv.user_id', 'v.timestmap','v.linkcode','v.tablestorage')")
+        v.query=s.mysql_insert("INSERT INTO storage_images(user, date, linkcode, storage) VALUES('sv.user_id', 'v.timestamp','v.linkcode','v.tablestorage')")
         if not v.query false
           v.imagestorage=s.mysql_insert("INSERT INTO storage_images_v.tablestorage(image, code) VALUES('v.query', 'v.baseimage')")
 
