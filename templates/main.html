@@ -1825,7 +1825,7 @@ title: "Uploaded photo",
     }
 
     function modl_content_mde_photo(){
-      document.getElementById("mde_editor_custom").innerHTML="<div><div id='mde_photoattach_uploader' style=''><a href=\"javascript:fetch_fordiv('/actions/post_media_photo','mde_photoattach_uploader');\">Upload images to your account</a></div><div id='mde_photoattach_results' style='overflow-x: scroll;overflow-y: hidden;white-space: nowrap;'></div>";
+      document.getElementById("mde_editor_custom").innerHTML="<div><div id='mde_photoattach_uploader' style=''><a href=\"javascript:modl('/actions/post_media_photo');\">Upload images to your account</a></div><div id='mde_photoattach_results' style='overflow-x: scroll;overflow-y: hidden;white-space: nowrap;'></div>";
 
       fetch_fordiv("/ajax/user_media_photos","mde_photoattach_results");
     }
