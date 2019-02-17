@@ -94,8 +94,7 @@ if v.file_uploaded true
   v.delete=s.file_delete("/resources/tmp/v.newname")
 else
 
-  t.content('<div id="my-awesome-dropzone" class="dropzone"><div style="
-text-align: center;padding-top: 30px;">Click or drop images here to upload</div></div>');
+  t.content('<form class="dropzone" id="my-awesome-dropzone"></form>');
   t.content('<div id="file_uploaded"></div>');
   t.content("<checkupaction action='dropzone'>/actions/post_media_photo</div></checkupaction>")
 end
