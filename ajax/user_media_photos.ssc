@@ -16,6 +16,6 @@ end
 
 f.local_generate_photoinclude{
   v.file=v.function_passed[0]
-  v.url="//gv.system_domain/images/account_media_photo/v.file[linkcode]/image.jpg"
-  t.content("<img src=\"v.url\" onclick=\"javascript:modl_content_mde_photo_embed('v.url');\" style=\"border-radius:5px;max-height: 100px;margin-left:2px;margin-right:2px;\">")
+
+  t.content("<img src=\"//gv.system_domain/images/account_media_photo/v.file[linkcode]/image.jpg\" onclick=\"javascript:modl_content_mde_photo_embed('//gv.system_domain/images/account_media_photo/v.file[linkcode]/image.jpg');\" style=\"border-radius:5px;max-height: 100px;margin-left:2px;margin-right:2px;\">")
 }
