@@ -22,19 +22,19 @@ else
   v.stafflist=f.get_user_stafflist()
 
   if notset uv.view
-    v.data_posts=s.mysql_select("SELECT id,user,linkcode FROM socials_updates WHERE user IN (v.following) ORDER BY id DESC LIMIT 100")
+    v.data_posts=s.mysql_select("SELECT id,user,linkcode FROM socials_updates WHERE user IN (v.following) ORDER BY id DESC LIMIT 20")
     f.set_pagetitle("Friends updates")
   else
     if uv.view=="global"
-      v.data_posts=s.mysql_select("SELECT id,user,linkcode FROM socials_updates WHERE rating>=10 ORDER BY id DESC LIMIT 100")
+      v.data_posts=s.mysql_select("SELECT id,user,linkcode FROM socials_updates WHERE rating>=10 ORDER BY id DESC LIMIT 20")
       f.set_pagetitle("Global updates")
     end
     if uv.view=="top"
-      v.data_posts=s.mysql_select("SELECT id,user,linkcode FROM socials_updates WHERE rating>=10 ORDER BY rating DESC LIMIT 100")
+      v.data_posts=s.mysql_select("SELECT id,user,linkcode FROM socials_updates WHERE rating>=10 ORDER BY rating DESC LIMIT 20")
       f.set_pagetitle("Top updates")
     end
     if uv.view=="staff"
-      v.data_posts=s.mysql_select("SELECT id,user,linkcode FROM socials_updates WHERE user IN (v.stafflist) ORDER BY id DESC LIMIT 100")
+      v.data_posts=s.mysql_select("SELECT id,user,linkcode FROM socials_updates WHERE user IN (v.stafflist) ORDER BY id DESC LIMIT 20")
       f.set_pagetitle("Staff updates")
     end
   end
