@@ -1684,7 +1684,7 @@
     }
 
     function modl_content_dropzone(urlgo){
-      var myDropzone = new Dropzone("#my-awesome-dropzone", { url: urlgo, maxFilesize: 100, timeout: 1200000, parallelUploads: 4, maxFiles: 50});
+      var myDropzone = new Dropzone("div#my-awesome-dropzone", { url: urlgo, maxFilesize: 100, timeout: 1200000, parallelUploads: 4, maxFiles: 50});
       myDropzone.on("complete", function(file) {
       	myDropzone.removeFile(file);
       });
