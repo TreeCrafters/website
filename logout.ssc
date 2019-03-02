@@ -1,0 +1,19 @@
+s.include("/system.ssc")
+f.set_pagetitle("Logout")
+
+if set cv.sessionid
+  v.sessremove=s.mysql_delete("DELETE FROM accounts_sessions WHERE session='cv.sessionid'")
+end
+
+sv.user_id=""
+sv.user_username=""
+sv.user_verified=""
+cv.sessionid=""
+
+s.session_reset()
+s.session_destroy()
+
+s.cookie_set("sessionid", "exit", "-50", gv.system_cookies)
+
+s.header("Location: /")
+t.content("<div id='js_redirect_reload'>/</div>")
