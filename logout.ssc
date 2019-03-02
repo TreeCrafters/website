@@ -1,3 +1,4 @@
+s.template("/templates/login.html")
 s.include("/system.ssc")
 f.set_pagetitle("Logout")
 
