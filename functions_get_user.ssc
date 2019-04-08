@@ -209,6 +209,8 @@ f.get_user_permissions_post_wiki{
   if v.type=="owner"
     v.allowed=true
   end
+
+  s.echo(v.allowed)
 }
 
 f.get_user_email{
