@@ -192,6 +192,25 @@ f.get_user_type{
   end
 }
 
+f.get_user_permissions_post_wiki{
+  if set v.function_passed[0]
+    v.userid=v.function_passed[0]
+  else
+    v.userid=sv.user_id
+  end
+
+  v.allowed=false
+  v.type=f.get_user_type(v.userid)
+
+  if v.type=="admin"
+    v.allowed=true
+  end
+
+  if v.type=="owner"
+    v.allowed=true
+  end
+}
+
 f.get_user_email{
   if set v.function_passed[0]
     v.userid=v.function_passed[0]

@@ -120,8 +120,12 @@ f.permission_user_staff{
   else
 		v.type=f.get_user_type()
 		if not v.type=="mod"
-			s.header("Location: /")
-	    s.quit()
+			if not v.type=="owner"
+				if not v.type=="admin"
+					s.header("Location: /")
+	    		s.quit()
+				end
+			end
 		end
   end
 }

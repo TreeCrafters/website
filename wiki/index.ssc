@@ -4,3 +4,12 @@ f.set_pagetitle("Wiki")
 f.set_pagedescription("Welcome to the Tree Crafters Wiki")
 
 t.content_middle("<bubble>Main page</bubble>")
+
+//check permissions
+v.allowed=f.get_user_permissions_post_wiki()
+if v.allowed true
+  t.content_right("<bubble>")
+  t.content_right("<h2 style='margin-top:0px;'>Editor Menu</h2>")
+  t.content_right("<a href=\"javascript:modl('/actions/post_wiki_section');\" class='sidebar_menu'>New Section</a>")
+  t.content_right("</bubble>")
+end

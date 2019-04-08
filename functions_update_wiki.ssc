@@ -1,0 +1,23 @@
+f.update_wiki_article{
+  v.id=v.function_passed[0]
+  v.content=v.function_passed[1]
+
+  v.data=s.mysql_select("SELECT * FROM wikis_articles_contents WHERE article='v.id' LIMIT 1")
+  if not v.data false
+    if set v.content
+
+      //encode content and add limits
+      v.compressed=s.base64_encode(v.content)
+      v.datecode=s.timestamp()
+      v.olddate=v.data[date]
+      v.olduser=v.data[user]
+      v.oldcon=v.data[content]
+
+      v.update=s.mysql_update("UPDATE wikis_articles SET date_updated='v.datecode' WHERE id='v.id'")
+
+      v.saveold=s.mysql_insert("INSERT INTO wikis_articles_contents_versions(article,date_org,date_new,user_org,user_new,content) VALUES('v.id','v.olddate','v.datecode','v.olduser','sv.user_id','v.oldcon')")
+
+      v.contentupdate=s.mysql_update("UPDATE wikis_articles_contents SET content='v.compressed',date='v.datecode',user='sv.user_id' WHERE article='v.id'")
+    end
+  end
+}
