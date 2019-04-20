@@ -3,7 +3,6 @@
 s.system_maxtime(40)
 
 s.include("/functions.ssc")
-s.include("/functions_get_user.ssc")
 s.include("/system_database.ssc")
 
 v.image=false
@@ -11,13 +10,12 @@ v.image=false
 v.catchall=s.system_file_original()
 v.catchall=s.string_replace("/index.ssc","",v.catchall)
 v.catchall=s.string_replace_pattern("([0-9]*).jpg", "", v.catchall)
-v.catchall=s.string_replace("/images/account_banner/","",v.catchall)
+v.catchall=s.string_replace("/images/wiki_article_image/","",v.catchall)
 v.catchall=s.string_replace("/","",v.catchall)
 v.lookupcode=s.string_clean(v.catchall)
 
 if set v.lookupcode
-	v.userid=f.get_user_id(v.lookupcode)
-	v.data_db=s.mysql_select("SELECT code FROM accounts_banners WHERE user='v.userid' LIMIT 1")
+	v.data_db=s.mysql_select("SELECT code FROM wikis_article_images WHERE section='v.lookupcode' LIMIT 1")
 	v.image=v.data_db[code]
 end
 
