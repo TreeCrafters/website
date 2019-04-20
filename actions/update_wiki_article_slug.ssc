@@ -24,7 +24,7 @@ if set pv.slug
 
   if f.get_wiki_freeslug(v.newslug) true
     v.update=s.mysql_update("UPDATE wikis_articles SET linkcode='v.newslug' WHERE id='v.media'")
-    t.content("<checkupaction action='notification' type='success'>Wiki article slug has been posted</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
+    t.content("<checkupaction action='notification' type='success'>Wiki article slug has been updated</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
   else
     t.content("<checkupaction action='notification' type='success'>The slug is taken and cant be used</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
   end
