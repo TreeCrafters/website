@@ -108,7 +108,7 @@ if not v.datalookup_article false
 end
 
 t.content_right("<bubble><h2 style=\"margin-top:0px;\">Soon...</h2>")
-t.content_right("")
+t.content_right("Soon...")
 t.content_right("</bubble>")
 
 if v.pagefound false
