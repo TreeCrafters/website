@@ -103,7 +103,7 @@ if not v.datalookup_article false
   end
   v.image=f.get_wiki_article_image(v.articleid)
 
-  t.content_middle("<bubble>v.content</bubble>")
+  t.content_middle("<bubble><img src='v.image' style='max-width:90%;'><BR><BR>v.content</bubble>")
 
 end
 
