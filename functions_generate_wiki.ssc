@@ -10,3 +10,25 @@ f.generate_wiki_section{
   t.content_middle("<bubble><a href='/wiki/v.data[linkcode]'><h2 style='margin-top:0px;'>v.data[title]</h2></a>v.description</bubble>")
 
 }
+
+f.generate_wiki_article{
+	v.data=v.function_passed[0]
+  v.data_db=s.mysql_select("SELECT * FROM wikis_articles_contents WHERE article='v.data[id]' LIMIT 1")
+  if not v.data_db false
+    v.description=s.string_base64_decode(v.data_db[content])
+    v.description=f.clean_md(v.description)
+    v.description=s.string_trim_utf8(v.description,420)
+    v.size_after=s.string_length(v.description)
+    if v.size_after>=415
+      v.description="v.description&hellip;"
+    end
+
+    v.description=s.markdown(v.description)
+    v.description=s.string_brokenhtml(v.description)
+  else
+    v.description="No description for this article"
+  end
+
+  t.content_middle("<bubble><a href='/wiki/v.data[linkcode]'><h2 style='margin-top:0px;'>v.data[title]</h2></a>v.description</bubble>")
+
+}

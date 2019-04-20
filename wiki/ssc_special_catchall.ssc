@@ -13,6 +13,21 @@ v.pagefound=false
 v.datalookup_section=s.mysql_select("SELECT * FROM wikis_sections WHERE visible='1' AND linkcode='v.wikipage' LIMIT 1")
 if not v.datalookup_section false
   v.pagefound=true
+
+  v.sectionfound=v.datalookup_section[id]
+
+  //check permissions
+  v.allowed=f.get_user_permissions_post_wiki()
+  if v.allowed true
+    t.content_right("<bubble>")
+    t.content_right("<h2 style='margin-top:0px;'>Editor Menu</h2>")
+    t.content_right("<a href=\"javascript:modl('/actions/post_wiki_article?section=v.sectionfound');\" class='sidebar_menu'>New article</a>")
+    t.content_right("<a href=\"javascript:modl('/actions/update_wiki_section_title?section=v.sectionfound');\" class='sidebar_menu'>Update section title</a>")
+    t.content_right("<a href=\"javascript:modl('/actions/update_wiki_section_description?section=v.sectionfound');\" class='sidebar_menu'>Update section description</a>")
+    t.content_right("<a href=\"javascript:modl('/actions/update_wiki_section_image?section=v.sectionfound');\" class='sidebar_menu'>Update section image</a>")
+    t.content_right("</bubble>")
+  end
+
   v.data_desc=s.mysql_select("SELECT * FROM wikis_sections_descriptions WHERE section='v.data[id]' LIMIT 1")
   if not v.data_desc false
     v.description=s.string_base64_decode(v.data_desc[content])
@@ -21,6 +36,20 @@ if not v.datalookup_section false
   end
   f.set_pagetitle("v.datalookup_section[title] - Wiki")
   f.set_pagedescription("v.description")
+
+  v.datalookup_feedarticles=s.mysql_select("SELECT * FROM wikis_articles WHERE visible='1' AND section='v.sectionfound' ORDER BY title DESC LIMIT 30")
+  if not v.datalookup_feedarticles false
+    if set v.datalookup_feedarticles[title]
+      f.generate_wiki_article(v.datalookup_feedarticles)
+    else
+      s.array_loop("generate_wiki_article",v.datalookup_feedarticles)
+    end
+  else
+    t.content_right("<bubble>")
+    t.content_right("No articles found in this section...")
+    t.content_right("</bubble>")
+  end
+
 end
 
 
