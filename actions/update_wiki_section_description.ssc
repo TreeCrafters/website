@@ -1,0 +1,27 @@
+s.include("/system.ssc")
+s.template("/templates/modl.html")
+f.permission_user_staff()
+f.set_pagetitle("Update wiki section description")
+f.set_pagedescription("Enter in the updated description for this section")
+
+v.media=s.string_clean(uv.section)
+
+//check permissions
+v.allowed=f.get_user_permissions_post_wiki()
+if v.allowed false
+  s.header("Location: /")
+  s.quit()
+end
+
+v.data_con=s.mysql_select("SELECT * FROM wikis_sections_descriptions WHERE section='v.media' LIMIT 1")
+if not v.data_con false
+  v.content=v.data_con[content]
+  v.content=s.base64_decode(v.content)
+  v.content=s.string_clean(v.content)
+  if set pv.content
+    v.update=f.update_wiki_section(v.media,pv.content)
+    t.content("<checkupaction action='notification' type='success'>Wiki section has been updated</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
+  else
+    t.content('<form enctype="multipart/form-data" action="/actions/update_wiki_section_description?section=v.media" method="POST"><textarea name="content" style="overflow-y:hidden;width:100%;" id="js_mde">v.content</textarea><BR><BR><input id="button" type="submit" value="Update section"></form>')
+  end
+end
