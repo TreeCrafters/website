@@ -13,6 +13,14 @@ f.post_wiki_article{
 
     v.linkcode=f.generate_linkcode("wikis_articles")
 
+    v.newslug=s.string_clean(v.title)
+    v.newslug=s.string_replace(" ","-",v.newslug)
+    v.newslug=s.string_username("v.newslug")
+    v.newslug=s.string_trim_utf8("v.newslug","100")
+    if f.get_wiki_freeslug(v.newslug) true
+      v.linkcode=v.newslug
+    end
+
     v.postid=s.mysql_insert("INSERT INTO wikis_articles(user,date,linkcode,title,section) VALUES('sv.user_id','v.datecode','v.linkcode','v.title','v.section')")
     if not v.postid false
       v.postfinal=s.mysql_insert("INSERT INTO wikis_articles_contents(article,content,date,user) VALUES('v.postid','v.compressed','v.datecode','sv.user_id')")
@@ -31,6 +39,14 @@ f.post_wiki_section{
     v.description=s.string_trim_utf8(v.description,6000)
     v.description=s.base64_encode(v.description)
     v.linkcode=f.generate_linkcode("wikis_sections")
+
+    v.newslug=s.string_clean(v.title)
+    v.newslug=s.string_replace(" ","-",v.newslug)
+    v.newslug=s.string_username("v.newslug")
+    v.newslug=s.string_trim_utf8("v.newslug","100")
+    if f.get_wiki_freeslug(v.newslug) true
+      v.linkcode=v.newslug
+    end
 
     v.postid=s.mysql_insert("INSERT INTO wikis_sections(linkcode,title) VALUES('v.linkcode','v.title')")
     if not v.postid false

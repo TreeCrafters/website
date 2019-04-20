@@ -1,3 +1,19 @@
+f.get_wiki_freeslug{
+  v.slug=v.function_passed[0]
+  v.return=true
+
+  v.data_article=s.mysql_select("SELECT date FROM wikis_articles WHERE linkcode='v.slug' LIMIT 1")
+  if not v.data_article false
+    v.return=false
+  end
+  v.data_section=s.mysql_select("SELECT date FROM wikis_sections WHERE linkcode='v.slug' LIMIT 1")
+  if not v.data_section false
+    v.return=false
+  end
+
+  s.echo(v.return)
+}
+
 f.get_wiki_article_image{
   if set v.function_passed[0]
     v.article=v.function_passed[0]

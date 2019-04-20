@@ -1,0 +1,30 @@
+s.include("/system.ssc")
+s.template("/templates/modl.html")
+f.permission_user_staff()
+f.set_pagetitle("Change wiki article slug")
+f.set_pagedescription("The slug is the url param that is used.")
+
+v.media=s.string_clean(uv.article)
+
+//check permissions
+v.allowed=f.get_user_permissions_post_wiki()
+if v.allowed false
+  s.header("Location: /")
+  s.quit()
+end
+
+if set pv.slug
+  v.newslug=s.string_clean(pv.slug)
+  v.newslug=s.string_replace(" ","-",v.newslug)
+  v.newslug=s.string_username("v.newslug")
+  v.newslug=s.string_trim_utf8("v.newslug","100")
+
+  if f.get_wiki_freeslug(v.newslug) true
+    v.update=s.mysql_update("UPDATE wikis_articles SET linkcode='v.newslug' WHERE id='v.media'")
+    t.content("<checkupaction action='notification' type='success'>Wiki article slug has been posted</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
+  else
+    t.content("<checkupaction action='notification' type='success'>The slug is taken and cant be used</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
+  end
+else
+  t.content('<form enctype="multipart/form-data" action="/actions/update_wiki_article_slug?article=v.media" method="POST"><h3>New Slug</h3>We will compress down to remove special characters and replace spaces with -.<input type="text" name="slug"><BR><BR><input id="button" type="submit" value="Update slug"></form>')
+end
