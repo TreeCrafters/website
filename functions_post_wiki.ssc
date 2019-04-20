@@ -13,7 +13,7 @@ f.post_wiki_article{
 
     v.linkcode=f.generate_linkcode("wikis_articles")
 
-    v.postid=s.mysql_insert("INSERT INTO wikis_articles(user,date,linkcode,title,section) VALUES('sv.user_id','v.datecode','v.linkcode','v.title','section')")
+    v.postid=s.mysql_insert("INSERT INTO wikis_articles(user,date,linkcode,title,section) VALUES('sv.user_id','v.datecode','v.linkcode','v.title','v.section')")
     if not v.postid false
       v.postfinal=s.mysql_insert("INSERT INTO wikis_articles_contents(article,content,date,user) VALUES('v.postid','v.compressed','v.datecode','sv.user_id')")
     end
