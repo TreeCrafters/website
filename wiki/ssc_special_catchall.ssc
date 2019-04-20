@@ -53,6 +53,22 @@ if not v.datalookup_section false
 end
 
 
+v.datalookup_article=s.mysql_select("SELECT * FROM wikis_articles WHERE visible='1' AND linkcode='v.wikipage' LIMIT 1")
+if not v.datalookup_article false
+  v.pagefound=true
+
+  v.sectionname=s.mysql_select("SELECT * FROM wikis_sections WHERE id='v.datalookup_article[section]' LIMIT 1")
+  if not v.sectionname false
+    v.section=v.sectionname[title]
+  end
+
+  v.userposter=f.get_user_name_full(v.datalookup_article[user])
+  f.set_pagetitle("v.datalookup_section[title] - Wiki")
+  f.set_pagedescription("Posted in the v.section section by v.userposter")
+
+end
+
+
 if v.pagefound false
   t.content_middle("<bubble>Sorry we cant find this page anymore...</bubble>")
 end
