@@ -4,7 +4,7 @@ f.permission_user_loggedin()
 f.set_pagetitle("Update section preview image")
 f.set_pagedescription("This is the preview image we show users on the wiki section")
 
-v.media=s.string_clean(pv.section)
+v.media=s.string_clean(uv.section)
 
 //check permissions
 v.allowed=f.get_user_permissions_post_wiki()
