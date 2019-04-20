@@ -14,7 +14,7 @@ end
 
 v.data_feeds=s.mysql_select("SELECT * FROM wikis_sections WHERE visible='1' ORDER BY title DESC LIMIT 30")
 if not v.data_feeds false
-  if set v.data_feeds[user]
+  if set v.data_feeds[title]
     f.generate_wiki_section(v.data_feeds)
   else
     s.array_loop("generate_wiki_section",v.data_feeds)
