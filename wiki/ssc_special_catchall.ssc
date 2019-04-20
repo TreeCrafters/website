@@ -38,7 +38,7 @@ if not v.datalookup_section false
   f.set_pagetitle("v.datalookup_section[title] - Wiki")
   f.set_pagedescription("v.description")
 
-  v.datalookup_feedarticles=s.mysql_select("SELECT * FROM wikis_articles WHERE visible='1' AND section='v.sectionfound' ORDER BY title DESC LIMIT 30")
+  v.datalookup_feedarticles=s.mysql_select("SELECT * FROM wikis_articles WHERE visible='1' AND section='v.sectionfound' ORDER BY date DESC LIMIT 30")
   if not v.datalookup_feedarticles false
     if set v.datalookup_feedarticles[title]
       f.generate_wiki_article(v.datalookup_feedarticles)
