@@ -92,6 +92,19 @@ if not v.datalookup_article false
     t.content_right("</bubble>")
   end
 
+  v.artcontent=s.mysql_select("SELECT * FROM wikis_articles_contents WHERE article='v.articleid' LIMIT 1")
+  if not v.artcontent false
+    v.content=s.string_base64_decode(v.artcontent[content])
+    v.content=f.clean_md(v.content)
+    v.content=s.markdown(v.content)
+    v.content=s.string_brokenhtml(v.content)
+  else
+    v.content="No content for this article"
+  end
+  v.image=f.get_wiki_article_image(v.articleid)
+
+  t.content_middle("<bubble>v.content</bubble>")
+
 end
 
 
