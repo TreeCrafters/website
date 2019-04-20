@@ -1,0 +1,21 @@
+s.include("/system.ssc")
+s.template("/templates/modl.html")
+f.permission_user_staff()
+f.set_pagetitle("New wiki article")
+f.set_pagedescription("Enter in a title and the content for this new article")
+
+v.section=s.string_clean(uv.section)
+
+//check permissions
+v.allowed=f.get_user_permissions_post_wiki()
+if v.allowed false
+  s.header("Location: /")
+  s.quit()
+end
+
+if set pv.content
+  v.update=f.post_wiki_article(v.section,pv.title,pv.content)
+  t.content("<checkupaction action='notification' type='success'>Wiki article has been posted</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
+else
+  t.content('<form enctype="multipart/form-data" action="/actions/post_wiki_article?section=v.section" method="POST"><h3>Title</h3><input type="text" name="title"><textarea name="content" style="overflow-y:hidden;width:100%;" id="js_mde"></textarea><BR><BR><input id="button" type="submit" value="Post article"></form>')
+end

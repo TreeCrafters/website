@@ -20,7 +20,7 @@ if not v.data_feeds false
     s.array_loop("generate_wiki_section",v.data_feeds)
   end
 else
-  t.content_right("<bubble>")
-  t.content_right("No content found...")
-  t.content_right("</bubble>")
+  t.content_middle("<bubble>")
+  t.content_middle("No content found...")
+  t.content_middle("</bubble>")
 end

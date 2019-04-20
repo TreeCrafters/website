@@ -28,7 +28,7 @@ if not v.datalookup_section false
     t.content_right("</bubble>")
   end
 
-  v.data_desc=s.mysql_select("SELECT * FROM wikis_sections_descriptions WHERE section='v.data[id]' LIMIT 1")
+  v.data_desc=s.mysql_select("SELECT * FROM wikis_sections_descriptions WHERE section='v.sectionfound' LIMIT 1")
   if not v.data_desc false
     v.description=s.string_base64_decode(v.data_desc[content])
   else
@@ -45,9 +45,9 @@ if not v.datalookup_section false
       s.array_loop("generate_wiki_article",v.datalookup_feedarticles)
     end
   else
-    t.content_right("<bubble>")
-    t.content_right("No articles found in this section...")
-    t.content_right("</bubble>")
+    t.content_middle("<bubble>")
+    t.content_middle("No articles found in this section...")
+    t.content_middle("</bubble>")
   end
 
 end
