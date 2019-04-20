@@ -85,7 +85,7 @@ if not v.datalookup_article false
   if v.allowed true
     t.content_right("<bubble>")
     t.content_right("<h2 style='margin-top:0px;'>Editor Menu</h2>")
-    t.content_right("<a href=\"javascript:modl('/actions/update_wiki_article_title?article=v.articleid');\" class='sidebar_menu'>Update artile title</a>")
+    t.content_right("<a href=\"javascript:modl('/actions/update_wiki_article_title?article=v.articleid');\" class='sidebar_menu'>Update article title</a>")
     t.content_right("<a href=\"javascript:modl('/actions/update_wiki_article_content?article=v.articleid');\" class='sidebar_menu'>Update article content</a>")
     t.content_right("<a href=\"javascript:modl('/actions/update_wiki_article_image?article=v.articleid');\" class='sidebar_menu'>Update article image</a>")
     t.content_right("<a href=\"javascript:modl('/actions/update_wiki_article_slug?article=v.articleid');\" class='sidebar_menu'>Update article slug</a>")

@@ -22,6 +22,6 @@ if not v.data_con false
     v.update=f.update_wiki_article(v.media,pv.content)
     t.content("<checkupaction action='notification' type='success'>Wiki article has been updated</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
   else
-    t.content('<form enctype="multipart/form-data" action="/actions/update_wiki_article?article=v.media" method="POST"><textarea name="content" style="overflow-y:hidden;width:100%;" id="js_mde">v.content</textarea><BR><BR><input id="button" type="submit" value="Update article"></form>')
+    t.content('<form enctype="multipart/form-data" action="/actions/update_wiki_article_content?article=v.media" method="POST"><textarea name="content" style="overflow-y:hidden;width:100%;" id="js_mde">v.content</textarea><BR><BR><input id="button" type="submit" value="Update article"></form>')
   end
 end
