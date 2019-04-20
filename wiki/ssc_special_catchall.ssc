@@ -36,7 +36,7 @@ if not v.datalookup_section false
     v.description="No description for this section"
   end
 
-  v.description=s.string_base64_decode(v.data_db[content])
+  v.description=s.string_base64_decode(v.description)
   v.description=f.clean_md(v.description)
   v.description=s.string_trim_utf8(v.description,120)
   v.size_after=s.string_length(v.description)
