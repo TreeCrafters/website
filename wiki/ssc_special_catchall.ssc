@@ -8,6 +8,22 @@ v.catchall=s.string_replace("/index.ssc","",v.catchall)
 v.catchall=s.string_replace("/wiki/","",v.catchall)
 v.wikipage=s.string_clean(v.catchall)
 
+v.pagefound=false
+
+v.datalookup_section=s.mysql_select("SELECT * FROM wikis_sections WHERE visible='1' AND linkcode='v.wikipage' LIMIT 1")
+if not v.datalookup_section false
+  v.pagefound=true
+  v.data_desc=s.mysql_select("SELECT * FROM wikis_sections_descriptions WHERE section='v.data[id]' LIMIT 1")
+  if not v.data_desc false
+    v.description=f.string_base64_decode(v.data_db[content])
+  else
+    v.description="No description for this section"
+  end
+  f.set_pagetitle("v.datalookup_section[title] - Wiki")
+  f.set_pagedescription("v.description")
+end
 
 
-t.content_middle("<bubble>find content</bubble>")
+if v.pagefound false
+  t.content_middle("<bubble>Sorry we cant find this page anymore...</bubble>")
+end
