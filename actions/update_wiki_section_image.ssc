@@ -1,10 +1,10 @@
 s.include("/system.ssc")
 s.template("/templates/modl.html")
 f.permission_user_loggedin()
-f.set_pagetitle("Update article preview image")
+f.set_pagetitle("Update section preview image")
 f.set_pagedescription("This is the preview image we show users on the wiki section")
 
-v.media=s.string_clean(pv.article)
+v.media=s.string_clean(pv.section)
 
 //check permissions
 v.allowed=f.get_user_permissions_post_wiki()
@@ -30,8 +30,8 @@ if v.file_uploaded true
 
     if v.resize true
       v.timestampuse=s.timestamp()
-      v.queryx=s.mysql_delete("DELETE FROM wikis_articles_images WHERE article='v.media'")
-      v.query=s.mysql_insert("INSERT INTO wikis_articles_images(article, code, date) VALUES('v.media', 'v.baseimage','v.timestampuse')")
+      v.queryx=s.mysql_delete("DELETE FROM wikis_sections_images WHERE section='v.media'")
+      v.query=s.mysql_insert("INSERT INTO wikis_sections_images(section, code, date) VALUES('v.media', 'v.baseimage','v.timestampuse')")
       t.content("<checkupaction action='notification' type='success'>Image has been updated.</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
     else
       t.content("<checkupaction action='notification' type='error'>Strange, the image scale failed.</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
@@ -40,5 +40,5 @@ if v.file_uploaded true
     t.content("<checkupaction action='notification' type='error'>We where unable to save the file to disk... Try again in a few minutes...</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
   end
 else
-  t.content('<form enctype="multipart/form-data" action="/actions/update_article_image?article=v.media" method="POST"><input name="MAX_FILE_SIZE" value="10000000" type="value" style="display:none;"><input name="file" type="file"><BR><BR><input id="button" type="submit" value="Upload Image"></form>')
+  t.content('<form enctype="multipart/form-data" action="/actions/update_wiki_section_image?section=v.media" method="POST"><input name="MAX_FILE_SIZE" value="10000000" type="value" style="display:none;"><input name="file" type="file"><BR><BR><input id="button" type="submit" value="Upload Image"></form>')
 end
