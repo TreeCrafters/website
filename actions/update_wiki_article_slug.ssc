@@ -15,6 +15,7 @@ end
 
 if set pv.slug
   v.newslug=s.string_clean(pv.slug)
+  v.newslug=s.string_lowercase("v.newslug")
   v.newslug=s.string_replace(" ","-",v.newslug)
   v.newslug=s.string_username("v.newslug")
   v.newslug=s.string_trim_utf8("v.newslug","100")
