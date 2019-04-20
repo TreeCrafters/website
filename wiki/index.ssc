@@ -3,13 +3,24 @@ s.template("/templates/main.html")
 f.set_pagetitle("Wiki")
 f.set_pagedescription("Welcome to the Tree Crafters Wiki")
 
-t.content_middle("<bubble>Main page</bubble>")
-
 //check permissions
 v.allowed=f.get_user_permissions_post_wiki()
 if v.allowed true
   t.content_right("<bubble>")
   t.content_right("<h2 style='margin-top:0px;'>Editor Menu</h2>")
   t.content_right("<a href=\"javascript:modl('/actions/post_wiki_section');\" class='sidebar_menu'>New Section</a>")
+  t.content_right("</bubble>")
+end
+
+v.data_feeds=s.mysql_select("SELECT * FROM wikis_sections WHERE visible='1' ORDER BY title DESC LIMIT 30")
+if not v.data_feeds false
+  if set v.data_feeds[user]
+    f.generate_wiki_section(v.data_feeds)
+  else
+    s.array_loop("generate_wiki_section",v.data_feeds)
+  end
+else
+  t.content_right("<bubble>")
+  t.content_right("No content found...")
   t.content_right("</bubble>")
 end

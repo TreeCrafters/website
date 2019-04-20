@@ -1,0 +1,12 @@
+f.generate_wiki_section{
+	v.data=v.function_passed[0]
+  v.data_db=s.mysql_select("SELECT * FROM wikis_sections_descriptions WHERE section='v.data[id]' LIMIT 1")
+  if not v.data_db false
+    v.description=f.string_base64_decode(v.data_db[content])
+  else
+    v.description="No description for this section"
+  end
+
+  t.content_middle("<bubble><a href='/wiki/v.data[linkcode]'><h2 style='margin-top:0px;'>v.data[title]</h2></a>v.description</bubble>")
+
+}
