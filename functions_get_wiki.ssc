@@ -1,0 +1,39 @@
+f.get_wiki_article_image{
+  if set v.function_passed[0]
+    v.article=v.function_passed[0]
+  end
+  v.timecode=0
+
+  v.cachecheck=f.cache_string_fetch("wiki_article_image_timecode",v.userid)
+  if not v.cachecheck=="cachnofind"
+    v.timecode=v.cachecheck
+  else
+    v.data_db=s.mysql_select("SELECT date FROM wikis_articles_images WHERE article='v.article' LIMIT 1")
+    if not v.data_db false
+      v.timecode=v.data_db[date]
+      f.cache_string_save("wiki_article_image_timecode",v.article,v.data_db[date])
+    end
+  end
+  v.timecode=s.string_replace("&#46;",".","v.timecode&#46;jpg")
+  s.echo("//gv.system_domain/images/wiki_article_image/v.article/v.timecode")
+}
+
+f.get_wiki_section_image{
+  if set v.function_passed[0]
+    v.section=v.function_passed[0]
+  end
+  v.timecode=0
+
+  v.cachecheck=f.cache_string_fetch("wiki_section_image_timecode",v.userid)
+  if not v.cachecheck=="cachnofind"
+    v.timecode=v.cachecheck
+  else
+    v.data_db=s.mysql_select("SELECT date FROM wikis_sections_images WHERE section='v.section' LIMIT 1")
+    if not v.data_db false
+      v.timecode=v.data_db[date]
+      f.cache_string_save("wiki_section_image_timecode",v.section,v.data_db[date])
+    end
+  end
+  v.timecode=s.string_replace("&#46;",".","v.timecode&#46;jpg")
+  s.echo("//gv.system_domain/images/wiki_section_image/v.section/v.timecode")
+}
