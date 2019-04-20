@@ -15,7 +15,7 @@ v.catchall=s.string_replace("/","",v.catchall)
 v.lookupcode=s.string_clean(v.catchall)
 
 if set v.lookupcode
-	v.data_db=s.mysql_select("SELECT code FROM wikis_article_images WHERE section='v.lookupcode' LIMIT 1")
+	v.data_db=s.mysql_select("SELECT code FROM wikis_articles_images WHERE section='v.lookupcode' LIMIT 1")
 	v.image=v.data_db[code]
 end
 
