@@ -15,7 +15,7 @@ if not v.datalookup_section false
   v.pagefound=true
   v.data_desc=s.mysql_select("SELECT * FROM wikis_sections_descriptions WHERE section='v.data[id]' LIMIT 1")
   if not v.data_desc false
-    v.description=f.string_base64_decode(v.data_db[content])
+    v.description=s.string_base64_decode(v.data_db[content])
   else
     v.description="No description for this section"
   end
