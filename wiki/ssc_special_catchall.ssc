@@ -40,7 +40,7 @@ if not v.datalookup_section false
   v.description=s.markdown(v.description)
   v.description=s.string_brokenhtml(v.description)
 
-  f.set_pagetitle("v.datalookup_section[title] - Wiki")
+  f.set_pagetitle("v.datalookup_section[title]")
 
   t.content_middle("<bubble>v.description</bubble>")
 
@@ -71,7 +71,7 @@ if not v.datalookup_article false
 
   v.articleid=v.datalookup_article[id]
   v.userposter=f.get_user_name_full(v.datalookup_article[user])
-  f.set_pagetitle("v.datalookup_article[title] - Wiki")
+  f.set_pagetitle("v.datalookup_article[title]")
   f.set_pagedescription("Posted in the v.section section by v.userposter")
 
   //check permissions
