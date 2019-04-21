@@ -14,7 +14,7 @@ f.generate_wiki_section{
 		v.number="0"
 	end
 
-  t.content_middle("<bubble style=\"background-image:url('v.image');background-size: cover;background-position: center center;\"><div style='max-width:660px;margin:0px auto;margin-top:50px;margin-bottom:50px;padding: 10px;background:rgba(22, 22, 22, 0.8);-webkit-backdrop-filter: blur(5px);border-radius: 8px;text-align:center;color:rgb(255,255,255) !important;font-weight:500;font-size:16px;'><a href='/wiki/v.data[linkcode]'><h2 style='margin-top:0px;font-size: 32px;color:rgb(255,255,255);'>v.data[title]</h2></a>We have v.number articles in this wiki section.</div></bubble>")
+  t.content_middle("<bubble style=\"background-image:url('v.image');background-size: cover;background-position: center center;\"><div style='max-width:660px;margin:0px auto;margin-top:50px;margin-bottom:50px;padding: 10px;background:rgba(22, 22, 22, 0.8);-webkit-backdrop-filter: blur(5px);border-radius: 8px;text-align:center;color:rgb(255,255,255) !important;font-weight:500;font-size:16px;'><a href='/wiki/v.data[linkcode]'><h2 style='margin-top:0px;font-size: 32px;color:rgb(255,255,255);'>v.data[title]</h2></a>We have v.number article(s) in this wiki section.</div></bubble>")
 
 }
 
@@ -22,7 +22,8 @@ f.generate_wiki_article{
 	v.data=v.function_passed[0]
   v.image=f.get_wiki_article_image(v.data[id])
 	v.dateago=s.convert_timestamp_ago(v.data[date],"true")
+	v.userposter=f.get_user_name_full(v.data[user])
 
-  t.content_middle("<bubble style=\"background-image:url('v.image');background-size: cover;background-position: center center;\"><div style='max-width:660px;margin:0px auto;margin-top:50px;margin-bottom:50px;padding: 10px;background:rgba(22, 22, 22, 0.8);-webkit-backdrop-filter: blur(5px);border-radius: 8px;text-align:center;color:rgb(255,255,255) !important;font-weight:500;font-size:16px;'><a href='/wiki/v.data[linkcode]'><h2 style='margin-top:0px;font-size: 32px;color:rgb(255,255,255);'>v.data[title]</h2></a>Posted v.dateago&hellip;</div></bubble>")
+  t.content_middle("<bubble style=\"background-image:url('v.image');background-size: cover;background-position: center center;\"><div style='max-width:660px;margin:0px auto;margin-top:50px;margin-bottom:50px;padding: 10px;background:rgba(22, 22, 22, 0.8);-webkit-backdrop-filter: blur(5px);border-radius: 8px;text-align:center;color:rgb(255,255,255) !important;font-weight:500;font-size:16px;'><a href='/wiki/v.data[linkcode]'><h2 style='margin-top:0px;font-size: 32px;color:rgb(255,255,255);'>v.data[title]</h2></a>Posted v.dateago by v.userposter&#46;</div></bubble>")
 
 }
