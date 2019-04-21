@@ -15,6 +15,7 @@ if not v.datalookup_section false
   v.pagefound=true
 
   v.sectionfound=v.datalookup_section[id]
+  v.image=f.get_wiki_section_image(v.sectionfound)
 
   //check permissions
   v.allowed=f.get_user_permissions_post_wiki()
@@ -42,7 +43,7 @@ if not v.datalookup_section false
 
   f.set_pagetitle("v.datalookup_section[title]")
 
-  t.content_middle("<bubble>v.description</bubble>")
+  t.content_middle("<bubble><img src='v.image' style='max-width:100%;border-radius:5px;'><BR><BR>v.description</bubble>")
 
   v.datalookup_feedarticles=s.mysql_select("SELECT * FROM wikis_articles WHERE visible='1' AND section='v.sectionfound' ORDER BY date DESC LIMIT 30")
   if not v.datalookup_feedarticles false
