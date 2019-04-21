@@ -3,10 +3,10 @@ f.generate_wiki_section{
 
   v.image=f.get_wiki_section_image(v.data[id])
 
-	v.data=s.mysql_select("SELECT id FROM wikis_articles WHERE section='v.data[id]' LIMIT 10000")
-	if not v.data false
-		if notset v.data[id]
-			v.number=s.array_count(v.data)
+	v.listup=s.mysql_select("SELECT id FROM wikis_articles WHERE section='v.data[id]' LIMIT 10000")
+	if not v.listup false
+		if notset v.listup[id]
+			v.number=s.array_count(v.listup)
 		else
 			v.number="1"
 		end
