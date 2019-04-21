@@ -37,17 +37,12 @@ if not v.datalookup_section false
   end
 
   v.description=f.clean_md(v.description)
-  v.description=s.string_trim_utf8(v.description,120)
-  v.size_after=s.string_length(v.description)
-  if v.size_after>=115
-    v.description="v.description&hellip;"
-  end
-
   v.description=s.markdown(v.description)
   v.description=s.string_brokenhtml(v.description)
 
   f.set_pagetitle("v.datalookup_section[title] - Wiki")
-  f.set_pagedescription("v.description")
+
+  t.content_middle("<bubble>v.description</bubble>")
 
   v.datalookup_feedarticles=s.mysql_select("SELECT * FROM wikis_articles WHERE visible='1' AND section='v.sectionfound' ORDER BY date DESC LIMIT 30")
   if not v.datalookup_feedarticles false
