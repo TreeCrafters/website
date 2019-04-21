@@ -11,7 +11,7 @@ f.generate_wiki_section{
 
   v.image=f.get_wiki_section_image(v.data[id])
 
-  t.content_middle("<bubble style=\"background-image:url('v.image');background-size: cover;background-position: center center;\"><div style='max-width:660px;margin:0px auto;margin-top:50px;margin-bottom:50px;padding: 10px;background:rgba(22, 22, 22, 0.8);-webkit-backdrop-filter: blur(5px);border-radius: 8px;text-align:center;color:rgb(255,255,255);font-weight:500;font-size:16px;'><a href='/wiki/v.data[linkcode]'><h2 style='margin-top:0px;font-size: 32px;color:rgb(255,255,255);'>v.data[title]</h2></a>v.description</div></bubble>")
+  t.content_middle("<bubble style=\"background-image:url('v.image');background-size: cover;background-position: center center;\"><div style='max-width:660px;margin:0px auto;margin-top:50px;margin-bottom:50px;padding: 10px;background:rgba(22, 22, 22, 0.8);-webkit-backdrop-filter: blur(5px);border-radius: 8px;text-align:center;color:rgb(255,255,255) !important;font-weight:500;font-size:16px;'><a href='/wiki/v.data[linkcode]'><h2 style='margin-top:0px;font-size: 32px;color:rgb(255,255,255);'>v.data[title]</h2></a>v.description</div></bubble>")
 
 }
 
@@ -34,6 +34,6 @@ f.generate_wiki_article{
   end
   v.image=f.get_wiki_article_image(v.data[id])
 
-  t.content_middle("<bubble style=\"background-image:url('v.image');background-size: cover;background-position: center center;\"><div style='max-width:660px;margin:0px auto;margin-top:50px;margin-bottom:50px;padding: 10px;background:rgba(22, 22, 22, 0.8);-webkit-backdrop-filter: blur(5px);border-radius: 8px;text-align:center;color:rgb(255,255,255);font-weight:500;font-size:16px;'><a href='/wiki/v.data[linkcode]'><h2 style='margin-top:0px;font-size: 32px;color:rgb(255,255,255);'>v.data[title]</h2></a>v.description</div></bubble>")
+  t.content_middle("<bubble style=\"background-image:url('v.image');background-size: cover;background-position: center center;\"><div style='max-width:660px;margin:0px auto;margin-top:50px;margin-bottom:50px;padding: 10px;background:rgba(22, 22, 22, 0.8);-webkit-backdrop-filter: blur(5px);border-radius: 8px;text-align:center;color:rgb(255,255,255) !important;font-weight:500;font-size:16px;'><a href='/wiki/v.data[linkcode]'><h2 style='margin-top:0px;font-size: 32px;color:rgb(255,255,255);'>v.data[title]</h2></a>v.description</div></bubble>")
 
 }
