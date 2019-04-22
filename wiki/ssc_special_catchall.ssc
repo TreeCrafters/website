@@ -104,8 +104,15 @@ if not v.datalookup_article false
 
 end
 
-t.content_right("<bubble><h2 style=\"margin-top:0px;\">Soon...</h2>")
-t.content_right("Soon...")
+t.content_right("<bubble><h2 style=\"margin-top:0px;\">Sections</h2>")
+v.data_listareas=s.mysql_select("SELECT * FROM wikis_sections WHERE visible='1' ORDER BY title DESC LIMIT 30")
+if not v.data_listareas false
+  if set v.data_listareas[title]
+    f.generate_wiki_section_list(v.data_listareas)
+  else
+    s.array_loop("generate_wiki_section_list",v.data_listareas)
+  end
+end
 t.content_right("</bubble>")
 
 if v.pagefound false

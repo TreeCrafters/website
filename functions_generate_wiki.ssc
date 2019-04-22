@@ -18,6 +18,26 @@ f.generate_wiki_section{
 
 }
 
+f.generate_wiki_section_list{
+	v.data=v.function_passed[0]
+
+  v.image=f.get_wiki_section_image(v.data[id])
+
+	v.listup=s.mysql_select("SELECT id FROM wikis_articles WHERE section='v.data[id]' LIMIT 10000")
+	if not v.listup false
+		if notset v.listup[id]
+			v.number=s.array_count(v.listup)
+		else
+			v.number="1"
+		end
+	else
+		v.number="0"
+	end
+
+  t.content_middle("<a href='/wiki/v.data[linkcode]' class='sidebar_menu'>v.data[title] (v.number)</a>")
+
+}
+
 f.generate_wiki_article{
 	v.data=v.function_passed[0]
   v.image=f.get_wiki_article_image(v.data[id])
