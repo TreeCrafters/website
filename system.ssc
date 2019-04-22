@@ -40,15 +40,14 @@ end
 
 if not sv.user_id==0
   t.header_left("<img src='/logo.png' style='max-height:40px;'>")
-  t.header_left("<a href=\"/\" class='button'>Feed</a>")
-  t.header_left("<a href=\"/profile/sv.user_username\" class='button'>Profile</a>")
+  t.header_left("<a href=\"/\" class='button'><i class="fas fa-rss"></i> Feed</a>")
+  t.header_left("<a href=\"/profile/sv.user_username\" class='button'><i class="fas fa-user"></i> Profile</a>")
 end
-t.header_left("<a href=\"/wiki\" class='button'>Wiki</a>")
-t.header_left("<a href=\"#\" class='button'>News</a>")
+t.header_left("<a href=\"/wiki\" class='button'><i class="fas fa-book"></i> Wiki</a>")
 
 if not sv.user_id==0
-  t.header_right("<a href=\"javascript:modl('/actions/post_social_update');\" class='button'>New Update</a>")
-  t.header_right("<a href=\"/account\" class='button'>Settings</a>")
+  t.header_right("<a href=\"javascript:modl('/actions/post_social_update');\" class='button'><i class="fas fa-pencil-alt"></i> New Update</a>")
+  t.header_right("<a href=\"/account\" class='button'><i class="fas fa-cogs"></i> Settings</a>")
 else
   t.header_right("<a href=\"/login\" class='button'>Login</a>")
   t.header_right("<a href=\"/register\" class='button'>Register</a>")
