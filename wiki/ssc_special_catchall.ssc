@@ -43,7 +43,9 @@ if not v.datalookup_section false
 
   f.set_pagetitle("v.datalookup_section[title]")
 
-  t.content_middle("<bubble><img src='v.image' style='max-width:100%;border-radius:5px;'><BR><BR>v.description</bubble>")
+  t.content_middle("<bubble style=\"min-height:300px;background-image:url('v.image');background-size: cover;background-position: center center;\"></bubble>")
+
+  t.content_middle("<bubble>v.description</bubble>")
 
   v.datalookup_feedarticles=s.mysql_select("SELECT * FROM wikis_articles WHERE visible='1' AND section='v.sectionfound' ORDER BY date DESC LIMIT 30")
   if not v.datalookup_feedarticles false
@@ -97,8 +99,8 @@ if not v.datalookup_article false
     v.content="No content for this article"
   end
   v.image=f.get_wiki_article_image(v.articleid)
-
-  t.content_middle("<bubble><img src='v.image' style='max-width:100%;border-radius:5px;'><BR><BR>v.content</bubble>")
+  t.content_middle("<bubble style=\"min-height:300px;background-image:url('v.image');background-size: cover;background-position: center center;\"></bubble>")
+  t.content_middle("<bubble>v.content</bubble>")
 
 end
 
