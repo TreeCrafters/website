@@ -34,7 +34,7 @@ f.generate_wiki_section_list{
 		v.number="0"
 	end
 
-  t.content_middle("<a href='/wiki/v.data[linkcode]' class='sidebar_menu'>v.data[title] (v.number)</a>")
+  t.content_right("<a href='/wiki/v.data[linkcode]' class='sidebar_menu'>v.data[title] (v.number)</a>")
 
 }
 
