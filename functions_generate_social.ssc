@@ -109,7 +109,7 @@ f.generate_social_update_small{
       v.size_after=s.string_length(v.content)
       if v.size_after>=415
         v.content="v.content&hellip;"
-        v.bottomlink="<p><a href='/update/v.linkcode'>View full update</a></p>"
+        v.bottomlink="<p><a href='/update/v.linkcode' class='post_viewall'>View full update</a></p>"
       else
         v.bottomlink="<div></div>"
       end
@@ -148,7 +148,7 @@ f.generate_social_update_small{
     v.actions="<div></div>"
 
     if v.user==sv.user_id
-      v.actions="<div style='float:right;background: #f1f1f1;padding: 5px;display: inline-block;border-radius:4px;padding-left:10px;padding-right:10px;'><a href=\"javascript:modl('/actions/update_social_update?post=v.postid');\">Edit</a></div>"
+      v.actions="<div class='post_edit'><a href=\"javascript:modl('/actions/update_social_update?post=v.postid');\">Edit</a></div>"
     end
 
     v.emotegenerated=f.generate_social_update_emotes(v.postid)
@@ -167,10 +167,10 @@ f.generate_social_update_small{
     v.daxcomm=s.mysql_select("SELECT id FROM socials_comments WHERE updateid='v.postid' ORDER BY id DESC LIMIT 1")
     if not v.daxcomm false
       v.comment=f.generate_social_comment_micro(v.daxcomm)
-      v.previewcomment="<div style='margin-bottom:8px;'>v.comment</div><a href='/update/v.linkcode'>View all comments</a>"
+      v.previewcomment="<div style='margin-bottom:8px;'>v.comment</div><a href='/update/v.linkcode' style='post_viewall'>View all comments</a>"
     end
 
-    v.displaycontent="<div style='border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 65px;float:left;height:65px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h2 style='margin-bottom:0px;font-weight:300;display: inline-block;margin-top: 0px;'>v.usr_name</h2></a>v.actions<h3 style='margin-top: 4px;margin-bottom: 5px;'>v.generate_tags</h3><a href='/update/v.linkcode'>Posted v.dateago</a></div><div style='max-width:100%;max-height:900px;overflow:hidden;'>v.content</div>v.bottomlink<div style='border-top: 2px solid #f1f1f1;padding-top:10px;'>v.emotegenerated <a href="javascript:modl('/actions/post_social_comment?post=v.linkcode');" style='background: #f1f1f1;padding: 5px;margin-top: -29px;display: inline-block;float:right;border-radius:4px;padding-left:10px;padding-right:10px;'>Make comment</a></div>v.previewcomment<div></div>"
+    v.displaycontent="<div style='border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 65px;float:left;height:65px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h2 style='margin-bottom:0px;font-weight:300;display: inline-block;margin-top: 0px;'>v.usr_name</h2></a>v.actions<h3 style='margin-top: 4px;margin-bottom: 5px;'>v.generate_tags</h3><a href='/update/v.linkcode'>Posted v.dateago</a></div><div style='max-width:100%;max-height:900px;overflow:hidden;'>v.content</div>v.bottomlink<div style='border-top: 2px solid #f1f1f1;padding-top:10px;'>v.emotegenerated <a href="javascript:modl('/actions/post_social_comment?post=v.linkcode');" class='post_make_comment'>Make comment</a></div>v.previewcomment<div></div>"
 
     if v.rules=="ajax"
       t.content("v.displaycontent")
@@ -244,14 +244,14 @@ f.generate_social_update_full{
     v.actions="<div></div>"
 
     if v.user==sv.user_id
-      v.actions="<div style='float:right;background: #f1f1f1;padding: 5px;display: inline-block;border-radius:4px;padding-left:10px;padding-right:10px;'><a href=\"javascript:modl('/actions/update_social_update?post=v.postid');\">Edit</a></div>"
+      v.actions="<div class='post_edit'><a href=\"javascript:modl('/actions/update_social_update?post=v.postid');\">Edit</a></div>"
     end
 
     v.emotegenerated=f.generate_social_update_emotes(v.postid)
 
     t.content_middle("<bubble><div style='border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 65px;float:left;height:65px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h2 style='margin-bottom:0px;font-weight:300;display: inline-block;margin-top: 0px;'>v.usr_name</h2></a>v.actions<h3 style='margin-top: 4px;margin-bottom: 5px;'>v.generate_tags</h3>Posted v.dateago</div><div style='max-width:100%;overflow:hidden;'>v.content</div><div style='border-top: 2px solid #f1f1f1;padding-top:10px;'>v.emotegenerated</div></bubble>")
 
-    t.content_middle("<h1 style='margin-top:50px;margin-bottom:15px;'>Comments</h1><h2 style='margin-bottom:20px;'><a href="javascript:modl('/actions/post_social_comment?post=v.linkcode');" style='background: #ffffff;border-radius: 8px;padding: 5px;display: inline-block;padding-left: 15px;padding-right: 15px;'>Make comment</a></h2>")
+    t.content_middle("<h1 style='margin-top:50px;margin-bottom:15px;'>Comments</h1><h2 style='margin-bottom:20px;'><a href="javascript:modl('/actions/post_social_comment?post=v.linkcode');" class='post_make_comment_full'>Make comment</a></h2>")
 
     v.data_posts=s.mysql_select("SELECT id,user,linkcode FROM socials_comments WHERE updateid='v.postid' ORDER BY id DESC LIMIT 100")
     if not v.data_posts false
@@ -455,7 +455,7 @@ f.generate_social_comment_small{
       v.size_after=s.string_length(v.content)
       if v.size_after>=415
         v.content="v.content&hellip;"
-        v.bottomlink="<p><a href='/comment/v.linkcode'>View full comment</a></p>"
+        v.bottomlink="<p><a href='/comment/v.linkcode' class='post_viewall'>View full comment</a></p>"
       else
         v.bottomlink="<div></div>"
       end
@@ -486,7 +486,7 @@ f.generate_social_comment_small{
           v.conreply=s.string_brokenhtml(v.conreply)
           v.conlinkcode=f.get_social_comment_linkcode(v.data_crparent[id])
           v.conlinkuser=f.get_user_name_full(v.data_crparent[user])
-          v.conreply="<div style='padding:10px;padding-top:5px;padding-bottom:5px;border-radius:5px;background:#f1f1f1;margin-top:10px;margin-bottom:10px;'>v.conreply<p><a href='/comment/v.conlinkcode'>View original comment by v.conlinkuser</a></p></div>"
+          v.conreply="<div style='padding:10px;padding-top:5px;padding-bottom:5px;border-radius:5px;background:#f1f1f1;margin-top:10px;margin-bottom:10px;'>v.conreply<p><a href='/comment/v.conlinkcode' class='post_viewall'>View original comment by v.conlinkuser</a></p></div>"
         end
       end
     end
@@ -534,7 +534,7 @@ f.generate_social_comment_small{
       v.content="<p>This comment cant be displayed.</p>"
     end
 
-    v.displaycontent="<div style='border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 65px;float:left;height:65px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h2 style='margin-bottom:0px;font-weight:300;display: inline-block;margin-top: 0px;'>v.usr_name</h2></a>v.actions<h3 style='margin-top: 4px;margin-bottom: 5px;'>v.generate_tags</h3><a href='/comment/v.linkcode'>Posted v.dateago</a></div><div style='max-width:100%;max-height:900px;overflow:hidden;'>v.content</div>v.bottomlink v.conreply<div style='border-top: 2px solid #f1f1f1;padding-top:10px;'>v.emotegenerated<a href="javascript:modl('/actions/post_social_comment?post=v.parentlinkcode&reply=v.linkcode');" style='background: #f1f1f1;padding: 5px;margin-top: -29px;display: inline-block;float:right;border-radius:4px;padding-left:10px;padding-right:10px;'>Reply to comment</a></div>"
+    v.displaycontent="<div style='border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 65px;float:left;height:65px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h2 style='margin-bottom:0px;font-weight:300;display: inline-block;margin-top: 0px;'>v.usr_name</h2></a>v.actions<h3 style='margin-top: 4px;margin-bottom: 5px;'>v.generate_tags</h3><a href='/comment/v.linkcode'>Posted v.dateago</a></div><div style='max-width:100%;max-height:900px;overflow:hidden;'>v.content</div>v.bottomlink v.conreply<div style='border-top: 2px solid #f1f1f1;padding-top:10px;'>v.emotegenerated<a href="javascript:modl('/actions/post_social_comment?post=v.parentlinkcode&reply=v.linkcode');" class='comment_reply'>Reply to comment</a></div>"
 
     if v.rules=="ajax"
       t.content("v.displaycontent")
@@ -605,7 +605,7 @@ f.generate_social_comment_full{
           v.conreply=s.string_brokenhtml(v.conreply)
           v.conlinkcode=f.get_social_comment_linkcode(v.data_crparent[id])
           v.conlinkuser=f.get_user_name_full(v.data_crparent[user])
-          v.conreply="<div style='padding:10px;padding-top:5px;padding-bottom:5px;border-radius:5px;background:#f1f1f1;margin-top:10px;margin-bottom:10px;'>v.conreply<p><a href='/comment/v.conlinkcode'>View original comment by v.conlinkuser</a></p></div>"
+          v.conreply="<div style='padding:10px;padding-top:5px;padding-bottom:5px;border-radius:5px;background:#f1f1f1;margin-top:10px;margin-bottom:10px;'>v.conreply<p><a href='/comment/v.conlinkcode' class='post_viewall'>View original comment by v.conlinkuser</a></p></div>"
         end
       end
     end
@@ -640,7 +640,7 @@ f.generate_social_comment_full{
     v.actions="<div></div>"
 
     if v.user==sv.user_id
-      v.actions="<div style='float:right;background: #f1f1f1;padding: 5px;display: inline-block;border-radius:4px;padding-left:10px;padding-right:10px;'><a href=\"javascript:modl('/actions/update_social_comment?comment=v.postid');\">Edit</a></div>"
+      v.actions="<div class='comment_edit'><a href=\"javascript:modl('/actions/update_social_comment?comment=v.postid');\">Edit</a></div>"
     end
 
     v.emotegenerated=f.generate_social_comment_emotes(v.postid)
@@ -653,7 +653,7 @@ f.generate_social_comment_full{
       v.content="<p>This comment cant be displayed.</p>"
     end
 
-    v.displaycontent="<div style='border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 65px;float:left;height:65px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h2 style='margin-bottom:0px;font-weight:300;display: inline-block;margin-top: 0px;'>v.usr_name</h2></a>v.actions<h3 style='margin-top: 4px;margin-bottom: 5px;'>v.generate_tags</h3><a href='/comment/v.linkcode'>Posted v.dateago</a></div><div style='max-width:100%;overflow:hidden;'>v.content</div>v.conreply<div style='border-top: 2px solid #f1f1f1;padding-top:10px;'>v.emotegenerated<a href="javascript:modl('/actions/post_social_comment?post=v.parentlinkcode&reply=v.linkcode');" style='background: #f1f1f1;padding: 5px;margin-top: -29px;display: inline-block;float:right;border-radius:4px;padding-left:10px;padding-right:10px;'>Reply to comment</a></div>"
+    v.displaycontent="<div style='border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 65px;float:left;height:65px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h2 style='margin-bottom:0px;font-weight:300;display: inline-block;margin-top: 0px;'>v.usr_name</h2></a>v.actions<h3 style='margin-top: 4px;margin-bottom: 5px;'>v.generate_tags</h3><a href='/comment/v.linkcode'>Posted v.dateago</a></div><div style='max-width:100%;overflow:hidden;'>v.content</div>v.conreply<div style='border-top: 2px solid #f1f1f1;padding-top:10px;'>v.emotegenerated<a href="javascript:modl('/actions/post_social_comment?post=v.parentlinkcode&reply=v.linkcode');" class='comment_reply'>Reply to comment</a></div>"
 
     if v.rules=="ajax"
       t.content("v.displaycontent")
