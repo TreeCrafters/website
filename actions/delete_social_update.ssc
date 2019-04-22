@@ -9,5 +9,5 @@ v.media=s.string_clean(uv.post)
 v.data_con=s.mysql_select("SELECT * FROM socials_updates WHERE id='v.media' AND user='sv.user_id' LIMIT 1")
 if not v.data_con false
   v.update=s.mysql_update("UPDATE socials_updates SET visible='0' WHERE id='v.media'")
-  t.content("<checkupaction action='notification' type='success'>Resource has been deleted</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
+  t.content("<checkupaction action='notification' type='success'>Resource has been deleted</checkupaction><checkupaction action='redirect'>/</checkupaction>")
 end
