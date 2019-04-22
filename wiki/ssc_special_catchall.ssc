@@ -43,7 +43,7 @@ if not v.datalookup_section false
 
   f.set_pagetitle("v.datalookup_section[title]")
 
-  t.content_middle("<bubble style=\"min-height:300px;background-image:url('v.image');background-size: cover;background-position: center center;\"></bubble>")
+  t.content_middle("<bubble style=\"min-height:240px;background-image:url('v.image');background-size: cover;background-position: center center;\"></bubble>")
 
   t.content_middle("<bubble>v.description</bubble>")
 
@@ -99,7 +99,7 @@ if not v.datalookup_article false
     v.content="No content for this article"
   end
   v.image=f.get_wiki_article_image(v.articleid)
-  t.content_middle("<bubble style=\"min-height:300px;background-image:url('v.image');background-size: cover;background-position: center center;\"></bubble>")
+  t.content_middle("<bubble style=\"min-height:240px;background-image:url('v.image');background-size: cover;background-position: center center;\"></bubble>")
   t.content_middle("<bubble>v.content</bubble>")
 
 end
