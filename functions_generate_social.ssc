@@ -148,7 +148,7 @@ f.generate_social_update_small{
     v.actions="<div></div>"
 
     if v.user==sv.user_id
-      v.actions="<div class='post_edit'><a href=\"javascript:modl('/actions/update_social_update?post=v.postid');\">Edit</a></div>"
+      v.actions="<div class='post_edit'><a href=\"javascript:modl('/actions/update_social_update?post=v.postid');\">Edit</a><div class='post_delete'><a href=\"javascript:modl_confirm('Delete social update?','If you do this it cant be undone...','/actions/delete_social_update?post=v.postid');\">Delete</a></div></div>"
     end
 
     v.emotegenerated=f.generate_social_update_emotes(v.postid)
@@ -244,7 +244,7 @@ f.generate_social_update_full{
     v.actions="<div></div>"
 
     if v.user==sv.user_id
-      v.actions="<div class='post_delete'><a href=\"javascript:modl_confirm('Delete social update?','If you do this it cant be undone...','/actions/delete_social_update?post=v.postid');\">Delete</a></div><div class='post_edit'><a href=\"javascript:modl('/actions/update_social_update?post=v.postid');\">Edit</a></div>"
+      v.actions="<div class='post_edit'><a href=\"javascript:modl('/actions/update_social_update?post=v.postid');\">Edit</a></div><div class='post_delete'><a href=\"javascript:modl_confirm('Delete social update?','If you do this it cant be undone...','/actions/delete_social_update?post=v.postid');\">Delete</a></div>"
     end
 
     v.emotegenerated=f.generate_social_update_emotes(v.postid)
