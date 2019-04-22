@@ -39,7 +39,7 @@ if not sv.user_id==0
 end
 
 if not sv.user_id==0
-  t.header_left("<img src='/logo.png' style='max-height:40px;'>")
+  t.header_left("<img src='/logo.png' style='max-height: 40px;float: left;margin-right: 5px;margin-top: 5px;'>")
   t.header_left("<a href=\"/\" class='button'><i class="fas fa-rss"></i> Feed</a>")
   t.header_left("<a href=\"/profile/sv.user_username\" class='button'><i class="fas fa-user"></i> Profile</a>")
 end
