@@ -434,30 +434,13 @@
     /* ELEMENT */
 
 		.modl_case {
-			background: rgba(22, 22, 22, 0.90);
+			background: rgba(239,239,239,0.9);
 			z-index: 95000;
-			padding:5px;
 			position: fixed;
 			top: 0px;
 			left: 0px;
 			width: 100%;
 			height: 100%;
-		}
-
-		.light .modl_case{
-			background: rgba(239,239,239,0.9);
-			-webkit-backdrop-filter: blur(20px);
-			-moz-backdrop-filter: blur(20px);
-			-o-backdrop-filter: blur(20px);
-			backdrop-filter: blur(20px);
-		}
-
-		.dark .modl_case{
-			background: rgba(28,28,28,0.9);
-			-webkit-backdrop-filter: blur(20px);
-			-moz-backdrop-filter: blur(20px);
-			-o-backdrop-filter: blur(20px);
-			backdrop-filter: blur(20px);
 		}
 
     .sidebar_menu{
@@ -504,18 +487,18 @@
 			-webkit-overflow-scrolling: touch;
 			overflow-x: hidden;
 			max-height: 100%;
-			max-height: -moz-calc(100% - 75px);
-			max-height: -webkit-calc(100% - 75px);
-			max-height: calc(100% - 75px);
+			max-height: -moz-calc(100% - 90px);
+			max-height: -webkit-calc(100% - 90px);
+			max-height: calc(100% - 90px);
 			padding:10px;
-			padding-bottom: 65px;
-			max-width: 800px;
+			max-width: 850px;
 			margin: 0px auto;
       background:#ffffff;
       box-shadow: 0 0 10px rgba(0, 0, 0, .09);
 			-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .09);
 			-moz-box-shadow: 0 0 10px rgba(0, 0, 0, .09);
-			border-radius: 9px;
+			border-bottom-left-radius: 9px;
+      border-right-left-radius: 9px;
 		}
 
 		.light .modl_frame{
@@ -537,8 +520,6 @@
 		.modl_frame.wide {
 			max-width: 2000px;
 			margin: 0px auto;
-			margin-top: 10px;
-			margin-bottom: 10px;
 		}
 
 		/* ELEMENT */
@@ -546,8 +527,6 @@
 		.modl_frame.normal {
 			max-width: 800px;
 			margin: 0px auto;
-			margin-top: 10px;
-			margin-bottom: 10px;
 		}
 
 		/* ELEMENT */
