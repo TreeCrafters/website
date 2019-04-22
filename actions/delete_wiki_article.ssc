@@ -1,0 +1,20 @@
+s.include("/system.ssc")
+s.template("/templates/modl.html")
+f.permission_user_staff()
+f.set_pagetitle("Delete...")
+f.set_pagedescription("Delete in progress....")
+
+v.media=s.string_clean(uv.article)
+
+//check permissions
+v.allowed=f.get_user_permissions_post_wiki()
+if v.allowed false
+  s.header("Location: /")
+  s.quit()
+end
+
+v.data_con=s.mysql_select("SELECT * FROM wikis_articles WHERE id='v.media' LIMIT 1")
+if not v.data_con false
+  v.update=s.mysql_update("UPDATE wikis_articles SET visible='0' WHERE id='v.media'")
+  t.content("<checkupaction action='notification' type='success'>Resource has been deleted</checkupaction><checkupaction action='backgroundrefresh'></checkupaction>")
+end

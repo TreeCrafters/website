@@ -75,7 +75,7 @@ if v.file_uploaded true
         if not v.query false
           v.imagestorage=s.mysql_insert("INSERT INTO storage_images_v.tablestorage(image, code) VALUES('v.query', 'v.baseimage')")
 
-          t.content("<div class='box'><h3 style='margin-top:0px;'>Image uploaded</h3><div><img src=\"//gv.system_domain/images/account_media_photo/v.linkcode/image.jpg\" style=\"border-radius:5px;max-height: 100px;margin-left:2px;margin-right:2px;\"><pre>gv.system_domain/images/account_media_photo/v.linkcode/image.jpg</pre></div></div>")
+          t.content("<div class='box'><h3 style='margin-top:0px;'>Image uploaded</h3><div><img src=\"//gv.system_domain/images/account_media_photo/v.linkcode/image.jpg\" style=\"border-radius:5px;max-height: 100px;margin-left:2px;margin-right:2px;\"><code><pre>gv.system_domain/images/account_media_photo/v.linkcode/image.jpg</pre></code></div></div>")
         else
           t.content("We are unable to save the image...")
         end
