@@ -167,7 +167,7 @@ f.generate_social_update_small{
     v.daxcomm=s.mysql_select("SELECT id FROM socials_comments WHERE updateid='v.postid' ORDER BY id DESC LIMIT 1")
     if not v.daxcomm false
       v.comment=f.generate_social_comment_micro(v.daxcomm)
-      v.previewcomment="<div style='margin-bottom:8px;'>v.comment</div><a href='/update/v.linkcode' style='post_viewall'>View all comments</a>"
+      v.previewcomment="<div style='margin-bottom:8px;'>v.comment</div><a href='/update/v.linkcode' class='post_viewall'>View all comments</a>"
     end
 
     v.displaycontent="<div style='border-bottom: 2px solid #f1f1f1;padding-bottom: 10px;'><avatar style=\"border-radius: 35px;width: 65px;float:left;height:65px;margin-right: 10px;position: relative;margin-bottom: 10px;background-image:url('v.usr_image');\"></avatar><a href='/profile/v.usr_username'><h2 style='margin-bottom:0px;font-weight:300;display: inline-block;margin-top: 0px;'>v.usr_name</h2></a>v.actions<h3 style='margin-top: 4px;margin-bottom: 5px;'>v.generate_tags</h3><a href='/update/v.linkcode'>Posted v.dateago</a></div><div style='max-width:100%;max-height:900px;overflow:hidden;'>v.content</div>v.bottomlink<div style='border-top: 2px solid #f1f1f1;padding-top:10px;'>v.emotegenerated <a href="javascript:modl('/actions/post_social_comment?post=v.linkcode');" class='post_make_comment'>Make comment</a></div>v.previewcomment<div></div>"
