@@ -1840,7 +1840,7 @@ title: "Uploaded photo",
       document.getElementById("mde_giphyattach_results").innerHTML='<div class=\'spinning_loader small\'></div>';
 
       request = new XMLHttpRequest;
-    	request.open('GET', 'http://api.giphy.com/v1/gifs/search?q=' + search + '&api_key=ZybXe2SkUGkGOMqTgo7w4VkF42OOYdfi', true);
+    	request.open('GET', '/ajax/giphy?search=' + search + '', true);
     	request.onload = function() {
     		if (request.status >= 200 && request.status < 400){
     			data = JSON.parse(request.responseText).data;

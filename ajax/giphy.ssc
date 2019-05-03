@@ -1,0 +1,3 @@
+v.search=s.string_clean(uv.search)
+v.content=s.http_request_get("http://api.giphy.com/v1/gifs/search?q=v.search&api_key=ZybXe2SkUGkGOMqTgo7w4VkF42OOYdfi")
+s.echo(v.content)
