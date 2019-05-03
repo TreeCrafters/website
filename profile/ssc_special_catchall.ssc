@@ -34,7 +34,7 @@ if not v.data_profile false
     end
   else
     t.content_right("<a href="javascript:modl('/actions/post_social_update');" class='sidebar_menu'>New update</a>")
-    t.content_right("<a href="javascript:modl('/actions/post_media_photo');" class='sidebar_menu'>Upload images</a>")
+    t.content_right("<a href="javascript:modl('/actions/post_media_photo');" class='sidebar_menu'>Upload photos</a>")
   end
   t.content_right("</bubble>")
 
